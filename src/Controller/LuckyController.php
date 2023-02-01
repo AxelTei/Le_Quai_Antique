@@ -2,14 +2,15 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class LuckyController
+class LuckyController extends AbstractController
 {
     #[Route("random")]
     public function number (): Response
     {
-        return new Response("<html><h1>Yo</h1></html>");
+        return $this->render("/lucky/number.html.twig");
     }
 }
