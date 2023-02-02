@@ -2,6 +2,11 @@
 
 {% block title %}Accueil | Le Quai Antique{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="produit.css">
+{% endblock %}
+
 {# Définit un espace surchargeable avec "block" #}
 {% block body %}
     <h1>Yo, tu as {{age}} ans !</h1>
@@ -34,5 +39,7 @@
     {{ "now"|date("d/m/Y") }}<br>
 
     {# filtres "last", "first" et "length" disponibles #}
-    <u>{{ numbers|length }}</u>
+    <u>{{ numbers|length }}</u><br>
+
+    <button class="btn btn-primary">Submit!</button>
 {% endblock %}
