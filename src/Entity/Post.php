@@ -7,13 +7,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Post
 {
     private int $id;
-    #[Assert\Length(min: 0, max: 150, minMessage: "Le titre doit faire plus de 5 caractères !", maxMessage: "Le titre doit faire moins de 320 caractères !")]
     private ?string $title = NULL;
-    #[Assert\NotBlank(message: 'Le message ne doit pas être vide !')]
-    #[Assert\Length(min: 5, max: 320, minMessage: "Le message doit faire plus de 5 caractères !", maxMessage: "Le message doit faire moins de 320 caractères !")]
     private string $content;
-    #[Assert\NotBlank(message: 'L\'url de l\'image ne doit pas être vide !')]
-    #[Assert\Url(message: 'Il doit s\'agir de l\'url d\'une image !')]
     private string $image;
     private $user;
 
