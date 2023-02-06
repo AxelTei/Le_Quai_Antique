@@ -25,7 +25,7 @@ class PostController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-            dump($post);
+            //dump($post);
         }
         return $this->render('post/form.html.twig', [
             'post_form' => $form->createView()
