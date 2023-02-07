@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Post
 {
     #[ORM\Id()]
+    #[ORM\GeneratedValue(strategy: "AUTO")]
     #[ORM\Column(type: "integer")]
     private int $id;
     #[ORM\Column(type: "string", nullable: true, length: 150)]
