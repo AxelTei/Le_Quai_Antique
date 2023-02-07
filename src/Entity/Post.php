@@ -13,14 +13,18 @@ class Post
     #[ORM\GeneratedValue(strategy: "AUTO")]
     #[ORM\Column(type: "integer")]
     private int $id;
+    
     #[ORM\Column(type: "string", nullable: true, length: 150)]
     private ?string $title = NULL;
+
     #[ORM\Column(type: "text", length: 320)]
     private string $content;
+
     #[ORM\Column(type: "text", nullable: true)]
     private ?string $image;
-    //#[ORM\Column(type: "User")]
-    //private $user;
+
+    #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "posts")]
+    private $user;
 
     public function getId(): int
     {
@@ -70,15 +74,15 @@ class Post
         return $this;
     }
 
-    // public function getUser()
-    // {
-    //     return $this->user;
-    // }
+    public function getUser()
+    {
+        return $this->user;
+    }
 
-    // public function setUser($user): self
-    // {
-    //     $this->user = $user;
+    public function setUser($user): self
+    {
+        $this->user = $user;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 }
