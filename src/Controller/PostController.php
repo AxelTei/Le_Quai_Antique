@@ -40,6 +40,22 @@ class PostController extends AbstractController
         ]);
     }
 
+    #[Route('/post/edit/{id}', name: "edit-post", requirements: ["id" => "\d+"])]
+    public function update(Post $post, ManagerRegistry $doctrine, Request $request): Response
+    {
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('post/form.html.twig', [
+            'post_form' => $form->createView()
+        ]);
+    }
+
     #[Route('/post/delete/{id}', name: "delete-post", requirements: ["id" => "\d+"])]
     public function delete(Post $post, ManagerRegistry $doctrine): Response
     {
