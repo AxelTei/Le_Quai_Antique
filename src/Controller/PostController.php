@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PostController extends AbstractController
 {
-    #[Route('/')]
+    #[Route('/', name: 'home')]
     public function index(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Post::class);
@@ -33,9 +33,20 @@ class PostController extends AbstractController
             $em = $doctrine->getManager();
             $em->persist($post);
             $em->flush();
+            return $this->redirectToRoute('home');
         }
         return $this->render('post/form.html.twig', [
             'post_form' => $form->createView()
         ]);
+    }
+
+    #[Route('/post/delete/{id}', name: "delete-post", requirements: ["id" => "\d+"])]
+    public function delete(Post $post, ManagerRegistry $doctrine): Response
+    {
+        $em = $doctrine->getManager();
+        $em->remove($post);
+        $em->flush();
+
+        return $this->redirectToRoute('home');
     }
 }
