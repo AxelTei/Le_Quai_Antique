@@ -3,14 +3,23 @@
 namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Entity()]
+#[ORM\Table(name: "post")]
 class Post
 {
+    #[ORM\Id()]
+    #[ORM\Column(type: "integer")]
     private int $id;
+    #[ORM\Column(type: "string", nullable: true, length: 150)]
     private ?string $title = NULL;
+    #[ORM\Column(type: "text", length: 320)]
     private string $content;
+    #[ORM\Column(type: "text")]
     private string $image;
-    private $user;
+    //#[ORM\Column(type: "User")]
+    //private $user;
 
     public function getId(): int
     {
@@ -60,15 +69,15 @@ class Post
         return $this;
     }
 
-    public function getUser()
-    {
-        return $this->user;
-    }
+    // public function getUser()
+    // {
+    //     return $this->user;
+    // }
 
-    public function setUser($user): self
-    {
-        $this->user = $user;
+    // public function setUser($user): self
+    // {
+    //     $this->user = $user;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 }
