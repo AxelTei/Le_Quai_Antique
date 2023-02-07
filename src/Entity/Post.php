@@ -17,7 +17,7 @@ class Post
     private ?string $title = NULL;
     #[ORM\Column(type: "text", length: 320)]
     private string $content;
-    #[ORM\Column(type: "text")]
+    #[ORM\Column(type: "text", nullable: true)]
     private string $image;
     //#[ORM\Column(type: "User")]
     //private $user;
