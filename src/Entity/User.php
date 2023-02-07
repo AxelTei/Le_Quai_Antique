@@ -107,4 +107,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    public function setPosts($posts)
+    {
+        $this->posts = $posts;
+
+        return $this;
+    }
 }
