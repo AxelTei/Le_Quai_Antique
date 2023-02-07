@@ -13,9 +13,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends AbstractController
 {
     #[Route('/')]
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
-        return $this->render('post/index.html.twig');
+        $repository = $doctrine->getRepository(Post::class);
+        $posts = $repository->findAll(); // SELECT * FROM `post`;
+        return $this->render('post/index.html.twig', [
+            "posts" => $posts
+        ]);
     }
 
     #[Route('/post/new')]
