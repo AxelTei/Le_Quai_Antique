@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SecurityController!{% endblock %}
+
+{% block body %}
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.message }}
+        </div>
+    {% endif %}
+
+    <form class="container-fluid" method="post">
+        <label for="email">Email</label>
+        <input type="text" name="_username" id="email" value="{{ last_username }}" class="form-control" required />
+        <label for="password">Mot de passe</label>
+        <input type="password" name="_password" id="password" class="form-control" required />
+        <input type="hidden" name="_target_path" value="/">
+        <input type="submit" value="Connexion" class="btn btn-success mt-3">
+    </form>
+
+{% endblock %}
