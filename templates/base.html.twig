@@ -43,8 +43,11 @@
 								<a class="nav-link disabled">Contact</a>
 							</li>
 						</ul>
-						<a href="/login"><button class="btn btn-outline-success" type="submit" style="background-color: red; color: white;">Se connecter</button></a>
-						<a href="/logout"><button class="btn btn-outline-success" type="submit" style="background-color: red; color: white;">Se déconnecter</button></a>
+						{% if app.user %}
+							<a href="/logout"><button class="btn btn-outline-success" type="submit" style="background-color: red; color: white;">Se déconnecter</button></a>
+						{% else %}
+							<a href="/login"><button class="btn btn-outline-success" type="submit" style="background-color: red; color: white;">Se connecter</button></a>
+						{% endif %}
 					</div>
 				</div>
 			</nav>
