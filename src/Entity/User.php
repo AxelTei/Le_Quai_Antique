@@ -29,6 +29,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    private ?string $confirm = null;
+
     #[ORM\OneToMany(targetEntity: "App\Entity\Post", mappedBy: "user")]
     private $posts;
 
@@ -116,6 +118,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPosts($posts)
     {
         $this->posts = $posts;
+
+        return $this;
+    }
+
+    public function getConfirm()
+    {
+        return $this->confirm;
+    }
+
+    public function setConfirm($confirm)
+    {
+        $this->confirm = $confirm;
 
         return $this;
     }

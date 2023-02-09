@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		{{ form_start(form) }}
+		{{ form_rest(form) }}
+		<input type="submit" value="Créer votre compte" class="btn btn-success mt-3"><br>
+        <a href="/login">Se connecter</a>
+	</div>
+{% endblock %}
