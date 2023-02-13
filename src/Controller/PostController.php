@@ -12,7 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PostController extends AbstractController
 {
-    // URL a sécurisé
     #[Route('/', name: 'home')]
     public function index(ManagerRegistry $doctrine): Response
     {
@@ -23,6 +22,7 @@ class PostController extends AbstractController
         ]);
     }
 
+    // URL a sécurisé
     #[Route('/post/new')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -42,6 +42,7 @@ class PostController extends AbstractController
         ]);
     }
 
+    // URL a sécurisé
     #[Route('/post/edit/{id}', name: "edit-post", requirements: ["id" => "\d+"])]
     public function update(Post $post, ManagerRegistry $doctrine, Request $request): Response
     {
@@ -58,6 +59,7 @@ class PostController extends AbstractController
         ]);
     }
 
+    // URL a sécurisé
     #[Route('/post/delete/{id}', name: "delete-post", requirements: ["id" => "\d+"])]
     public function delete(Post $post, ManagerRegistry $doctrine): Response
     {
@@ -68,6 +70,7 @@ class PostController extends AbstractController
         return $this->redirectToRoute('home');
     }
 
+    // URL a sécurisé
     #[Route('/post/copy/{id}', name: "copy-post", requirements: ["id" => "\d+"])]
     public function duplicate(Post $post, ManagerRegistry $doctrine, Request $request): Response
     {
