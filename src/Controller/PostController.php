@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PostController extends AbstractController
 {
+    // URL a sécurisé
     #[Route('/', name: 'home')]
     public function index(ManagerRegistry $doctrine): Response
     {

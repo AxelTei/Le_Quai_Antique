@@ -13,6 +13,7 @@
 		{% for post in posts %}
 			<div class="card mt-5" style="width: 18rem;">
 				{% if post.title %}
+				{# Mettre le titre en apparence avec passage de la souris sur une photo #}
 					<h5 class="card-title">{{ post.title }}</h5>
 				{% endif %}
 				{% if post.image %}
