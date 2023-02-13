@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity()]
-#[ORM\Table(name: "restaurant-dishes")]
+#[ORM\Table(name: "restaurant_dishes")]
 class Menu
 {
     #[ORM\Id()]
@@ -24,7 +24,7 @@ class Menu
 
     #[ORM\Column(type: "string", length: 30)]
     private ?string $dishPrice;
-    
+
     public function getId(): int
     {
         return $this->id;
