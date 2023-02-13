@@ -1,8 +1,12 @@
 {% extends "base.html.twig" %}
 
+{% block title %}
+    Gestion Administrative | Le Quai Antique
+{% endblock %}
+
 {% block body %}
 	<div class="container-fluid">
-        <h1>Gestion Administrative</h1>
+        <h1 class="main-title-admin-page">Gestion Administrative</h1>
 		<h2>Plats présentés en page de garde</h2>
 		{{ form_start(post_form, {"attr": {"novalidate": "novalidate"}}) }}
 		{{ form_row(post_form.title)}}
