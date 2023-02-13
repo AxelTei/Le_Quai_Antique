@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use App\Repository\CustomerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+#[ORM\Entity(repositoryClass: CustomerRepository::class)]
+#[ORM\Table(name: "customers")]
+class Customers implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -31,7 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     private ?string $confirm = null;
 
-    #[ORM\OneToMany(targetEntity: "App\Entity\Post", mappedBy: "user")]
+    #[ORM\OneToMany(targetEntity: "App\Entity\Post", mappedBy: "customers")]
     private $posts;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)

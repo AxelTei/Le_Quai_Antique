@@ -23,8 +23,8 @@ class Post
     #[ORM\Column(type: "text", nullable: true)]
     private ?string $image;
 
-    #[ORM\ManyToOne(targetEntity: "App\Entity\User", inversedBy: "posts")]
-    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id", onDelete: "CASCADE")]
+    #[ORM\ManyToOne(targetEntity: "App\Entity\Customers", inversedBy: "posts")]
+    #[ORM\JoinColumn(name: "customers_id", referencedColumnName: "id", onDelete: "CASCADE")]
     private $user;
 
     public function getId(): int

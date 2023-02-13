@@ -21,9 +21,10 @@ class Menu
 
     #[ORM\Column(type: "text", length: 320)]
     private ?string $dishDescription;
-    
+
     #[ORM\Column(type: "string", length: 30)]
     private ?string $dishPrice;
+    
     public function getId(): int
     {
         return $this->id;
