@@ -38,7 +38,51 @@
                     {% if is_granted('ROLE_ADMIN') %}
 						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
 						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning">Modifier</a>
-						{# <a href="{{ path('copy-menu', {'id': menu.id}) }}" class="btn btn-info">Copier</a> #}
+					{% endif %}
+				</div>
+			{% endif %}
+		{% endfor %}
+
+        <h2 class="mt-5">Nos Plats</h2>
+		{% for menu in menus %}
+			{% if menu.dishCategory == 'plat' %}
+				<div>
+					<h3>{{ menu.dishTitle }}</h3>
+					<p>{{ menu.dishDescription }}</p>
+					<p>{{ menu.dishPrice }}</p>
+                    {% if is_granted('ROLE_ADMIN') %}
+						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
+						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning">Modifier</a>
+					{% endif %}
+				</div>
+			{% endif %}
+		{% endfor %}
+
+        <h2 class="mt-5">Menu Enfant</h2>
+		{% for menu in menus %}
+			{% if menu.dishCategory == 'menu enfant' %}
+				<div>
+					<h3>{{ menu.dishTitle }}</h3>
+					<p>{{ menu.dishDescription }}</p>
+					<p>{{ menu.dishPrice }}</p>
+                    {% if is_granted('ROLE_ADMIN') %}
+						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
+						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning">Modifier</a>
+					{% endif %}
+				</div>
+			{% endif %}
+		{% endfor %}
+
+        <h2 class="mt-5">Nos Desserts</h2>
+		{% for menu in menus %}
+			{% if menu.dishCategory == 'dessert' %}
+				<div>
+					<h3>{{ menu.dishTitle }}</h3>
+					<p>{{ menu.dishDescription }}</p>
+					<p>{{ menu.dishPrice }}</p>
+                    {% if is_granted('ROLE_ADMIN') %}
+						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
+						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning">Modifier</a>
 					{% endif %}
 				</div>
 			{% endif %}
