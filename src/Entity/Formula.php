@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+// Changer les bons attribut en nullable et migrer puis faire un test
 #[ORM\Entity()]
 #[ORM\Table(name: "restaurant_menu")]
 class Formula
