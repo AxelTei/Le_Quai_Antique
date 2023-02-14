@@ -16,7 +16,7 @@ class Formula
     #[ORM\Column(type: "string", length: 150)]
     private string $menuTitle;
 
-    #[ORM\Column(type: "string", length: 150, nullable: true)]
+    #[ORM\Column(type: "string", length: 150)]
     private ?string $formulaDayTitle;
 
     #[ORM\Column(type: "text", length: 320)]

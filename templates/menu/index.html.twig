@@ -14,16 +14,30 @@
 	</div>
 
 	<div>
-		<div>
-			<h2>Menu 1</h2>
-			<p></p>
-			<p></p>
-			<p></p>
+		{% for formula in formulas %}
+			<div>
+				<h2>{{ formula.menuTitle }}</h2>
+				{% if formula.formulaDayTitle %}
+					<p>{{ formula.formulaDayTitle }}</p>
+				{% endif %}
+				{% if formula.formulaDayDescription %}
+					<p>{{ formula.formulaDayDescription }}</p>
+				{% endif %}
+				{% if formula.formulaDayPrice %}
+					<p>{{ formula.formulaDayPrice }}</p>
+				{% endif %}
 
-			<p></p>
-			<p></p>
-			<p></p>
-		</div>
+				{% if formula.formulaNightTitle %}
+					<p>{{ formula.formulaNightTitle}}</p>
+				{% endif %}
+				{% if formula.formulaNightDescription %}
+					<p>{{ formula.formulaNightDescription}}</p>
+				{% endif %}
+				{% if formula.formulaNightPrice %}
+					<p>{{ formula.formulaNightPrice}}</p>
+				{% endif %}
+			</div>
+		{% endfor %}
 	</div>
 
 
@@ -35,7 +49,7 @@
 					<h3>{{ menu.dishTitle }}</h3>
 					<p>{{ menu.dishDescription }}</p>
 					<p>{{ menu.dishPrice }}</p>
-                    {% if is_granted('ROLE_ADMIN') %}
+					{% if is_granted('ROLE_ADMIN') %}
 						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
 						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning">Modifier</a>
 					{% endif %}
@@ -43,14 +57,14 @@
 			{% endif %}
 		{% endfor %}
 
-        <h2 class="mt-5">Nos Plats</h2>
+		<h2 class="mt-5">Nos Plats</h2>
 		{% for menu in menus %}
 			{% if menu.dishCategory == 'plat' %}
 				<div>
 					<h3>{{ menu.dishTitle }}</h3>
 					<p>{{ menu.dishDescription }}</p>
 					<p>{{ menu.dishPrice }}</p>
-                    {% if is_granted('ROLE_ADMIN') %}
+					{% if is_granted('ROLE_ADMIN') %}
 						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
 						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning">Modifier</a>
 					{% endif %}
@@ -58,14 +72,14 @@
 			{% endif %}
 		{% endfor %}
 
-        <h2 class="mt-5">Menu Enfant</h2>
+		<h2 class="mt-5">Menu Enfant</h2>
 		{% for menu in menus %}
 			{% if menu.dishCategory == 'menu enfant' %}
 				<div>
 					<h3>{{ menu.dishTitle }}</h3>
 					<p>{{ menu.dishDescription }}</p>
 					<p>{{ menu.dishPrice }}</p>
-                    {% if is_granted('ROLE_ADMIN') %}
+					{% if is_granted('ROLE_ADMIN') %}
 						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
 						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning">Modifier</a>
 					{% endif %}
@@ -73,14 +87,14 @@
 			{% endif %}
 		{% endfor %}
 
-        <h2 class="mt-5">Nos Desserts</h2>
+		<h2 class="mt-5">Nos Desserts</h2>
 		{% for menu in menus %}
 			{% if menu.dishCategory == 'dessert' %}
 				<div>
 					<h3>{{ menu.dishTitle }}</h3>
 					<p>{{ menu.dishDescription }}</p>
 					<p>{{ menu.dishPrice }}</p>
-                    {% if is_granted('ROLE_ADMIN') %}
+					{% if is_granted('ROLE_ADMIN') %}
 						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
 						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning">Modifier</a>
 					{% endif %}

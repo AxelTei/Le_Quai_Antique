@@ -18,9 +18,14 @@ class MenuController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Menu::class);
-        $menus = $repository->findAll(); // SELECT * FROM `menu`;
+        $menus = $repository->findAll(); // SELECT * FROM `restaurant_dishes`;
+
+        $repositoryFormula = $doctrine->getRepository(Formula::class);
+        $formulas = $repositoryFormula->findAll(); // SELECT * FROM `restaurant_menu`
+
         return $this->render('menu/index.html.twig', [
-            "menus" => $menus
+            "menus" => $menus,
+            "formulas" => $formulas
         ]);
     }
 
