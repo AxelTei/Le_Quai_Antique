@@ -7,12 +7,13 @@
 {% block body %}
 	<div class="container-fluid">
         <h1 class="main-title-admin-page">Gestion Administrative</h1>
-		<h2>Plats présentés en page de garde</h2>
-		{{ form_start(post_form, {"attr": {"novalidate": "novalidate"}}) }}
-		{{ form_row(post_form.title)}}
-		{{ form_row(post_form.content)}}
-		{{ form_row(post_form.image)}}
+        <h2>La Carte</h2>
+		{{ form_start(menu_form, {"attr": {"novalidate": "novalidate"}}) }}
+		{{ form_row(menu_form.dishTitle)}}
+        {{ form_row(menu_form.dishCategory)}}
+		{{ form_row(menu_form.dishDescription)}}
+		{{ form_row(menu_form.dishPrice)}}
 		<button type="submit">Créer</button>
-		{{ form_end(post_form)}}
+		{{ form_end(menu_form)}}
 	</div>
 {% endblock %}
