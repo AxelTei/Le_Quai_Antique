@@ -22,7 +22,7 @@ class MenuType extends AbstractType
                 "constraints" => [ new Length(['min' => 0, 'max' => 150, 'minMessage' => "Le titre ne doit être vide !", 'maxMessage' => "Le titre ne doit pas faire plus de 150 caractères !"])]
                 ])
             ->add("dishCategory", TextType::class, [
-                "label" => "Category",
+                "label" => "Catégorie",
                 "required" => true,
                 "constraints" => [ new NotBlank(['message' => 'La catégorie du plat doit être inscrite !'])]
             ])
