@@ -35,6 +35,11 @@
 					<h3>{{ menu.dishTitle }}</h3>
 					<p>{{ menu.dishDescription }}</p>
 					<p>{{ menu.dishPrice }}</p>
+                    {% if is_granted('ROLE_ADMIN') %}
+						{# <a href="{{ path('delete-menu', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a> #}
+						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning">Modifier</a>
+						{# <a href="{{ path('copy-menu', {'id': menu.id}) }}" class="btn btn-info">Copier</a> #}
+					{% endif %}
 				</div>
 			{% endif %}
 		{% endfor %}

@@ -40,4 +40,21 @@ class MenuController extends AbstractController
             'menu_form' => $form->createView()
         ]);
     }
+
+    // URL a sécurisé
+    #[Route('/carte/edit/{id}', name: "edit-carte", requirements: ["id" => "\d+"])]
+    public function update(Menu $menu, ManagerRegistry $doctrine, Request $request): Response
+    {
+        $form = $this->createForm(MenuType::class, $menu);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('menu/form.html.twig', [
+            'menu_form' => $form->createView()
+        ]);
+    }
 }
