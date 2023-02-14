@@ -51,10 +51,21 @@ class MenuController extends AbstractController
         {
             $em = $doctrine->getManager();
             $em->flush();
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('carte');
         }
         return $this->render('menu/form.html.twig', [
             'menu_form' => $form->createView()
         ]);
+    }
+
+    // URL a sécurisé
+    #[Route('/post/delete/{id}', name: "delete-carte", requirements: ["id" => "\d+"])]
+    public function delete(Menu $menu, ManagerRegistry $doctrine): Response
+    {
+        $em = $doctrine->getManager();
+        $em->remove($menu);
+        $em->flush();
+
+        return $this->redirectToRoute('carte');
     }
 }
