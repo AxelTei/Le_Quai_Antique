@@ -19,7 +19,7 @@ class MenuType extends AbstractType
             ->add("dishTitle", TextType::class, [
                 "label" => "Titre", 
                 "required" => true,
-                "constraints" => [ new Length(['min' => 0, 'max' => 150, 'minMessage' => "Le titre ne doit être vide !", 'maxMessage' => "Le titre ne doit pas faire plus de 150 caractères !"])]
+                "constraints" => [ new Length(['min' => 0, 'max' => 150, 'minMessage' => "Le titre ne doit pas être vide !", 'maxMessage' => "Le titre ne doit pas faire plus de 150 caractères !"])]
                 ])
             ->add("dishCategory", TextType::class, [
                 "label" => "Catégorie",
@@ -31,7 +31,7 @@ class MenuType extends AbstractType
                 "required" => true,
                 "constraints" => [
                     new Length(['min' => 5, 'max' => 320, 'minMessage' => "La description ne doit pas faire moins de 5 caractères !", 'maxMessage' => "La description ne doit pas faire plus de 320 caractères !"]),
-                    new NotBlank(['message' => 'Le description ne doit pas être vide !'])
+                    new NotBlank(['message' => 'La description ne doit pas être vide !'])
                 ]
                 ])
             ->add("dishPrice", TextType::class, [

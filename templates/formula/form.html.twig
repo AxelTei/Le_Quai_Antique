@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Gestion Administrative | Le Quai Antique
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+	<link rel="stylesheet" href="produit.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1 class="main-title-admin-page">Gestion Administrative</h1>
+        <h2>Les Menus</h2>
+		{{ form_start(formula_form, {"attr": {"novalidate": "novalidate"}}) }}
+		{{ form_row(formula_form.menuTitle)}}
+        {{ form_row(formula_form.formulaDayTitle)}}
+		{{ form_row(formula_form.formulaDayDescription)}}
+		{{ form_row(formula_form.formulaDayPrice)}}
+        {{ form_row(formula_form.formulaNightTitle)}}
+        {{ form_row(formula_form.formulaNightDescription)}}
+        {{ form_row(formula_form.formulaNightPrice)}}
+		<button type="submit">Créer</button>
+		{{ form_end(formula_form)}}
+	</div>
+{% endblock %}

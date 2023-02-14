@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Formula;
 use App\Entity\Menu;
+use App\Form\FormulaType;
 use App\Form\MenuType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -59,7 +61,7 @@ class MenuController extends AbstractController
     }
 
     // URL a sécurisé
-    #[Route('/post/delete/{id}', name: "delete-carte", requirements: ["id" => "\d+"])]
+    #[Route('/carte/delete/{id}', name: "delete-carte", requirements: ["id" => "\d+"])]
     public function delete(Menu $menu, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
@@ -67,5 +69,24 @@ class MenuController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('carte');
+    }
+
+    // URL a sécurisé
+    #[Route('/menu/new')]
+    public function createMenu(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $formula = new Formula();
+        $form = $this->createForm(FormulaType::class, $formula);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $doctrine->getManager();
+            $em->persist($formula);
+            $em->flush();
+            return $this->redirectToRoute('carte');
+        }
+        return $this->render('formula/form.html.twig', [
+            'formula_form' => $form->createView()
+        ]);
     }
 }
