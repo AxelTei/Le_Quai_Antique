@@ -32,6 +32,15 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
 
     private ?string $confirm = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?string $preferedHour;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $preferedGroupNumber;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $allergies;
+
     #[ORM\OneToMany(targetEntity: "App\Entity\Post", mappedBy: "user")]
     private $posts;
 
@@ -131,6 +140,42 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     public function setConfirm($confirm)
     {
         $this->confirm = $confirm;
+
+        return $this;
+    }
+
+    public function getPreferedHour()
+    {
+        return $this->preferedHour;
+    }
+
+    public function setPreferedHour($preferedHour)
+    {
+        $this->preferedHour = $preferedHour;
+
+        return $this;
+    }
+
+    public function getPreferedGroupNumber()
+    {
+        return $this->preferedGroupNumber;
+    }
+
+    public function setPreferedGroupNumber($preferedGroupNumber)
+    {
+        $this->preferedGroupNumber = $preferedGroupNumber;
+
+        return $this;
+    }
+
+    public function getAllergies()
+    {
+        return $this->allergies;
+    }
+
+    public function setAllergies($allergies)
+    {
+        $this->allergies = $allergies;
 
         return $this;
     }

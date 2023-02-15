@@ -5,8 +5,10 @@ namespace App\Form;
 use App\Entity\Customers;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Callback;
@@ -20,7 +22,7 @@ class CustomerType extends AbstractType
     {
         $builder
             ->add("email", EmailType::class, [
-                "label" => "Email",
+                "label" => "Email*",
                 "required" => true,
                 "constraints" => [
                     new Length(["min" => 0, "max" => 180, "minMessage" => "Insérez votre Email.", "maxMessage" => "Votre identifiant ne doit pas dépasser 180 caractères !"]),
@@ -28,12 +30,12 @@ class CustomerType extends AbstractType
                     ]
             ])
             ->add("password", PasswordType::class, [
-                "label" => "Mot de Passe",
+                "label" => "Mot de Passe*",
                 "required" => true,
                 "constraints" => [new NotBlank(["message" => "Veuillez saisir votre nouveau Mot de passe."])]
             ])
             ->add("confirm", PasswordType::class, [
-                "label" => "Confirmer votre Mot de Passe",
+                "label" => "Confirmer votre Mot de Passe*",
                 "required" => true,
                 "constraints" => [
                     new NotBlank(["message" => "Veuillez confirmer votre nouveau Mot de passe."]),
@@ -45,6 +47,23 @@ class CustomerType extends AbstractType
                         }
                     }])
                 ]
+            ])
+            ->add("preferedHour", TimeType::class, [
+                "label" => "Sélectionez l'heure que vous préférez pour votre réservation",
+                "required" => false,
+                "input" => "string",
+                "widget" => "single_text",
+                "placeholder" => "Sélectionnez une heure"
+            ])
+            ->add("preferedGroupNumber", IntegerType::class, [
+                "label" => "Vous réservez pour combien de personnes, habituellement ?",
+                "required" => false,
+                "empty_data" => 2,
+            ])
+            ->add("allergies", TextType::class, [
+                "label" => "Avez-vous des allergies ?",
+                "required" => false,
+                "constraints" => [new Length(["min" => 1, "max" => 180, "minMessage" => "Insérez des véritables allergies.", "maxMessage" => "Vos allergies ne doivent pas dépasser 180 caractères ! Si elles dépassent, veuillez-nouc contacter téléphoniquement !"])]
             ]);
     }
 
