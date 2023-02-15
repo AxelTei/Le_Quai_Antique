@@ -16,21 +16,21 @@ class Formula
     #[ORM\Column(type: "string", length: 150)]
     private string $menuTitle;
 
-    #[ORM\Column(type: "string", length: 150)]
+    #[ORM\Column(type: "string", length: 150, nullable: true)]
     private ?string $formulaDayTitle;
 
-    #[ORM\Column(type: "text", length: 320)]
+    #[ORM\Column(type: "text", length: 320, nullable: true)]
     private ?string $formulaDayDescription;
 
-    #[ORM\Column(type: "string", length: 30)]
+    #[ORM\Column(type: "string", length: 30, nullable: true)]
     private ?string $formulaDayPrice;
-    #[ORM\Column(type: "string", length: 150)]
+    #[ORM\Column(type: "string", length: 150, nullable: true)]
     private ?string $formulaNightTitle;
 
-    #[ORM\Column(type: "text", length: 320)]
+    #[ORM\Column(type: "text", length: 320, nullable: true)]
     private ?string $formulaNightDescription;
 
-    #[ORM\Column(type: "string", length: 30)]
+    #[ORM\Column(type: "string", length: 30, nullable: true)]
     private ?string $formulaNightPrice;
 
     public function getId(): int
