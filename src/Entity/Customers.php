@@ -32,7 +32,7 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
 
     private ?string $confirm = null;
 
-    #[ORM\OneToMany(targetEntity: "App\Entity\Post", mappedBy: "customers")]
+    #[ORM\OneToMany(targetEntity: "App\Entity\Post", mappedBy: "user")]
     private $posts;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
