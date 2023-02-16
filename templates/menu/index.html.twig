@@ -40,6 +40,10 @@
 				{% if formula.formulaNightPrice %}
 					<p>{{ formula.formulaNightPrice}}</p>
 				{% endif %}
+				{% if is_granted('ROLE_ADMIN') %}
+					<a href="{{ path('delete-menu', {'id': formula.id}) }}" class="btn btn-danger">Supprimer</a>
+					<a href="{{ path('edit-menu', {'id': formula.id}) }}" class="btn btn-warning">Modifier</a>
+				{% endif %}
 			</div>
 		{% endfor %}
 	</div>

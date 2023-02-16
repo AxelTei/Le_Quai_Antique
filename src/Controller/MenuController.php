@@ -94,4 +94,32 @@ class MenuController extends AbstractController
             'formula_form' => $form->createView()
         ]);
     }
+
+    // URL a sécurisé
+    #[Route('/menu/edit/{id}', name: "edit-menu", requirements: ["id" => "\d+"])]
+    public function updateMenu(Formula $formula, ManagerRegistry $doctrine, Request $request): Response
+    {
+        $form = $this->createForm(FormulaType::class, $formula);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute('carte');
+        }
+        return $this->render('formula/form.html.twig', [
+            'formula_form' => $form->createView()
+        ]);
+    }
+
+    // URL a sécurisé
+    #[Route('/menu/delete/{id}', name: "delete-menu", requirements: ["id" => "\d+"])]
+    public function deleteMenu(Formula $formula, ManagerRegistry $doctrine): Response
+    {
+        $em = $doctrine->getManager();
+        $em->remove($formula);
+        $em->flush();
+
+        return $this->redirectToRoute('carte');
+    }
 }
