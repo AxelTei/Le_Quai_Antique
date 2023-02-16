@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Formula;
 use App\Entity\Menu;
+use App\Entity\Schedules;
 use App\Form\FormulaType;
 use App\Form\MenuType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -23,9 +24,13 @@ class MenuController extends AbstractController
         $repositoryFormula = $doctrine->getRepository(Formula::class);
         $formulas = $repositoryFormula->findAll(); // SELECT * FROM `restaurant_menu`
 
+        $repositorySchedules = $doctrine->getRepository(Schedules::class);
+        $schedules = $repositorySchedules->findAll(); // SELECT * FROM `restaurant_hours`;
+
         return $this->render('menu/index.html.twig', [
             "menus" => $menus,
-            "formulas" => $formulas
+            "formulas" => $formulas,
+            "schedules" => $schedules
         ]);
     }
 
