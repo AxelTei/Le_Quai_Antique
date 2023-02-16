@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\Schedules;
 use App\Form\PostType;
+use App\Form\ScheduleType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,8 +19,13 @@ class PostController extends AbstractController
     {
         $repository = $doctrine->getRepository(Post::class);
         $posts = $repository->findAll(); // SELECT * FROM `post`;
-        return $this->render('post/index.html.twig', [
-            "posts" => $posts
+
+        $repositorySchedules = $doctrine->getRepository(Schedules::class);
+        $schedules = $repositorySchedules->findAll(); // SELECT * FROM `restaurant_hours`;
+
+        return $this->render('base.html.twig', [
+            "posts" => $posts,
+            "schedules" => $schedules,
         ]);
     }
 
@@ -80,5 +87,24 @@ class PostController extends AbstractController
         $em->persist($copyPost);
         $em->flush();
         return $this->redirectToRoute('home');
+    }
+
+    // URL a sécurisé
+    #[Route('/schedules/new')]
+    public function createSchedule(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $schedules = new Schedules();
+        $form = $this->createForm(ScheduleType::class, $schedules);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $doctrine->getManager();
+            $em->persist($schedules);
+            $em->flush();
+            return $this->redirectToRoute('carte');
+        }
+        return $this->render('schedules/form.html.twig', [
+            'schedules_form' => $form->createView()
+        ]);
     }
 }
