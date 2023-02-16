@@ -107,4 +107,32 @@ class PostController extends AbstractController
             'schedules_form' => $form->createView()
         ]);
     }
+
+    // URL a sécurisé
+    #[Route('/schedule/edit/{id}', name: "edit-schedule", requirements: ["id" => "\d+"])]
+    public function updateSchedule(Schedules $schedules, ManagerRegistry $doctrine, Request $request): Response
+    {
+        $form = $this->createForm(ScheduleType::class, $schedules);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('schedules/form.html.twig', [
+            'schedules_form' => $form->createView()
+        ]);
+    }
+
+    // URL a sécurisé
+    #[Route('/schedule/delete/{id}', name: "delete-schedule", requirements: ["id" => "\d+"])]
+    public function deleteSchedule(Schedules $schedules, ManagerRegistry $doctrine): Response
+    {
+        $em = $doctrine->getManager();
+        $em->remove($schedules);
+        $em->flush();
+
+        return $this->redirectToRoute('home');
+    }
 }

@@ -118,7 +118,7 @@
 
 			<!--Footer Section-->
 
-			<footer class="container-fluid footer mt-5">
+			<footer class="container-fluid footer mt-5" {% if is_granted('ROLE_ADMIN') %}style="height: 60rem;"{% endif %}>
 				<div class="row">
 					<div class="col-sm-3 mx-auto text-center footer-main-article">
 						<h5 class="footer-main-title">Chef Arnaud Michant</h5>
@@ -139,6 +139,10 @@
 									{% endif %}
 									{% if schedule.openingHoursNight %}
 										<p class="mt-0">{{ schedule.openingHoursNight }}</p>
+									{% endif %}
+									{% if is_granted('ROLE_ADMIN') %}
+										<a href="{{ path('delete-schedule', {'id': schedule.id}) }}" class="btn btn-danger">Supprimer</a>
+										<a href="{{ path('edit-schedule', {'id': schedule.id}) }}" class="btn btn-warning">Modifier</a>
 									{% endif %}
 								</div>
 							{% endfor %}
