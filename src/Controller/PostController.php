@@ -101,7 +101,7 @@ class PostController extends AbstractController
             $em = $doctrine->getManager();
             $em->persist($schedules);
             $em->flush();
-            return $this->redirectToRoute('carte');
+            return $this->redirectToRoute('home');
         }
         return $this->render('schedules/form.html.twig', [
             'schedules_form' => $form->createView()
