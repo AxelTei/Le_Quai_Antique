@@ -5,7 +5,11 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	<link rel="stylesheet" href="produit.css">
+	<link rel="stylesheet" href="{{ asset("public/css/style.css")}}"/>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
 {% endblock %}
 
 {% block body %}
