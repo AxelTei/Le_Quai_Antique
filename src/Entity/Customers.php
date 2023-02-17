@@ -41,8 +41,12 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?string $allergies;
 
+    //A enlever après la création de la table admin
     #[ORM\OneToMany(targetEntity: "App\Entity\Post", mappedBy: "user")]
     private $posts;
+
+    #[ORM\OneToMany(targetEntity: "App\Entity\Book", mappedBy: "user")]
+    private $bookings;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
@@ -176,6 +180,18 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAllergies($allergies)
     {
         $this->allergies = $allergies;
+
+        return $this;
+    }
+
+    public function getBookings()
+    {
+        return $this->bookings;
+    }
+
+    public function setBookings($bookings)
+    {
+        $this->bookings = $bookings;
 
         return $this;
     }
