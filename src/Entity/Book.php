@@ -16,8 +16,8 @@ class Book
     #[ORM\Column(type: "string", length: 150)]
     private ?string $date;
 
-    #[ORM\Column(type: "string", length: 30)]
-    private string $preferedHour;
+    #[ORM\Column]
+    private array $preferedHour;
 
     #[ORM\Column(type: "boolean")]
     private ?string $formulaDay;
@@ -25,8 +25,8 @@ class Book
     #[ORM\Column(type: "boolean")]
     private ?string $formulaNight;
 
-    #[ORM\Column(type: "string")]
-    private?string $preferedGroupNumber;
+    #[ORM\Column]
+    private array $preferedGroupNumber;
 
     #[ORM\ManyToOne(targetEntity: "App\Entity\Customers", inversedBy: "bookings")]
     #[ORM\JoinColumn(name: "customers_email", referencedColumnName: "email", onDelete: "CASCADE")]
