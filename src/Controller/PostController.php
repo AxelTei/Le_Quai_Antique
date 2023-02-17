@@ -160,4 +160,14 @@ class PostController extends AbstractController
             "books" => $books,
         ]);
     }
+
+    #[Route('/booking/delete/{id}', name: "delete-booking", requirements: ["id" => "\d+"])]
+    public function deleteBook(Book $book, ManagerRegistry $doctrine): Response
+    {
+        $em = $doctrine->getManager();
+        $em->remove($book);
+        $em->flush();
+
+        return $this->redirectToRoute('booking');
+    }
 }
