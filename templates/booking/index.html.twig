@@ -16,10 +16,10 @@
 		<div>
 			<p>Réservation du MIDI</p>
 			{% for book in books %}
-				{% if book.preferedHour == "runMidi" %}
+				{% if book.preferedHour < 1400 %}
 					{% set formulaDay = true %}
                     {% set formulaNight = false %}
-				{% elseif book.preferedHour == "runSoir" %}
+				{% elseif book.preferedHour > 1400 %}
 					{% set formulaNight = true %}
                     {% set formulaDay = false %}
 				{% endif %}
@@ -33,10 +33,10 @@
 
 			<p>Réservation du SOIR</p>
 			{% for book in books %}
-                {% if book.preferedHour == "runMidi" %}
+                {% if book.preferedHour < 1400 %}
 					{% set formulaDay = true %}
                     {% set formulaNight = false %}
-				{% elseif book.preferedHour == "runSoir" %}
+				{% elseif book.preferedHour > 1400 %}
 					{% set formulaNight = true %}
                     {% set formulaDay = false %}
 				{% endif %}

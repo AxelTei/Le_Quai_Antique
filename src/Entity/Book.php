@@ -16,8 +16,8 @@ class Book
     #[ORM\Column(type: "string", length: 150)]
     private ?string $date;
 
-    #[ORM\Column(type: "string")]
-    private ?string $preferedHour;
+    #[ORM\Column(type: "integer")]
+    private int $preferedHour;
 
     #[ORM\Column(type: "integer")]
     private int $preferedGroupNumber;
