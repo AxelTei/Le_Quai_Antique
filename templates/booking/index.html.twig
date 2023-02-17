@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Gestion Administrative | Le Quai Antique
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+	<link rel="stylesheet" href="produit.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1 class="main-title-admin-page">Gestion Administrative</h1>
+        <h2>Les Réservations</h2>
+        <div>
+            <p>Réservation du MIDI</p>
+            {% for book in books %}
+                {# {% if book.formulaDay == true %} #}
+                    <p>{{ book.user }}</p>
+                    <p>{{ book.preferedGroupNumber}}</p>
+                    <p>{{ book.date }}</p>
+                    <p>{{ book.preferedHour }}</p>
+                {# {% endif %} #}
+            {% endfor %}
+
+            <p>Réservation du SOIR</p>
+            {# {% for book in books %}
+                {% if book.formulaNight == true %}
+                    <p>{{ book.user }}</p>
+                    <p>{{ book.preferedGroupNumber}}</p>
+                    <p>{{ book.date }}</p>
+                    <p>{{ book.preferedHour }}</p>
+                {% endif %}
+            {% endfor %} #}
+        </div>
+	</div>
+{% endblock %}

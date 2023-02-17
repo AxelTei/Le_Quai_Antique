@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Book;
 use App\Entity\Post;
 use App\Entity\Schedules;
+use App\Form\BookType;
 use App\Form\PostType;
 use App\Form\ScheduleType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -15,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function index(Request $request, ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Post::class);
         $posts = $repository->findAll(); // SELECT * FROM `post`;
@@ -23,9 +25,22 @@ class PostController extends AbstractController
         $repositorySchedules = $doctrine->getRepository(Schedules::class);
         $schedules = $repositorySchedules->findAll(); // SELECT * FROM `restaurant_hours`;
 
+        $book = new Book();
+        $form = $this->createForm(BookType::class, $book);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $book->setUser($this->getUser());
+            $em = $doctrine->getManager();
+            $em->persist($book);
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render('base.html.twig', [
             "posts" => $posts,
             "schedules" => $schedules,
+            'book_form' => $form->createView()
         ]);
     }
 
@@ -134,5 +149,16 @@ class PostController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('home');
+    }
+
+    #[Route('/booking', name: 'booking')]
+    public function indexBook(ManagerRegistry $doctrine): Response
+    {
+        $repository = $doctrine->getRepository(Book::class);
+        $books = $repository->findAll(); // SELECT * FROM `restaurant_bookings`;
+
+        return $this->render('booking/index.html.twig', [
+            "books" => $books,
+        ]);
     }
 }

@@ -8,7 +8,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Url;
 
 class BookType extends AbstractType
 {
@@ -19,7 +18,8 @@ class BookType extends AbstractType
                 "label" => "Choisissez une date",
                 "widget" => "single_text", 
                 "required" => true,
-                "format" => "EEEE-dd-MMMM-yyyy",
+                "html5" => false,
+                "format" => "dd-MM-yyyy",
                 "input" => "string"
             ])
             ->add("preferedGroupNumber", ChoiceType::class, [
@@ -38,22 +38,22 @@ class BookType extends AbstractType
                 "label" => "Choisissez une horaire",
                 "choices" => [
                     "MIDI" => [
-                        "12:00",
-                        "12:15",
-                        "12:30",
-                        "12:45",
-                        "13:00",
-                        "13:15",
-                        "13:30",
+                        "12:00" => "runMidi",
+                        "12:15" => "runMidi",
+                        "12:30" => "runMidi",
+                        "12:45" => "runMidi",
+                        "13:00" => "runMidi",
+                        "13:15" => "runMidi",
+                        "13:30" => "runMidi",
                     ],
                     "SOIR" => [
-                        "19:00",
-                        "19:15",
-                        "19:30",
-                        "19:45",
-                        "20:00",
-                        "20:15",
-                        "20:30"
+                        "19:00" => "runSoir",
+                        "19:15" => "runSoir",
+                        "19:30" => "runSoir",
+                        "19:45" => "runSoir",
+                        "20:00" => "runSoir",
+                        "20:15" => "runSoir",
+                        "20:30" => "runSoir"
                     ]
                 ],
                 "required" => true

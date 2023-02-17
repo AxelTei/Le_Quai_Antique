@@ -58,7 +58,7 @@
 											<a class="dropdown-item" href="/schedules/new">Gestion des Horaires</a>
 										</li>
 										<li>
-											<a class="dropdown-item" href="#">Gestion des Réservations</a>
+											<a class="dropdown-item" href="/booking">Gestion des Réservations</a>
 										</li>
 									</ul>
 								</li>
@@ -123,13 +123,18 @@
 			<div id="myModal" class="modal">
 				<div class="modal-content">
 					<span class="close">&times;</span>
-					<p>Some text...</p>
+					{{ form_start(book_form, {"attr": {"novalidate": "novalidate"}}) }}
+					{{ form_row(book_form.date)}}
+					{{ form_row(book_form.preferedGroupNumber)}}
+					{{ form_row(book_form.preferedHour)}}
+					<button type="submit">Confirmer la réservation</button>
+					{{ form_end(book_form)}}
 				</div>
 			</div>
 
 			<!--Footer Section-->
 
-			<footer class="container-fluid footer mt-5" {% if is_granted('ROLE_ADMIN') %}style="height: 72rem;"{% endif %}>
+			<footer class="container-fluid footer mt-5" {% if is_granted('ROLE_ADMIN') %} style="height: 72rem;" {% endif %}>
 				<div class="row">
 					<div class="col-sm-3 mx-auto text-center footer-main-article">
 						<h5 class="footer-main-title">Chef Arnaud Michant</h5>
