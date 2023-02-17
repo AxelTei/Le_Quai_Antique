@@ -19,12 +19,6 @@ class Book
     #[ORM\Column(type: "string")]
     private ?string $preferedHour;
 
-    #[ORM\Column(type: "boolean")]
-    private ?bool $formulaDay = false;
-
-    #[ORM\Column(type: "boolean")]
-    private ?bool $formulaNight = false;
-
     #[ORM\Column(type: "integer")]
     private int $preferedGroupNumber;
 
@@ -64,30 +58,6 @@ class Book
     public function setPreferedHour($preferedHour)
     {
         $this->preferedHour = $preferedHour;
-
-        return $this;
-    }
-
-    public function getFormulaDay()
-    {
-        return $this->formulaDay;
-    }
-
-    public function setFormulaDay($formulaDay)
-    {
-        $this->formulaDay = $formulaDay;
-
-        return $this;
-    }
-
-    public function getFormulaNight()
-    {
-        return $this->formulaNight;
-    }
-
-    public function setFormulaNight($formulaNight)
-    {
-        $this->formulaNight = $formulaNight;
 
         return $this;
     }
