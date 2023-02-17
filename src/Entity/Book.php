@@ -20,10 +20,10 @@ class Book
     private ?string $preferedHour;
 
     #[ORM\Column(type: "boolean")]
-    private ?string $formulaDay;
+    private ?bool $formulaDay = false;
 
     #[ORM\Column(type: "boolean")]
-    private ?string $formulaNight;
+    private ?bool $formulaNight = false;
 
     #[ORM\Column(type: "integer")]
     private int $preferedGroupNumber;

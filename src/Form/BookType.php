@@ -16,7 +16,7 @@ class BookType extends AbstractType
         $builder
             ->add("date", DateType::class, [
                 "label" => "Choisissez une date",
-                "widget" => "single_text", 
+                "widget" => "choice", 
                 "required" => true,
                 "html5" => false,
                 "format" => "dd-MM-yyyy",
