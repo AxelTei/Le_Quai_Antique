@@ -22,6 +22,9 @@ class Book
     #[ORM\Column(type: "integer")]
     private int $preferedGroupNumber;
 
+    #[ORM\Column(nullable: true)]
+    private ?string $allergies;
+
     #[ORM\ManyToOne(targetEntity: "App\Entity\Customers", inversedBy: "bookings")]
     #[ORM\JoinColumn(name: "customers_email", referencedColumnName: "email", onDelete: "CASCADE")]
     private $user;
@@ -82,6 +85,18 @@ class Book
     public function setUser($user)
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getAllergies()
+    {
+        return $this->allergies;
+    }
+
+    public function setAllergies($allergies)
+    {
+        $this->allergies = $allergies;
 
         return $this;
     }

@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\CustomerRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -41,17 +40,15 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?string $allergies;
 
-    //A enlever après la création de la table admin
-    #[ORM\OneToMany(targetEntity: "App\Entity\Post", mappedBy: "user")]
-    private $posts;
-
     #[ORM\OneToMany(targetEntity: "App\Entity\Book", mappedBy: "user")]
     private $bookings;
+
+    #[ORM\Column(length: 180, nullable: true)]
+    private ?string $alias;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
         $this->passwordHasher = $passwordHasher;
-        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,18 +121,6 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getPosts()
-    {
-        return $this->posts;
-    }
-
-    public function setPosts($posts)
-    {
-        $this->posts = $posts;
-
-        return $this;
-    }
-
     public function getConfirm()
     {
         return $this->confirm;
@@ -192,6 +177,19 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBookings($bookings)
     {
         $this->bookings = $bookings;
+
+        return $this;
+    }
+
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
 
         return $this;
     }

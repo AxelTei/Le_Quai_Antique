@@ -6,8 +6,10 @@ use App\Entity\Book;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class BookType extends AbstractType
 {
@@ -57,6 +59,13 @@ class BookType extends AbstractType
                     ]
                 ],
                 "required" => true
+            ])
+            ->add("allergies", TextType::class, [
+                "label" => "Avez-vous des allergies à nous indiquer ?",
+                "required" => false,
+                "constraints" => [
+                    new Length(["min" => 1, "max" => 180, "minMessage" => "Insérez des véritables allergies.", "maxMessage" => "Vos allergies ne doivent pas dépasser 180 caractères ! Si elles dépassent, veuillez-nouc contacter téléphoniquement !"])
+                ]
             ]);
     }
 

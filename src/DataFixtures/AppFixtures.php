@@ -18,7 +18,7 @@ class AppFixtures extends Fixture
     {
         $user = new Customers($this->passwordHasher);
 
-        $user->setEmail("Admin@LeQuaiAntique.com")->setPassword("JaimelaSavoi3")->setRoles(array("ROLE_ADMIN"));
+        $user->setEmail("Admin@LeQuaiAntique.com")->setPassword("JaimelaSavoi3")->setRoles(array("ROLE_ADMIN"))->setAlias("MichantJunior");
         $manager->persist($user);
         $manager->flush();
     }

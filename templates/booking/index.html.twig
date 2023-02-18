@@ -27,7 +27,7 @@
 					<p>{{ book.user }}</p>
 					<p>{{ book.preferedGroupNumber}}</p>
 					<p>{{ book.date }}</p>
-					<p>{{ book.preferedHour }}</p>
+					<p>{{ book.allergies }}</p>
                     <a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
 				{% endif %}
 			{% endfor %}
@@ -46,6 +46,7 @@
 					<p>{{ book.preferedGroupNumber}}</p>
 					<p>{{ book.date }}</p>
 					<p>{{ book.preferedHour }}</p>
+					<p>{{ book.allergies }}</p>
                     <a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
 				{% endif %}
 			{% endfor %}

@@ -14,6 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Unique;
 use Symfony\Component\Validator\Context\ExecutionContext;
 
 class CustomerType extends AbstractType
@@ -46,6 +47,13 @@ class CustomerType extends AbstractType
                                 $ec->addViolation("Les mots de passe doivent être identique !");
                         }
                     }])
+                ]
+            ])
+            ->add("alias", TextType::class, [
+                "label" => "Votre nom ou un surnom par lequel vous aimeriez être appelé(e) ?",
+                "required" => false,
+                "constraints" => [
+                    new Length(["min" => 0, "max" => 180, "minMessage" => "Veuillez inscrire un nom valide", "maxMessage" => "Votre nom ou surnom ne doit pas dépasser 180 caractères !"]),
                 ]
             ])
             ->add("preferedHour", TimeType::class, [

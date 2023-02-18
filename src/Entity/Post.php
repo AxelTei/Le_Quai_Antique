@@ -23,10 +23,6 @@ class Post
     #[ORM\Column(type: "text", nullable: true)]
     private ?string $image;
 
-    #[ORM\ManyToOne(targetEntity: "App\Entity\Customers", inversedBy: "posts")]
-    #[ORM\JoinColumn(name: "customers_id", referencedColumnName: "id", onDelete: "CASCADE")]
-    private $user;
-
     public function getId(): int
     {
         return $this->id;
@@ -71,18 +67,6 @@ class Post
     public function setImage($image): self
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    public function setUser($user): self
-    {
-        $this->user = $user;
 
         return $this;
     }
