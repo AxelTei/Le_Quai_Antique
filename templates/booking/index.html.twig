@@ -26,7 +26,8 @@
 				{% if formulaDay == true %}
 					<p>{{ book.user }}</p>
 					<p>{{ book.preferedGroupNumber}}</p>
-					<p>{{ book.date }}</p>
+					<p>{{ book.date | date("d/m/Y") }}</p>
+					<p>{{ book.preferedHour }}</p>
 					<p>{{ book.allergies }}</p>
                     <a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
 				{% endif %}
@@ -44,7 +45,7 @@
 				{% if formulaNight == true %}
 					<p>{{ book.user }}</p>
 					<p>{{ book.preferedGroupNumber}}</p>
-					<p>{{ book.date }}</p>
+					<p>{{ book.date | date("d/m/Y") }}</p>
 					<p>{{ book.preferedHour }}</p>
 					<p>{{ book.allergies }}</p>
                     <a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
