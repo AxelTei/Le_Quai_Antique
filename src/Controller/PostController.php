@@ -25,6 +25,9 @@ class PostController extends AbstractController
         $repositorySchedules = $doctrine->getRepository(Schedules::class);
         $schedules = $repositorySchedules->findAll(); // SELECT * FROM `restaurant_hours`;
 
+        $repository = $doctrine->getRepository(Book::class);
+        $books = $repository->findAll(); // SELECT * FROM `restaurant_bookings`;
+
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
@@ -39,6 +42,7 @@ class PostController extends AbstractController
         return $this->render('base.html.twig', [
             "posts" => $posts,
             "schedules" => $schedules,
+            "books" => $books,
             'book_form' => $form->createView()
         ]);
     }
