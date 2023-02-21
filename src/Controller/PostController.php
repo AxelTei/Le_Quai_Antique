@@ -77,6 +77,7 @@ class PostController extends AbstractController
     #[Route('/post/edit/{id}', name: "edit-post", requirements: ["id" => "\d+"])]
     public function update(Post $post, ManagerRegistry $doctrine, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
@@ -94,6 +95,7 @@ class PostController extends AbstractController
     #[Route('/post/delete/{id}', name: "delete-post", requirements: ["id" => "\d+"])]
     public function delete(Post $post, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $em = $doctrine->getManager();
         $em->remove($post);
         $em->flush();
@@ -105,6 +107,7 @@ class PostController extends AbstractController
     #[Route('/post/copy/{id}', name: "copy-post", requirements: ["id" => "\d+"])]
     public function duplicate(Post $post, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $copyPost = clone $post;
 
         $em = $doctrine->getManager();
@@ -117,6 +120,7 @@ class PostController extends AbstractController
     #[Route('/schedules/new')]
     public function createSchedule(Request $request, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $schedules = new Schedules();
         $form = $this->createForm(ScheduleType::class, $schedules);
         $form->handleRequest($request);
@@ -136,6 +140,7 @@ class PostController extends AbstractController
     #[Route('/schedule/edit/{id}', name: "edit-schedule", requirements: ["id" => "\d+"])]
     public function updateSchedule(Schedules $schedules, ManagerRegistry $doctrine, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(ScheduleType::class, $schedules);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
@@ -153,6 +158,7 @@ class PostController extends AbstractController
     #[Route('/schedule/delete/{id}', name: "delete-schedule", requirements: ["id" => "\d+"])]
     public function deleteSchedule(Schedules $schedules, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $em = $doctrine->getManager();
         $em->remove($schedules);
         $em->flush();
@@ -163,6 +169,7 @@ class PostController extends AbstractController
     #[Route('/booking', name: 'booking')]
     public function indexBook(Request $request, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $repository = $doctrine->getRepository(Book::class);
         $books = $repository->findAll(); // SELECT * FROM `restaurant_bookings`;
 
@@ -186,6 +193,7 @@ class PostController extends AbstractController
     #[Route('/booking/delete/{id}', name: "delete-booking", requirements: ["id" => "\d+"])]
     public function deleteBook(Book $book, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $em = $doctrine->getManager();
         $em->remove($book);
         $em->flush();

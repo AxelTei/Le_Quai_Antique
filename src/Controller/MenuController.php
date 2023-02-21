@@ -85,6 +85,7 @@ class MenuController extends AbstractController
     #[Route('/menu/new')]
     public function createMenu(Request $request, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $formula = new Formula();
         $form = $this->createForm(FormulaType::class, $formula);
         $form->handleRequest($request);
@@ -104,6 +105,7 @@ class MenuController extends AbstractController
     #[Route('/menu/edit/{id}', name: "edit-menu", requirements: ["id" => "\d+"])]
     public function updateMenu(Formula $formula, ManagerRegistry $doctrine, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(FormulaType::class, $formula);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
@@ -121,6 +123,7 @@ class MenuController extends AbstractController
     #[Route('/menu/delete/{id}', name: "delete-menu", requirements: ["id" => "\d+"])]
     public function deleteMenu(Formula $formula, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $em = $doctrine->getManager();
         $em->remove($formula);
         $em->flush();
