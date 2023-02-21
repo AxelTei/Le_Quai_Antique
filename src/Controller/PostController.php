@@ -31,7 +31,7 @@ class PostController extends AbstractController
         $books = $repositoryBook->findAll(); // SELECT * FROM `restaurant_bookings`;
 
         $repositoryBookAdmin = $doctrine->getRepository(BookingManagement::class);
-        $booksManagement = $repositoryBookAdmin->findAll(); // SELECT * FROM `restaurant_bookings_admin`;
+        $bookManagements = $repositoryBookAdmin->findAll(); // SELECT * FROM `restaurant_bookings_admin`;
 
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
@@ -48,7 +48,7 @@ class PostController extends AbstractController
             "posts" => $posts,
             "schedules" => $schedules,
             "books" => $books,
-            "booksManagement" => $booksManagement,
+            "bookManagements" => $bookManagements,
             'book_form' => $form->createView()
         ]);
     }

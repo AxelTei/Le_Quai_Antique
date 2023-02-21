@@ -17,11 +17,11 @@ class BookingManagement
     #[ORM\Column(type: "string", length: 150)]
     private ?string $date;
 
-    #[ORM\Column(type: "datetime")]
-    private datetime $hourStart;
+    #[ORM\Column(type: "string", length: 150)]
+    private ?string $hourStart;
 
-    #[ORM\Column(type: "datetime")]
-    private datetime $hourEnd;
+    #[ORM\Column(type: "string", length: 150)]
+    private ?string $hourEnd;
 
     public function getId(): int
     {

@@ -25,40 +25,20 @@
 			</div>
 			<p class="mt-5">Réservation du MIDI</p>
 			{% for book in books %}
-				{% if book.preferedHour < 1400 %}
-					{% set formulaDay = true %}
-					{% set formulaNight = false %}
-				{% elseif book.preferedHour > 1400 %}
-					{% set formulaNight = true %}
-					{% set formulaDay = false %}
-				{% endif %}
-				{% if formulaDay == true %}
-					<p>{{ book.user }}</p>
-					<p>{{ book.preferedGroupNumber}}</p>
-					<p>{{ book.date | date("d/m/Y") }}</p>
-					<p>{{ book.preferedHour }}</p>
-					<p>{{ book.allergies }}</p>
-					<a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
-				{% endif %}
+				<p>{{ book.user }}</p>
+				<p>{{ book.preferedGroupNumber}}</p>
+				{# <p>{{ book.date | date("d/m/Y") }}</p> #}
+				<p>{{ book.allergies }}</p>
+				<a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
 			{% endfor %}
 
 			<p>Réservation du SOIR</p>
 			{% for book in books %}
-				{% if book.preferedHour < 1400 %}
-					{% set formulaDay = true %}
-					{% set formulaNight = false %}
-				{% elseif book.preferedHour > 1400 %}
-					{% set formulaNight = true %}
-					{% set formulaDay = false %}
-				{% endif %}
-				{% if formulaNight == true %}
-					<p>{{ book.user }}</p>
-					<p>{{ book.preferedGroupNumber}}</p>
-					<p>{{ book.date | date("d/m/Y") }}</p>
-					<p>{{ book.preferedHour }}</p>
-					<p>{{ book.allergies }}</p>
-					<a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
-				{% endif %}
+				<p>{{ book.user }}</p>
+				<p>{{ book.preferedGroupNumber}}</p>
+				{# <p>{{ book.date | date("d/m/Y") }}</p> #}
+				<p>{{ book.allergies }}</p>
+				<a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
 			{% endfor %}
 		</div>
 	</div>

@@ -4,8 +4,8 @@ namespace App\Form;
 
 use App\Entity\BookingManagement;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,17 +22,17 @@ class BookingManagementType extends AbstractType
                 "format" => "dd-MM-yyyy",
                 "input" => "string"
             ])
-            ->add("hourStart", DateTimeType::class, [
+            ->add("hourStart", TimeType::class, [
                 "label" => "Choisissez une horaire",
                 "required" => true,
-                "widget" => "single_text",
-                "html5" => false
+                "widget" => "choice",
+                "input" => "string"
             ])
-            ->add("hourEnd", DateTimeType::class, [
+            ->add("hourEnd", TimeType::class, [
                 "label" => "Choisissez une horaire",
                 "required" => true,
-                "widget" => "single_text",
-                "html5" => false
+                "widget" => "choice",
+                "input" => "string"
             ]);
     }
 

@@ -13,12 +13,6 @@ class Book
     #[ORM\Column(type: "integer")]
     private int $id;
     
-    #[ORM\Column(type: "string", length: 150)]
-    private ?string $date;
-
-    #[ORM\Column(type: "integer")]
-    private int $preferedHour;
-
     #[ORM\Column(type: "integer")]
     private int $preferedGroupNumber;
 
@@ -37,30 +31,6 @@ class Book
     public function setId($id): self
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    public function getPreferedHour()
-    {
-        return $this->preferedHour;
-    }
-
-    public function setPreferedHour($preferedHour)
-    {
-        $this->preferedHour = $preferedHour;
 
         return $this;
     }
