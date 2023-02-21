@@ -125,8 +125,43 @@
 					<span class="close">&times;</span>
 					{% for u in bookManagements %}
 						{{ u.date }}
-						{{ u.HourStart }}
-						{{ u.HourEnd }}
+						<div class="row">
+							<div class="col-sm-2">
+								<button style="background-color: red; color: white;">
+									{{ u.HourStart | format_time("short") }}
+								</button>
+							</div>
+							<div class="col-sm-2">
+								<button style="background-color: red; color: white;">
+									{{ u.HourStart | date_modify('+15 minutes') | format_time("short") }}
+								</button>
+							</div>
+							<div class="col-sm-2">
+								<button style="background-color: red; color: white;">
+									{{ u.HourStart | date_modify('+30 minutes') | format_time("short") }}
+								</button>
+							</div>
+							<div class="col-sm-2">
+								<button style="background-color: red; color: white;">
+									{{ u.HourStart | date_modify('+45 minutes') | format_time("short") }}
+								</button>
+							</div>
+							<div class="col-sm-2">
+								<button style="background-color: red; color: white;">
+									{{ u.HourStart | date_modify('+60 minutes') | format_time("short") }}
+								</button>
+							</div>
+							<div class="col-sm-2">
+								<button style="background-color: red; color: white;">
+									{{ u.HourStart | date_modify('+75 minutes') | format_time("short") }}
+								</button>
+							</div>
+							<div class="col-sm-2 mt-3">
+								<button style="background-color: red; color: white;">
+									{{ u.HourEnd | format_time("short") }}
+								</button>
+							</div>
+						</div>
 					{% endfor %}
 					{{ form_start(book_form, {"attr": {"novalidate": "novalidate"}}) }}
 					{{ form_row(book_form.preferedGroupNumber)}}
