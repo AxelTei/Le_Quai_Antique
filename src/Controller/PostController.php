@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Entity\BookingManagement;
 use App\Entity\Post;
 use App\Entity\Schedules;
 use App\Form\BookType;
+use App\Form\BookingManagementType;
 use App\Form\PostType;
 use App\Form\ScheduleType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -25,8 +27,11 @@ class PostController extends AbstractController
         $repositorySchedules = $doctrine->getRepository(Schedules::class);
         $schedules = $repositorySchedules->findAll(); // SELECT * FROM `restaurant_hours`;
 
-        $repository = $doctrine->getRepository(Book::class);
-        $books = $repository->findAll(); // SELECT * FROM `restaurant_bookings`;
+        $repositoryBook = $doctrine->getRepository(Book::class);
+        $books = $repositoryBook->findAll(); // SELECT * FROM `restaurant_bookings`;
+
+        $repositoryBookAdmin = $doctrine->getRepository(BookingManagement::class);
+        $booksManagement = $repositoryBookAdmin->findAll(); // SELECT * FROM `restaurant_bookings_admin`;
 
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
@@ -43,6 +48,7 @@ class PostController extends AbstractController
             "posts" => $posts,
             "schedules" => $schedules,
             "books" => $books,
+            "booksManagement" => $booksManagement,
             'book_form' => $form->createView()
         ]);
     }
@@ -97,7 +103,7 @@ class PostController extends AbstractController
 
     // URL a sécurisé
     #[Route('/post/copy/{id}', name: "copy-post", requirements: ["id" => "\d+"])]
-    public function duplicate(Post $post, ManagerRegistry $doctrine, Request $request): Response
+    public function duplicate(Post $post, ManagerRegistry $doctrine): Response
     {
         $copyPost = clone $post;
 
@@ -155,13 +161,25 @@ class PostController extends AbstractController
     }
 
     #[Route('/booking', name: 'booking')]
-    public function indexBook(ManagerRegistry $doctrine): Response
+    public function indexBook(Request $request, ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Book::class);
         $books = $repository->findAll(); // SELECT * FROM `restaurant_bookings`;
 
+        $bookManagement = new BookingManagement();
+        $form = $this->createForm(BookingManagementType::class, $bookManagement);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $doctrine->getManager();
+            $em->persist($bookManagement);
+            $em->flush();
+            return $this->redirectToRoute('booking');
+        }
+
         return $this->render('booking/index.html.twig', [
             "books" => $books,
+            'bookManagement_form' => $form->createView()
         ]);
     }
 
