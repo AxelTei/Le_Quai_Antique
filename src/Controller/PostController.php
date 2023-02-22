@@ -3,11 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Book;
-use App\Entity\BookingManagement;
 use App\Entity\Post;
 use App\Entity\Schedules;
 use App\Form\BookType;
-use App\Form\BookingManagementType;
 use App\Form\PostType;
 use App\Form\ScheduleType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -30,9 +28,6 @@ class PostController extends AbstractController
         $repositoryBook = $doctrine->getRepository(Book::class);
         $books = $repositoryBook->findAll(); // SELECT * FROM `restaurant_bookings`;
 
-        $repositoryBookAdmin = $doctrine->getRepository(BookingManagement::class);
-        $bookManagements = $repositoryBookAdmin->findAll(); // SELECT * FROM `restaurant_bookings_admin`;
-
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
@@ -48,7 +43,6 @@ class PostController extends AbstractController
             "posts" => $posts,
             "schedules" => $schedules,
             "books" => $books,
-            "bookManagements" => $bookManagements,
             'book_form' => $form->createView()
         ]);
     }
@@ -173,20 +167,8 @@ class PostController extends AbstractController
         $repository = $doctrine->getRepository(Book::class);
         $books = $repository->findAll(); // SELECT * FROM `restaurant_bookings`;
 
-        $bookManagement = new BookingManagement();
-        $form = $this->createForm(BookingManagementType::class, $bookManagement);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            $em = $doctrine->getManager();
-            $em->persist($bookManagement);
-            $em->flush();
-            return $this->redirectToRoute('booking');
-        }
-
         return $this->render('booking/index.html.twig', [
             "books" => $books,
-            'bookManagement_form' => $form->createView()
         ]);
     }
 
