@@ -123,9 +123,17 @@
 			<div id="myModal" class="modal">
 				<div class="modal-content">
 					<span class="close">&times;</span>
+					<label for="dates">Choisissez une date disponible :</label>
+					<select name="dates" id="dates">
+						{% for u in bookManagements %}
+							<option value="{{ u.date }}" id="{{ u.date }}">{{ u.date }}</option>
+						{% endfor %}
+					</select>
+					<div class="mt-3">
+						<p>MIDI</p>
+					</div>
 					{% for u in bookManagements %}
-						{{ u.date }}
-						<div class="row">
+						<div class="row hour-booking">
 							<div class="col-sm-2">
 								<button style="background-color: red; color: white;">
 									{{ u.HourStart | format_time("short") }}
@@ -158,13 +166,57 @@
 							</div>
 							<div class="col-sm-2 mt-3">
 								<button style="background-color: red; color: white;">
+									{{ u.HourStart | date_modify('+90 minutes') | format_time("short") }}
+								</button>
+							</div>
+						</div>
+					{% endfor %}
+					<div class="mt-3">
+						<p>SOIR</p>
+					</div>
+					{% for u in bookManagements %}
+						<div class="row hour-booking">
+							<div class="col-sm-2">
+								<button style="background-color: red; color: white;">
 									{{ u.HourEnd | format_time("short") }}
+								</button>
+							</div>
+							<div class="col-sm-2">
+								<button style="background-color: red; color: white;">
+									{{ u.HourEnd | date_modify('+15 minutes') | format_time("short") }}
+								</button>
+							</div>
+							<div class="col-sm-2">
+								<button style="background-color: red; color: white;">
+									{{ u.HourEnd | date_modify('+30 minutes') | format_time("short") }}
+								</button>
+							</div>
+							<div class="col-sm-2">
+								<button style="background-color: red; color: white;">
+									{{ u.HourEnd | date_modify('+45 minutes') | format_time("short") }}
+								</button>
+							</div>
+							<div class="col-sm-2">
+								<button style="background-color: red; color: white;">
+									{{ u.HourEnd | date_modify('+60 minutes') | format_time("short") }}
+								</button>
+							</div>
+							<div class="col-sm-2">
+								<button style="background-color: red; color: white;">
+									{{ u.HourEnd | date_modify('+75 minutes') | format_time("short") }}
+								</button>
+							</div>
+							<div class="col-sm-2 mt-3">
+								<button style="background-color: red; color: white;">
+									{{ u.HourEnd | date_modify('+90 minutes') | format_time("short") }}
 								</button>
 							</div>
 						</div>
 					{% endfor %}
 					{{ form_start(book_form, {"attr": {"novalidate": "novalidate"}}) }}
-					{{ form_row(book_form.preferedGroupNumber)}}
+					<div class="mt-3">
+						{{ form_row(book_form.preferedGroupNumber)}}
+					</div>
 					{{ form_row(book_form.allergies)}}
 					<button type="submit" class="btn btn-success">Confirmer la réservation</button>
 					{{ form_end(book_form)}}
@@ -214,4 +266,4 @@
 		{% block javascripts %}{% endblock %}
 		<script src='js/app.js'></script>
 	</body>
-</html>
+</html></body></html>

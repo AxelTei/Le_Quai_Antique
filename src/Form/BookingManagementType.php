@@ -19,17 +19,16 @@ class BookingManagementType extends AbstractType
                 "widget" => "choice", 
                 "required" => true,
                 "html5" => false,
-                "format" => "dd-MM-yyyy",
                 "input" => "string"
             ])
             ->add("hourStart", TimeType::class, [
-                "label" => "Choisissez une horaire",
+                "label" => "Choisissez une horaire pour le run du Midi",
                 "required" => true,
                 "widget" => "choice",
                 "input" => "string"
             ])
             ->add("hourEnd", TimeType::class, [
-                "label" => "Choisissez une horaire",
+                "label" => "Choisissez une horaire pour le run du Soir",
                 "required" => true,
                 "widget" => "choice",
                 "input" => "string"

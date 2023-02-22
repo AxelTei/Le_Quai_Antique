@@ -126,3 +126,9 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+/* Booking Buttons */
+
+.hour-booking {
+    display: none;
+}

@@ -44,4 +44,12 @@ window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-} 
+}
+
+let btnDate = document.getElementById("#2023-03-19");
+
+btnDate.addEventListener("click", function()
+{
+  let btnHour = document.getElementsByClassName("row hour-booking");
+  btnHour.style = "display: block;"
+})
