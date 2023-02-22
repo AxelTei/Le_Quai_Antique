@@ -46,10 +46,10 @@ window.onclick = function(event) {
   }
 }
 
-let btnDate = document.getElementById("#2023-03-19");
+let btnDate = document.getElementById("2023-03-19");
 
-btnDate.addEventListener("click", function()
+btnDate.addEventListener("select", function()
 {
-  let btnHour = document.getElementsByClassName("row hour-booking");
+  let btnHour = document.getElementsById("fais-chier");
   btnHour.style = "display: block;"
 })
