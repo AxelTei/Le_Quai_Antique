@@ -87,7 +87,6 @@ btnDate.addEventListener("click", function()
   btnHour12.style.display = "grid";
   btnHour13.style.display = "grid";
   btnHour14.style.display = "grid";
-  console.log("salut");
 })
 
 btnDate2.addEventListener("click", function()
