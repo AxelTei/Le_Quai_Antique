@@ -17,24 +17,26 @@
 
 			<p class="mt-5">Réservation du MIDI</p>
 			{% for book in books %}
-				<p>{{ book.user }}</p>
-				<p>{{ book.preferedGroupNumber}}</p>
-				<p>{{ book.date | date("d/m/Y") }}</p>
-				<p>{{ book.hourSelectedDay }}</p>
-				<p>{{ book.hourSelectedNight }}</p>
-				<p>{{ book.allergies }}</p>
-				<a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
+				{% if book.hourSelectedDay %}
+					<p>{{ book.user }}</p>
+					<p>{{ book.preferedGroupNumber}}</p>
+					<p>{{ book.date | date("d/m/Y") }}</p>
+					<p>{{ book.hourSelectedDay }}</p>
+					<p>{{ book.allergies }}</p>
+					<a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
+				{% endif %}
 			{% endfor %}
 
 			<p>Réservation du SOIR</p>
 			{% for book in books %}
-				<p>{{ book.user }}</p>
-				<p>{{ book.preferedGroupNumber}}</p>
-				<p>{{ book.date | date("d/m/Y") }}</p>
-				<p>{{ book.hourSelectedDay }}</p>
-				<p>{{ book.hourSelectedNight }}</p>
-				<p>{{ book.allergies }}</p>
-				<a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
+				{% if book.hourSelectedNight %}
+					<p>{{ book.user }}</p>
+					<p>{{ book.preferedGroupNumber}}</p>
+					<p>{{ book.date | date("d/m/Y") }}</p>
+					<p>{{ book.hourSelectedNight }}</p>
+					<p>{{ book.allergies }}</p>
+					<a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
+				{% endif %}
 			{% endfor %}
 		</div>
 	</div>

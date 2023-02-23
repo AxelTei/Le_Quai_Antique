@@ -19,6 +19,15 @@ class Book
     #[ORM\Column(nullable: true)]
     private ?string $allergies;
 
+    #[ORM\Column(type: "string", nullable: true)]
+    private ?string $date;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $hourSelectedDay;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $hourSelectedNight;
+
     #[ORM\ManyToOne(targetEntity: "App\Entity\Customers", inversedBy: "bookings")]
     #[ORM\JoinColumn(name: "customers_email", referencedColumnName: "email", onDelete: "CASCADE")]
     private $user;
@@ -67,6 +76,42 @@ class Book
     public function setAllergies($allergies)
     {
         $this->allergies = $allergies;
+
+        return $this;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getHourSelectedDay()
+    {
+        return $this->hourSelectedDay;
+    }
+
+    public function setHourSelectedDay($hourSelectedDay)
+    {
+        $this->hourSelectedDay = $hourSelectedDay;
+
+        return $this;
+    }
+
+    public function getHourSelectedNight()
+    {
+        return $this->hourSelectedNight;
+    }
+
+    public function setHourSelectedNight($hourSelectedNight)
+    {
+        $this->hourSelectedNight = $hourSelectedNight;
 
         return $this;
     }
