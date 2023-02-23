@@ -124,94 +124,51 @@
 			<div id="myModal" class="modal">
 				<div class="modal-content">
 					<span class="close">&times;</span>
-					<label for="dates">Choisissez une date disponible :</label>
-					<select name="dates" id="dates">
-						<option value="2" id="yo">Lundi 20 Février</option>
-						<option value="2" id="ya">Mardi 21 Février</option>
-					</select>
-					<label for="start">Choisissez une date disponible :</label>
-					<input type="date" id="start" name="trip-start" value="Date.now()" min="Date.now()" max="2023-12-31">
-					<div class="mt-3">
-						<p>MIDI</p>
-					</div>
-						<div class="row">
-							<div class="col-sm-2">
-								<button class="hour-booking hour1" style="background-color: red; color: white;">
-									12:00
-								</button>
-							</div>
-							<div class="col-sm-2">
-								<button class="hour-booking hour2" style="background-color: red; color: white;">
-									12:15
-								</button>
-							</div>
-							<div class="col-sm-2">
-								<button class="hour-booking hour3" style="background-color: red; color: white;">
-									12:30
-								</button>
-							</div>
-							<div class="col-sm-2">
-								<button class="hour-booking hour4" style="background-color: red; color: white;">
-									12:45
-								</button>
-							</div>
-							<div class="col-sm-2">
-								<button class="hour-booking hour5" style="background-color: red; color: white;">
-									13:00
-								</button>
-							</div>
-							<div class="col-sm-2">
-								<button class="hour-booking hour6" style="background-color: red; color: white;">
-									13:15
-								</button>
-							</div>
-							<div class="col-sm-2 mt-3">
-								<button class="hour-booking hour7" style="background-color: red; color: white;">
-									13:30
-								</button>
-							</div>
-						</div>
-					<div class="mt-3">
-						<p>SOIR</p>
-					</div>
-						<div class="row">
-							<div class="col-sm-2">
-								<button class="hour-booking hour8" style="background-color: red; color: white;">
-									19:00
-								</button>
-							</div>
-							<div class="col-sm-2">
-								<button class="hour-booking hour9" style="background-color: red; color: white;">
-									19:15
-								</button>
-							</div>
-							<div class="col-sm-2">
-								<button class="hour-booking hour10" style="background-color: red; color: white;">
-									19:30
-								</button>
-							</div>
-							<div class="col-sm-2">
-								<button class="hour-booking hour11" style="background-color: red; color: white;">
-									19:45
-								</button>
-							</div>
-							<div class="col-sm-2">
-								<button class="hour-booking hour12" style="background-color: red; color: white;">
-									20:00
-								</button>
-							</div>
-							<div class="col-sm-2">
-								<button class="hour-booking hour13" style="background-color: red; color: white;">
-									20:15
-								</button>
-							</div>
-							<div class="col-sm-2 mt-3">
-								<button class="hour-booking hour14" style="background-color: red; color: white;">
-									20:30
-								</button>
-							</div>
-						</div>
 					{{ form_start(book_form, {"attr": {"novalidate": "novalidate"}}) }}
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-12">
+								<label for="date">Choisissez une date disponible :</label>
+								<input type="date" id="date" name="trip-start" value="Date.now()" min="Date.now()" max="2023-12-31" required>
+							</div>
+							<div class="col-sm-12 mt-3">
+								<label for="hourSelectedDay">Vous réservez pour ce midi ?</label>
+								<p id="hourSelectedDay" class="mt-3">
+									<label><input type="radio" name="hour_booked" value="12:00"><span>12:00</span></label>
+									<label><input type="radio" name="hour_booked" value="12:15"><span>12:15</span></label>
+									<label><input type="radio" name="hour_booked" value="12:30"><span>12:30</span></label>
+									<label><input type="radio" name="hour_booked" value="12:45"><span>12:45</span></label>
+									<label><input type="radio" name="hour_booked" value="13:00"><span>13:00</span></label>
+									<label><input type="radio" name="hour_booked" value="13:15"><span>13:15</span></label>
+									<label><input type="radio" name="hour_booked" value="13:30"><span>13:30</span></label>
+									<label><input type="radio" name="hour_booked" value="19:00"><span>19:00</span></label>
+									<label><input type="radio" name="hour_booked" value="19:15"><span>19:15</span></label>
+									<label><input type="radio" name="hour_booked" value="19:30"><span>19:30</span></label>
+									<label><input type="radio" name="hour_booked" value="19:45"><span>19:45</span></label>
+									<label><input type="radio" name="hour_booked" value="20:00"><span>20:00</span></label>
+									<label><input type="radio" name="hour_booked" value="20:15"><span>20:15</span></label>
+									<label><input type="radio" name="hour_booked" value="20:30"><span>20:30</span></label>
+								</p>
+								<label for="hourSelectedNight">Vous réservez pour ce soir ?</label>
+								<p id="hourSelectedNight" class="mt-3">
+									<label><input type="radio" name="hour_booked" value="12:00"><span>12:00</span></label>
+									<label><input type="radio" name="hour_booked" value="12:15"><span>12:15</span></label>
+									<label><input type="radio" name="hour_booked" value="12:30"><span>12:30</span></label>
+									<label><input type="radio" name="hour_booked" value="12:45"><span>12:45</span></label>
+									<label><input type="radio" name="hour_booked" value="13:00"><span>13:00</span></label>
+									<label><input type="radio" name="hour_booked" value="13:15"><span>13:15</span></label>
+									<label><input type="radio" name="hour_booked" value="13:30"><span>13:30</span></label>
+									<label><input type="radio" name="hour_booked" value="19:00"><span>19:00</span></label>
+									<label><input type="radio" name="hour_booked" value="19:15"><span>19:15</span></label>
+									<label><input type="radio" name="hour_booked" value="19:30"><span>19:30</span></label>
+									<label><input type="radio" name="hour_booked" value="19:45"><span>19:45</span></label>
+									<label><input type="radio" name="hour_booked" value="20:00"><span>20:00</span></label>
+									<label><input type="radio" name="hour_booked" value="20:15"><span>20:15</span></label>
+									<label><input type="radio" name="hour_booked" value="20:30"><span>20:30</span></label>
+								</p>
+							</div>
+						</div>
+					</div>
 					<div class="mt-3">
 						{{ form_row(book_form.preferedGroupNumber)}}
 					</div>
@@ -219,49 +176,45 @@
 					<button type="submit" class="btn btn-success">Confirmer la réservation</button>
 					{{ form_end(book_form)}}
 				</div>
+			</body>
+		</body>
+	</html>
+</div>
+
+<!--Footer Section-->
+
+<footer class="container-fluid footer mt-5" {% if is_granted('ROLE_ADMIN') %} style="height: 72rem;" {% endif %}>
+	<div class="row">
+		<div class="col-sm-3 mx-auto text-center footer-main-article">
+			<h5 class="footer-main-title">Chef Arnaud Michant</h5>
+		</div>
+		<div class="col-sm-3 mx-auto text-center footer-main-article">
+			<h5 class="footer-main-title">Le Quai Antique</h5>
+		</div>
+		<div class="col-sm-3 mx-auto text-center footer-hours">
+			<h5 class="footer-title-hours">Nos Horaires d'ouverture</h5>
+			<div class="row">
+				{% for schedule in schedules %}
+					<div class="col-6">
+						<p>{{ schedule.date }}</p>
+					</div>
+					<div class="col-6">
+						{% if schedule.openingHoursDay %}
+							<p>{{ schedule.openingHoursDay }}</p><br>
+						{% endif %}
+						{% if schedule.openingHoursNight %}
+							<p class="mt-0">{{ schedule.openingHoursNight }}</p>
+						{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}
+							<a href="{{ path('delete-schedule', {'id': schedule.id}) }}" class="btn btn-danger">Supprimer</a>
+							<a href="{{ path('edit-schedule', {'id': schedule.id}) }}" class="btn btn-warning">Modifier</a>
+						{% endif %}
+					</div>
+				{% endfor %}
 			</div>
-
-			<!--Footer Section-->
-
-			<footer class="container-fluid footer mt-5" {% if is_granted('ROLE_ADMIN') %} style="height: 72rem;" {% endif %}>
-				<div class="row">
-					<div class="col-sm-3 mx-auto text-center footer-main-article">
-						<h5 class="footer-main-title">Chef Arnaud Michant</h5>
-					</div>
-					<div class="col-sm-3 mx-auto text-center footer-main-article">
-						<h5 class="footer-main-title">Le Quai Antique</h5>
-					</div>
-					<div class="col-sm-3 mx-auto text-center footer-hours">
-						<h5 class="footer-title-hours">Nos Horaires d'ouverture</h5>
-						<div class="row">
-							{% for schedule in schedules %}
-								<div class="col-6">
-									<p>{{ schedule.date }}</p>
-								</div>
-								<div class="col-6">
-									{% if schedule.openingHoursDay %}
-										<p>{{ schedule.openingHoursDay }}</p><br>
-									{% endif %}
-									{% if schedule.openingHoursNight %}
-										<p class="mt-0">{{ schedule.openingHoursNight }}</p>
-									{% endif %}
-									{% if is_granted('ROLE_ADMIN') %}
-										<a href="{{ path('delete-schedule', {'id': schedule.id}) }}" class="btn btn-danger">Supprimer</a>
-										<a href="{{ path('edit-schedule', {'id': schedule.id}) }}" class="btn btn-warning">Modifier</a>
-									{% endif %}
-								</div>
-							{% endfor %}
-						</div>
-					</div>
-					<div class="col-sm-3 mx-auto text-center footer-article">
-						<h5 class="footer-title">208, boulevard de la Savoie, 73000 Chambéry</h5>
-					</div>
-				</div>
-			</footer>
-		{% endblock %}
-
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-		{% block javascripts %}{% endblock %}
-		<script src='js/app.js'></script>
-	</body>
-</html></body></html>
+		</div>
+		<div class="col-sm-3 mx-auto text-center footer-article">
+			<h5 class="footer-title">208, boulevard de la Savoie, 73000 Chambéry</h5>
+		</div>
+	</div>
+</footer>{% endblock %}<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>{% block javascripts %}{% endblock %}<script src='js/app.js'></script></body></html></body></html>

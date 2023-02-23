@@ -129,6 +129,38 @@
 
 /* Booking Buttons */
 
-.hour-booking {
+#hourSelectedDay input[type="radio"]{
     display: none;
+}
+
+#hourSelectedNight input[type="radio"]{
+    display: none;
+}
+
+#hourSelectedDay span {
+    display: inline-block;
+    padding: 10px;
+    text-transform: uppercase;
+    border: 2px solid red;
+    border-radius: 3px;
+    color: red;
+}
+
+#hourSelectedNight span {
+    display: inline-block;
+    padding: 10px;
+    text-transform: uppercase;
+    border: 2px solid red;
+    border-radius: 3px;
+    color: red;
+}
+
+#hourSelectedDay input[type="radio"]:checked + span {
+    background-color: red;
+    color: black;
+}
+
+#hourSelectedNight input[type="radio"]:checked + span {
+    background-color: red;
+    color: black;
 }
