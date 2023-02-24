@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Entity\Customers;
 use App\Entity\Post;
 use App\Entity\Schedules;
 use App\Form\BookType;
@@ -10,12 +11,20 @@ use App\Form\PostType;
 use App\Form\ScheduleType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PostController extends AbstractController
 {
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     #[Route('/', name: 'home')]
     public function index(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -31,6 +40,15 @@ class PostController extends AbstractController
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
+
+        $user =$this->getUser();
+
+        if ($this->isGranted('ROLE_USER'))
+        {
+            $form["allergies"]->setData($user->getAllergies());
+            $form["preferedGroupNumber"]->setData($user->getPreferedGroupNumber());
+        }
+
         if ($form->isSubmitted() && $form->isValid())
         {
             $em = $doctrine->getManager();
