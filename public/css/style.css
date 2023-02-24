@@ -129,15 +129,15 @@
 
 /* Booking Buttons */
 
-#hourSelectedDay input[type="radio"]{
+#book_hourSelectedDay input[type="radio"]{
     display: none;
 }
 
-#hourSelectedNight input[type="radio"]{
+#book_hourSelectedNight input[type="radio"]{
     display: none;
 }
 
-#hourSelectedDay span {
+#book_hourSelectedDay label {
     display: inline-block;
     padding: 10px;
     text-transform: uppercase;
@@ -146,7 +146,7 @@
     color: red;
 }
 
-#hourSelectedNight span {
+#book_hourSelectedNight label {
     display: inline-block;
     padding: 10px;
     text-transform: uppercase;
@@ -155,12 +155,12 @@
     color: red;
 }
 
-#hourSelectedDay input[type="radio"]:checked + span {
+#book_hourSelectedDay input[type="radio"]:checked + label {
     background-color: red;
     color: black;
 }
 
-#hourSelectedNight input[type="radio"]:checked + span {
+#book_hourSelectedNight input[type="radio"]:checked + label {
     background-color: red;
     color: black;
 }

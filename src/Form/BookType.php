@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Book;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,6 +16,45 @@ class BookType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add("date", DateType::class, [
+                "label" => "Choisissez une date disponible :",
+                "input" => "string",
+                "widget" => "single_text",
+                "required" => true,
+                "attr" => [
+                    "value" => "Date.now();"
+                ]
+            ])
+            ->add("hourSelectedDay", ChoiceType::class, [
+                "label" => "Vous réservez pour ce midi ?",
+                "expanded" => true,
+                "multiple" => false,
+                "choices" => [
+                    "12:00" => "12:00",
+                    "12:15" => "12:15",
+                    "12:30" => "12:30",
+                    "12:45" => "12:45",
+                    "13:00" => "13:00",
+                    "13:15" => "13:15",
+                    "13:30" => "13:30",
+                    "reset" => "reset"
+                ]
+            ])
+            ->add("hourSelectedNight", ChoiceType::class, [
+                "label" => "Vous réservez pour ce soir ?",
+                "expanded" => true,
+                "multiple" => false,
+                "choices" => [
+                    "19:00" => "19:00",
+                    "19:15" => "19:15",
+                    "19:30" => "19:30",
+                    "19:45" => "19:45",
+                    "20:00" => "20:00",
+                    "20:15" => "20:15",
+                    "20:30" => "20:30",
+                    "reset" => "reset"
+                ]
+            ])
             ->add("preferedGroupNumber", ChoiceType::class, [
                 "label" => "Choisissez le nombre de convives pour cette réservation",
                 "choices" => [

@@ -46,3 +46,24 @@ window.onclick = function(event) {
   }
 }
 
+// Uncheck a radio button
+
+let radio = document.getElementById("book_hourSelectedDay_7");
+
+radio.addEventListener("click", function()
+{
+  if (radio.checked == true)
+  {
+    radio.checked = false;
+  }
+})
+
+let radio2 = document.getElementById("book_hourSelectedNight_7");
+
+radio2.addEventListener("click", function()
+{
+  if (radio2.checked == true)
+  {
+    radio2.checked = false;
+  }
+})
