@@ -124,6 +124,11 @@
 			<div id="myModal" class="modal">
 				<div class="modal-content">
 					<span class="close">&times;</span>
+					{% for book in books %}
+						{% if book.date %}
+							{{ dump(book.date) }}
+						{% endif %}
+					{% endfor %}
 					{{ form_start(book_form, {"attr": {"novalidate": "novalidate"}}) }}
 					<div class="container-fluid">
 						<div class="row">

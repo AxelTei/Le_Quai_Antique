@@ -39,7 +39,6 @@ class PostController extends AbstractController
 
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
-        $form->handleRequest($request);
 
         $user =$this->getUser();
 
@@ -48,6 +47,8 @@ class PostController extends AbstractController
             $form["allergies"]->setData($user->getAllergies());
             $form["preferedGroupNumber"]->setData($user->getPreferedGroupNumber());
         }
+
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
