@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CustomerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -39,7 +41,7 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?string $allergies;
 
-    #[ORM\OneToMany(targetEntity: "App\Entity\Book", mappedBy: "user")]
+    #[ORM\OneToMany(targetEntity: Book::class, mappedBy: "user")]
     private $bookings;
 
     #[ORM\Column(length: 180, nullable: true)]
@@ -53,6 +55,7 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
         $this->passwordHasher = $passwordHasher;
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,7 +164,7 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getBookings()
+    public function getBookings() : Collection
     {
         return $this->bookings;
     }

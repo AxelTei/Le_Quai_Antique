@@ -34,7 +34,7 @@ class Book
     #[ORM\Column(length: 180, nullable: true)]
     private ?string $alias;
 
-    #[ORM\ManyToOne(targetEntity: "App\Entity\Customers", inversedBy: "bookings")]
+    #[ORM\ManyToOne(targetEntity: Customers::class, inversedBy: "bookings")]
     #[ORM\JoinColumn(name: "customers_email", referencedColumnName: "email", onDelete: "CASCADE")]
     private $user;
 
@@ -62,12 +62,12 @@ class Book
         return $this;
     }
 
-    public function getUser()
+    public function getUser(): ?Customers
     {
         return $this->user;
     }
 
-    public function setUser($user)
+    public function setUser($user): self
     {
         $this->user = $user;
 
