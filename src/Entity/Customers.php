@@ -41,9 +41,6 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?string $allergies;
 
-    #[ORM\OneToMany(targetEntity: Book::class, mappedBy: "user")]
-    private $bookings;
-
     #[ORM\Column(length: 180, nullable: true)]
     private ?string $alias;
 
@@ -55,7 +52,6 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
         $this->passwordHasher = $passwordHasher;
-        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -160,18 +156,6 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAllergies($allergies)
     {
         $this->allergies = $allergies;
-
-        return $this;
-    }
-
-    public function getBookings() : Collection
-    {
-        return $this->bookings;
-    }
-
-    public function setBookings($bookings)
-    {
-        $this->bookings = $bookings;
 
         return $this;
     }

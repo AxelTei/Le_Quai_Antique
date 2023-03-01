@@ -34,10 +34,6 @@ class Book
     #[ORM\Column(length: 180, nullable: true)]
     private ?string $alias;
 
-    #[ORM\ManyToOne(targetEntity: Customers::class, inversedBy: "bookings")]
-    #[ORM\JoinColumn(name: "customers_email", referencedColumnName: "email", onDelete: "CASCADE")]
-    private $user;
-
     public function getId(): int
     {
         return $this->id;
@@ -58,18 +54,6 @@ class Book
     public function setPreferedGroupNumber($preferedGroupNumber)
     {
         $this->preferedGroupNumber = $preferedGroupNumber;
-
-        return $this;
-    }
-
-    public function getUser(): ?Customers
-    {
-        return $this->user;
-    }
-
-    public function setUser($user): self
-    {
-        $this->user = $user;
 
         return $this;
     }
