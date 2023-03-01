@@ -19,6 +19,8 @@
 			{% for book in books %}
 				{% if book.hourSelectedDay %}
 					<p>{{ book.user }}</p>
+					<p>{{ book.alias }}</p>
+					<p>{{ book.phoneNumber }}</p>
 					<p>{{ book.preferedGroupNumber}}</p>
 					<p>{{ book.date | date("d/m/Y") }}</p>
 					<p>{{ book.hourSelectedDay }}</p>
@@ -31,6 +33,8 @@
 			{% for book in books %}
 				{% if book.hourSelectedNight %}
 					<p>{{ book.user }}</p>
+					<p>{{ book.alias }}</p>
+					<p>{{ book.phoneNumber }}</p>
 					<p>{{ book.preferedGroupNumber}}</p>
 					<p>{{ book.date | date("d/m/Y") }}</p>
 					<p>{{ book.hourSelectedNight }}</p>
