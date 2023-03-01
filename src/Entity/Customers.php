@@ -48,6 +48,9 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, nullable: true)]
     private ?string $alias;
 
+    #[ORM\Column(length: 30, nullable: true)]
+    private ?string $phoneNumber;
+
     private $passwordHasher;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
@@ -194,6 +197,18 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAlias($alias)
     {
         $this->alias = $alias;
+
+        return $this;
+    }
+
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }

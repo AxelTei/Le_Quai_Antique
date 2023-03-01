@@ -18,8 +18,12 @@ class RestaurantPlaces
 
     #[ORM\Column(type: "string")]
     private ?string $bookingDate;
-    private ?bool $bookingHourDay;
-    private ?bool $bookingHourNight;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $bookingHourDay;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $bookingHourNight;
 
     public function getId(): int
     {

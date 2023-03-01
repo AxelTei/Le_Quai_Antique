@@ -56,6 +56,13 @@ class CustomerType extends AbstractType
                     new Length(["min" => 0, "max" => 180, "minMessage" => "Veuillez inscrire un nom valide", "maxMessage" => "Votre nom ou surnom ne doit pas dépasser 180 caractères !"]),
                 ]
             ])
+            ->add("phoneNumber", TextType::class, [
+                "label" => "Votre numéro de téléphone :",
+                "required" => false,
+                "constraints" => [
+                    new Length(["min" => 2, "max" => 30, "minMessage" => "Veuillez inscrire un numéro valide", "maxMessage" => "Votre numéro ne doit pas dépasser 30 caractères !"]),
+                ]
+            ])
             ->add("preferedHour", TimeType::class, [
                 "label" => "Sélectionez l'heure que vous préférez pour votre réservation",
                 "required" => false,

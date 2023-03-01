@@ -67,6 +67,20 @@ class BookType extends AbstractType
                 ],
                 "required" => true
             ])
+            ->add("alias", TextType::class, [
+                "label" => "Votre nom :",
+                "required" => true,
+                "constraints" => [
+                    new Length(["min" => 0, "max" => 180, "minMessage" => "Veuillez inscrire un nom valide", "maxMessage" => "Votre nom ou surnom ne doit pas dépasser 180 caractères !"]),
+                ]
+            ])
+            ->add("phoneNumber", TextType::class, [
+                "label" => "Votre numéro de téléphone :",
+                "required" => true,
+                "constraints" => [
+                    new Length(["min" => 2, "max" => 30, "minMessage" => "Veuillez inscrire un numéro valide", "maxMessage" => "Votre numéro ne doit pas dépasser 30 caractères !"]),
+                ]
+            ])
             ->add("allergies", TextType::class, [
                 "label" => "Avez-vous des allergies à nous indiquer ?",
                 "required" => false,

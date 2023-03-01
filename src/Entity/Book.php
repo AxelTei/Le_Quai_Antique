@@ -28,6 +28,12 @@ class Book
     #[ORM\Column(nullable: true)]
     private ?string $hourSelectedNight;
 
+    #[ORM\Column(length: 30, nullable: true)]
+    private ?string $phoneNumber;
+
+    #[ORM\Column(length: 180, nullable: true)]
+    private ?string $alias;
+
     #[ORM\ManyToOne(targetEntity: "App\Entity\Customers", inversedBy: "bookings")]
     #[ORM\JoinColumn(name: "customers_email", referencedColumnName: "email", onDelete: "CASCADE")]
     private $user;
@@ -112,6 +118,30 @@ class Book
     public function setHourSelectedNight($hourSelectedNight)
     {
         $this->hourSelectedNight = $hourSelectedNight;
+
+        return $this;
+    }
+
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
 
         return $this;
     }
