@@ -34,9 +34,6 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $confirm = null;
 
     #[ORM\Column(nullable: true)]
-    private ?string $preferedHour;
-
-    #[ORM\Column(nullable: true)]
     private ?int $preferedGroupNumber;
 
     #[ORM\Column(nullable: true)]
@@ -136,18 +133,6 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     public function setConfirm($confirm)
     {
         $this->confirm = $confirm;
-
-        return $this;
-    }
-
-    public function getPreferedHour()
-    {
-        return $this->preferedHour;
-    }
-
-    public function setPreferedHour($preferedHour)
-    {
-        $this->preferedHour = $preferedHour;
 
         return $this;
     }

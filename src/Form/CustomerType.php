@@ -63,13 +63,6 @@ class CustomerType extends AbstractType
                     new Length(["min" => 2, "max" => 30, "minMessage" => "Veuillez inscrire un numéro valide", "maxMessage" => "Votre numéro ne doit pas dépasser 30 caractères !"]),
                 ]
             ])
-            ->add("preferedHour", TimeType::class, [
-                "label" => "Sélectionez l'heure que vous préférez pour votre réservation",
-                "required" => false,
-                "input" => "string",
-                "widget" => "single_text",
-                "placeholder" => "Sélectionnez une heure"
-            ])
             ->add("preferedGroupNumber", IntegerType::class, [
                 "label" => "Vous réservez pour combien de personnes, habituellement ?",
                 "required" => false,

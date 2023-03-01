@@ -44,6 +44,8 @@ class PostController extends AbstractController
 
         if ($this->isGranted('ROLE_USER'))
         {
+            $form["alias"]->setData($user->getAlias());
+            $form["phoneNumber"]->setData($user->getPhoneNumber());
             $form["allergies"]->setData($user->getAllergies());
             $form["preferedGroupNumber"]->setData($user->getPreferedGroupNumber());
         }
