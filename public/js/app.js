@@ -67,3 +67,27 @@ radio2.addEventListener("click", function()
     radio2.checked = false;
   }
 })
+
+
+// Limit Booking Date with Places set by Admin
+
+let monBtn = document.getElementById("mondayBtn");
+let tueBtn = document.getElementById("tuesdayBtn");
+let wedBtn = document.getElementById("wednesdayBtn");
+let thuBtn = document.getElementById("thursdayBtn");
+let friBtn = document.getElementById("fridayBtn");
+let satBtn = document.getElementById("saturdayBtn");
+let sunBtn = document.getElementById("sundayBtn");
+
+let bookDate = document.getElementById("book_date");
+
+monBtn.addEventListener("click", function()
+{
+  console.log("salut")
+})
+
+bookDate.addEventListener("click", function()
+{
+  console.log("salutDate")
+  console.log(bookDate.value)
+})

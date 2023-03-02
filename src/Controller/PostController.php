@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Book;
-use App\Entity\Customers;
 use App\Entity\Post;
 use App\Entity\Schedules;
 use App\Form\BookType;
