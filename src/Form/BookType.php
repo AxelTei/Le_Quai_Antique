@@ -21,8 +21,9 @@ class BookType extends AbstractType
                 "input" => "string",
                 "widget" => "single_text",
                 "required" => true,
+                "html5" => false,
                 "attr" => [
-                    "value" => "Date.now();"
+                    "class" => "js-datepicker"
                 ]
             ])
             ->add("hourSelectedDay", ChoiceType::class, [

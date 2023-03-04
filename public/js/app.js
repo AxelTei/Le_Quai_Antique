@@ -68,6 +68,42 @@ radio2.addEventListener("click", function()
   }
 })
 
+// Calendar Booking
+
+let bookDate = document.getElementById("book_date");
+
+bookDate.addEventListener("click", function()
+{
+  console.log("salutDate")
+  console.log(bookDate.value)
+})
+
+$(function($)
+{
+  $('.js-datepicker').datepicker({
+    dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+    dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+    nextText: "Suivant",
+    prevText: "Précédant",
+    minDate: 0,
+    beforeShowDay: noWednesday,
+  });
+
+  function noWednesday(date)
+  {
+    if (date.getDay() === 3) /* Wednesday */
+    {
+      return [false, "fermé", "Fermé le Mercredi"]
+    } else 
+    {
+      return [true, "", ""]
+    }
+  }
+
+  var dayNames = $('.js-datepicker').datepicker('option', "dayNames");
+  $('.js-datepicker').datepicker("option", "dayNames", ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"])
+})
 
 // Limit Booking Date with Places set by Admin
 
@@ -79,20 +115,7 @@ let friBtn = document.getElementById("fridayBtn");
 let satBtn = document.getElementById("saturdayBtn");
 let sunBtn = document.getElementById("sundayBtn");
 
-let bookDate = document.getElementById("book_date");
-
 monBtn.addEventListener("click", function()
 {
   console.log("salut")
-})
-
-bookDate.addEventListener("click", function()
-{
-  console.log("salutDate")
-  console.log(bookDate.value)
-})
-
-$(function($)
-{
-  alert("JQuery est bien inclus !")
 })
