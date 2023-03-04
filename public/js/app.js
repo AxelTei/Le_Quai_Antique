@@ -91,3 +91,8 @@ bookDate.addEventListener("click", function()
   console.log("salutDate")
   console.log(bookDate.value)
 })
+
+$(function($)
+{
+  alert("JQuery est bien inclus !")
+})
