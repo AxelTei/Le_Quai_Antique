@@ -70,14 +70,6 @@ radio2.addEventListener("click", function()
 
 // Calendar Booking
 
-let bookDate = document.getElementById("book_date");
-
-bookDate.addEventListener("click", function()
-{
-  console.log("salutDate")
-  console.log(bookDate.value)
-})
-
 $(function($)
 {
   $('.js-datepicker').datepicker({
@@ -87,6 +79,7 @@ $(function($)
     nextText: "Suivant",
     prevText: "Précédant",
     minDate: 0,
+    dateFormat: "yy-mm-dd",
     beforeShowDay: noWednesday,
   });
 
@@ -101,21 +94,8 @@ $(function($)
     }
   }
 
+  //GETTER
   var dayNames = $('.js-datepicker').datepicker('option', "dayNames");
+  //SETTER
   $('.js-datepicker').datepicker("option", "dayNames", ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"])
-})
-
-// Limit Booking Date with Places set by Admin
-
-let monBtn = document.getElementById("mondayBtn");
-let tueBtn = document.getElementById("tuesdayBtn");
-let wedBtn = document.getElementById("wednesdayBtn");
-let thuBtn = document.getElementById("thursdayBtn");
-let friBtn = document.getElementById("fridayBtn");
-let satBtn = document.getElementById("saturdayBtn");
-let sunBtn = document.getElementById("sundayBtn");
-
-monBtn.addEventListener("click", function()
-{
-  console.log("salut")
 })
