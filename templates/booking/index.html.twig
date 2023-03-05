@@ -21,15 +21,16 @@
 				{{ form_row(restaurantRule_form.runSoir) }}
 				{{ form_row(restaurantRule_form.bookingLimit) }}
 				<button type="submit" class="btn btn-success">Confirmer ?</button>
+				<p class="mt-3">Attention ! Il ne peut y avoir plus d'une règle dans le restaurant. Si vous voulez en ajouter une, n'oubliez pas de supprimer l'ancienne règle !</p>
 			{{ form_end(restaurantRule_form)}}
 		</div>
 		<h2 class="mt-5">Règle du Restaurant</h2>
 		<div class="mt-5">
 			{% for rule in rules %}
-				<p>{{ rule.closureDay }}</p>
-				<p>{{ rule.runMidi }}</p>
-				<p>{{ rule.runSoir }}</p>
-				<p>{{ rule.bookingLimit }}</p>
+				<p>Le Restaurant fermera tous les {{ rule.closureDay }}s de chaque semaine.</p>
+				<p>Le run de mi-journée commencera à : {{ rule.runMidi }}</p>
+				<p>Le run du soir commencera à : {{ rule.runSoir }}</p>
+				<p>Nous n'accueillerons pas plus de {{ rule.bookingLimit }} réservations par jour.</p>
 			{% endfor %}
 		</div>
 		<h2 class="mt-5">Les Réservations</h2>
