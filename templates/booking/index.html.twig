@@ -12,7 +12,27 @@
 {% block body %}
 	<div class="container-fluid">
 		<h1 class="main-title-admin-page">Gestion Administrative</h1>
-		<h2>Les Réservations</h2>
+
+		<h2 class="mt-5">Ajouter une nouvelle règle au Restaurant</h2>
+		<div class="mt-5">
+			{{ form_start(restaurantRule_form, {"attr": {"novalidate": "novalidate"}}) }}
+				{{ form_row(restaurantRule_form.closureDay) }}
+				{{ form_row(restaurantRule_form.runMidi) }}
+				{{ form_row(restaurantRule_form.runSoir) }}
+				{{ form_row(restaurantRule_form.bookingLimit) }}
+				<button type="submit" class="btn btn-success">Confirmer ?</button>
+			{{ form_end(restaurantRule_form)}}
+		</div>
+		<h2 class="mt-5">Règle du Restaurant</h2>
+		<div class="mt-5">
+			{% for rule in rules %}
+				<p>{{ rule.closureDay }}</p>
+				<p>{{ rule.runMidi }}</p>
+				<p>{{ rule.runSoir }}</p>
+				<p>{{ rule.bookingLimit }}</p>
+			{% endfor %}
+		</div>
+		<h2 class="mt-5">Les Réservations</h2>
 		<div>
 
 			<p class="mt-5">Réservation du MIDI</p>
