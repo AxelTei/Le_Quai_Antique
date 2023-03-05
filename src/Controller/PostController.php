@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Book;
 use App\Entity\Post;
+use App\Entity\RestaurantRule;
 use App\Entity\Schedules;
 use App\Form\BookType;
 use App\Form\PostType;
+use App\Form\RestaurantRuleType;
 use App\Form\ScheduleType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -188,8 +190,24 @@ class PostController extends AbstractController
         $repository = $doctrine->getRepository(Book::class);
         $books = $repository->findAll(); // SELECT * FROM `restaurant_bookings`;
 
+        $repositoryRule = $doctrine->getRepository(RestaurantRule::class);
+        $rules = $repositoryRule->findAll();
+
+        $restaurantRule = new RestaurantRule();
+        $form = $this->createForm(RestaurantRuleType::class, $restaurantRule);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $doctrine->getManager();
+            $em->persist($restaurantRule);
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render('booking/index.html.twig', [
             "books" => $books,
+            "rules" => $rules,
+            "restaurantRule_form" => $form->createView()
         ]);
     }
 
