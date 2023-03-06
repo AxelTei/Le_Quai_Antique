@@ -38,6 +38,9 @@ class PostController extends AbstractController
         $repositoryBook = $doctrine->getRepository(Book::class);
         $books = $repositoryBook->findAll(); // SELECT * FROM `restaurant_bookings`;
 
+        $repositoryRule = $doctrine->getRepository(RestaurantRule::class);
+        $rules = $repositoryRule->findAll(); // SELECT * FROM `restaurant_rule`;
+
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
 
@@ -66,11 +69,11 @@ class PostController extends AbstractController
             "posts" => $posts,
             "schedules" => $schedules,
             "books" => $books,
+            "rules" => $rules,
             'book_form' => $form->createView()
         ]);
     }
 
-    // URL a sécurisé
     #[Route('/post/new')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -90,7 +93,6 @@ class PostController extends AbstractController
         ]);
     }
 
-    // URL a sécurisé
     #[Route('/post/edit/{id}', name: "edit-post", requirements: ["id" => "\d+"])]
     public function update(Post $post, ManagerRegistry $doctrine, Request $request): Response
     {
@@ -108,7 +110,6 @@ class PostController extends AbstractController
         ]);
     }
 
-    // URL a sécurisé
     #[Route('/post/delete/{id}', name: "delete-post", requirements: ["id" => "\d+"])]
     public function delete(Post $post, ManagerRegistry $doctrine): Response
     {
@@ -120,7 +121,6 @@ class PostController extends AbstractController
         return $this->redirectToRoute('home');
     }
 
-    // URL a sécurisé
     #[Route('/post/copy/{id}', name: "copy-post", requirements: ["id" => "\d+"])]
     public function duplicate(Post $post, ManagerRegistry $doctrine): Response
     {
@@ -133,7 +133,6 @@ class PostController extends AbstractController
         return $this->redirectToRoute('home');
     }
 
-    // URL a sécurisé
     #[Route('/schedules/new')]
     public function createSchedule(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -153,7 +152,6 @@ class PostController extends AbstractController
         ]);
     }
 
-    // URL a sécurisé
     #[Route('/schedule/edit/{id}', name: "edit-schedule", requirements: ["id" => "\d+"])]
     public function updateSchedule(Schedules $schedules, ManagerRegistry $doctrine, Request $request): Response
     {
@@ -171,7 +169,6 @@ class PostController extends AbstractController
         ]);
     }
 
-    // URL a sécurisé
     #[Route('/schedule/delete/{id}', name: "delete-schedule", requirements: ["id" => "\d+"])]
     public function deleteSchedule(Schedules $schedules, ManagerRegistry $doctrine): Response
     {
@@ -191,7 +188,7 @@ class PostController extends AbstractController
         $books = $repository->findAll(); // SELECT * FROM `restaurant_bookings`;
 
         $repositoryRule = $doctrine->getRepository(RestaurantRule::class);
-        $rules = $repositoryRule->findAll();
+        $rules = $repositoryRule->findAll(); // SELECT * FROM `restaurant_rule`;
 
         $restaurantRule = new RestaurantRule();
         $form = $this->createForm(RestaurantRuleType::class, $restaurantRule);

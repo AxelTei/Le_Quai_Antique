@@ -30,12 +30,7 @@ class PostType extends AbstractType
                     new Length(['min' => 5, 'max' => 320, 'minMessage' => "Le message ne doit pas faire moins de 5 caractères !", 'maxMessage' => "Le message ne doit pas faire plus de 320 caractères !"]),
                     new NotBlank(['message' => 'Le message ne doit pas être vide !'])
                 ]
-                ])
-            ->add("image", UrlType::class, [
-                "label" => "URL de l'image", 
-                "required" => false,
-                "constraints" => [new Url(['message' => 'L\'image doit être une URL valide !'])]
-            ]);
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
