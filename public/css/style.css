@@ -1,5 +1,74 @@
-.main-title-admin-page {
-    color: red;
+
+body {
+    font-family: "montserrat", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Navbar Section */
+
+.navbar-brand {
+    font-family: "dulcinea", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    width: 260px;
+    height: 60px;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.nav-link {
+    font-family: "dulcinea", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: white;
+    font-size: xx-large;
+    width: 290px;
+    text-align: end;
+}
+
+.btn-Connect {
+    background-color: #B21F1F;
+    color: white;
+    width: 260px;
+    font-size: large;
+}
+
+.btn-Disconnect {
+    background-color: #B21F1F;
+    color: white;
+    font-size: large;
+}
+
+.btn-Connect:hover {
+    background-color: #9C9797;
+    color: white;
+}
+
+.btn-Disconnect:hover {
+    background-color: #9C9797;
+    color: white;
+}
+
+/* HomePage Title Section */
+
+.title-main-page {
+    font-family: "wreath", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 46px;
+    color: #9C9797;
+}
+
+/* HomePage Image Section */
+
+.card-title {
+    font-family: "wreath", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    font-size: 46px;
+    color: #9C9797;
 }
 
 /* Footer Section */
@@ -19,7 +88,7 @@
     }
 
     .footer {
-        height: 42rem;
+        height: 50rem;
     }
 }
 
@@ -33,7 +102,7 @@
     }
 
     .footer {
-        height: 60rem;
+        height: 65rem;
     }
 }
 
@@ -66,7 +135,7 @@
     z-index: 99;
     border: none;
     outline: none;
-    background-color: red;
+    background-color: #B21F1F;
     color: white;
     cursor: pointer;
     padding: 15px;
@@ -76,7 +145,17 @@
 }
 
 #myBtn:hover {
-    background-color: #555;
+    background-color: #9C9797;
+}
+
+#bookingBtn {
+    background-color: #B21F1F;
+    color: white;
+}
+
+#bookingBtn:hover {
+    background-color: #9C9797;
+    color: white;
 }
 
 /* The Modal (background) */

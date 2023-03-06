@@ -21,7 +21,7 @@ class FormulaType extends AbstractType
                 "constraints" => [ new Length(['min' => 0, 'max' => 150, 'minMessage' => "Le titre ne doit pas être vide !", 'maxMessage' => "Le titre ne doit pas faire plus de 150 caractères !"])]
                 ])
             ->add("formulaDayTitle", TextType::class, [
-                "label" => "Titre pour la Formule Diner",
+                "label" => "Titre pour la Formule Déjeuner",
                 "required" => false,
                 "constraints" => [ new Length(['min' => 0, 'max' => 150, 'minMessage' => "Le titre ne doit pas être vide !", 'maxMessage' => "Le titre ne doit pas faire plus de 150 caractères !"])]
             ])
