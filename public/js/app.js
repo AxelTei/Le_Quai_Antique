@@ -95,7 +95,7 @@ $(function($)
   }
 
   //GETTER
-  var dayNames = $('.js-datepicker').datepicker('option', "dayNames");
+  // var dayNames = $('.js-datepicker').datepicker('option', "dayNames");
   //SETTER
-  $('.js-datepicker').datepicker("option", "dayNames", ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"])
+  // $('.js-datepicker').datepicker("option", "dayNames", ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"])
 })
