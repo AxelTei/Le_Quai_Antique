@@ -4,14 +4,14 @@ namespace App\Form;
 
 use App\Entity\Post;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Url;
 
 class PostType extends AbstractType
 {
@@ -22,7 +22,7 @@ class PostType extends AbstractType
                 "label" => "Titre", 
                 "required" => false,
                 "constraints" => [ new Length(['min' => 0, 'max' => 150, 'minMessage' => "Le titre ne doit être vide !", 'maxMessage' => "Le titre ne doit pas faire plus de 150 caractères !"])]
-                ])
+            ])
             ->add("content", TextareaType::class, [
                 "label" => "Contenu", 
                 "required" => true,
@@ -30,7 +30,22 @@ class PostType extends AbstractType
                     new Length(['min' => 5, 'max' => 320, 'minMessage' => "Le message ne doit pas faire moins de 5 caractères !", 'maxMessage' => "Le message ne doit pas faire plus de 320 caractères !"]),
                     new NotBlank(['message' => 'Le message ne doit pas être vide !'])
                 ]
-                ]);
+            ])
+            ->add("image", FileType::class, [
+                "label" => "Image",
+                "mapped" => false,
+                "required" => false,
+                "constraints" => [
+                    new File([
+                        "mimeTypes" => [
+                            'jpg',
+                            'image/jpeg',
+                            'svg'
+                        ],
+                        "mimeTypesMessage" => "Télécharger un fichier image valide jpg ou svg."
+                    ])
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

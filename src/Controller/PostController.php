@@ -13,9 +13,11 @@ use App\Form\ScheduleType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class PostController extends AbstractController
 {
@@ -75,14 +77,36 @@ class PostController extends AbstractController
     }
 
     #[Route('/post/new')]
-    public function create(Request $request, ManagerRegistry $doctrine): Response
+    public function create(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid())
         {
+            $imageFile = $form->get("image")->getData();
+
+            if ($imageFile)
+            {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                try {
+                    $imageFile->move(
+                        $this->getParameter("uploads"),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    //
+                }
+
+                $post->setImage($newFilename);
+            }
+
             $em = $doctrine->getManager();
             $em->persist($post);
             $em->flush();
