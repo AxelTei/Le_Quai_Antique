@@ -62,6 +62,10 @@ body {
 
 /* HomePage Image Section */
 
+.card {
+    border: none;
+}
+
 .card-title {
     font-family: "wreath", serif;
     font-weight: 400;
@@ -69,6 +73,18 @@ body {
     text-align: center;
     font-size: 46px;
     color: #9C9797;
+}
+
+.card-img-top {
+    width: 317px;
+    height: 279px;
+    border: solid 6px #9C9797;
+}
+
+.card-text {
+    color: #9C9797;
+    font-size: 24px;
+    text-align: center;
 }
 
 /* Footer Section */
@@ -141,7 +157,7 @@ body {
     padding: 15px;
     border-radius: 10px;
     font-size: 18px;
-    width: 150px;
+    width: 200px;
 }
 
 #myBtn:hover {
