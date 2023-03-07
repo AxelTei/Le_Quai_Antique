@@ -36,7 +36,7 @@
 								<a class="nav-link" href="/carte">Carte</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link"{% if is_granted('ROLE_ADMIN') %}style="text-align: center;"{% endif %}>Contact</a>
+								<a class="nav-link" {% if is_granted('ROLE_ADMIN') %} style="text-align: center;" {% endif %}>Contact</a>
 							</li>
 							{% if is_granted('ROLE_ADMIN') %}
 								<li class="nav-item dropdown">
@@ -84,7 +84,9 @@
 		{% endblock %}
 
 		{% block body %}
-			<div class="d-flex justify-content-center flex-wrap title-main-page mt-3"><h1>Un Voyage de Saveur Savoyarde</h1></div>
+			<div class="d-flex justify-content-center flex-wrap title-main-page mt-3">
+				<h1>Un Voyage de Saveur Savoyarde</h1>
+			</div>
 			<div class="d-flex justify-content-around flex-wrap">
 				{% for post in posts %}
 					<div class="card mt-3" style="width: 18rem;">
@@ -135,7 +137,7 @@
 					{{ form_row(book_form.alias)}}
 					{{ form_row(book_form.phoneNumber)}}
 					{{ form_row(book_form.allergies)}}
-					<button type="submit" class="btn btn-success btn-customer-book">Confirmer la réservation</button>
+					<button type="submit" class="btn btn-success btn-customer-book mt-3">Confirmer la réservation</button>
 					{{ form_end(book_form)}}
 				</div>
 			</div>
@@ -144,65 +146,81 @@
 
 			<div class="container-fluid mt-5">
 				<div class="row">
-					<div class="col-sm-12">
-						<h1>Coté Cuisine</h1>
+					<div class="col-sm-12 text-center mb-5">
+						<h1 class="title-main-page">Côté Cuisine...</h1>
 					</div>
-					<div class="col-sm-6">
-						<img src="" alt="Le Chef Michant">
+					<div class="col-sm-5">
+						<img src={{ asset("uploads/pexels-вадим-маркин-2102934.jpg") }} alt="Le Chef Michant (image libre de droit)" class="img-chief">
 					</div>
-					<div class="col-sm-6">
-						<h2>Petit Post</h2>
-						<p>Super texte !</p>
+					<div class="col-sm-7">
+						<h2 class="title-main-page-text text-center">Présentation de notre Chef adoré !</h2>
+						<div class="text-main-page">
+							<p>Arnaud Michant n'est pas simplement, un Chef étoilé de plus en France.</p>
+							<p>C'est aussi un passionné de la Savoie !</p>
+							<p>Notre restaurant "Le Quai Antique" s'est installé à Chambéry, pour répondre aux passions de notre Chef.</p>
+							<p>La volonté du Chef Michand de faire vivre les producteurs Savoyards, en se procurant leurs produits,</p>
+							<p>raffinés d'un savoir-faire unique depuis des générations, est enfin accomplie.</p>
+							<p>Déjà propriétaire de deux autres restaurants, le Chef Michant voit "Le Quai Antique" comme la nouvelle promesse d'un voyage dans son univers culinaire.</p>
+							<p>Un univers qu'il chérit est maitrise avec amour depuis maintenant 20 ans.</p>
+							<p>Venez découvrir ce que le Chef a préparé pour vous !</p>
+							<p>Attention, nous déclinons toutes responsabilités sur les kilos que vous allez prendre !</p>
+						</div>
 					</div>
 				</div>
 			</div>
 
-<!--Footer Section-->
-
-<footer class="container-fluid footer mt-5" {% if is_granted('ROLE_ADMIN') %} style="height: 82rem;" {% endif %}>
-	<div class="row">
-		<div class="col-sm-3 mx-auto text-center footer-main-article">
-			<h2 class="footer-main-title">Chef Arnaud Michant</h2>
-		</div>
-		<div class="col-sm-3 mx-auto text-center footer-main-article">
-			<h2 class="footer-main-title">Le Quai Antique</h2>
-		</div>
-		<div class="col-sm-3 mx-auto text-center footer-hours">
-			<h2 class="footer-title-hours mb-5">Nos Horaires d'ouverture</h2>
-			<div class="row">
-				{% for schedule in schedules %}
-					<div class="col-6">
-						<p>{{ schedule.date }}</p>
-					</div>
-					<div class="col-6">
-						{% if schedule.openingHoursDay %}
-							<p>{{ schedule.openingHoursDay }}</p><br>
-						{% endif %}
-						{% if schedule.openingHoursNight %}
-							<p class="mt-0">{{ schedule.openingHoursNight }}</p>
-						{% endif %}
-						{% if is_granted('ROLE_ADMIN') %}
-							<a href="{{ path('delete-schedule', {'id': schedule.id}) }}" class="btn btn-danger">Supprimer</a>
-							<a href="{{ path('edit-schedule', {'id': schedule.id}) }}" class="btn btn-warning">Modifier</a>
-						{% endif %}
-					</div>
-				{% endfor %}
+			<div class="d-flex justify-content-center flex-wrap mt-5 img-restaurant" style="background:linear-gradient(100deg, rgba(0,0,0,0.6) 0%, 
+    rgba(0,0,0,0.6) 35%, rgba(0,0,0,0.1) 100%),url({{ asset("uploads/pexels-pierre-blaché-2901212.jpg") }}) no-repeat center;">
+				<a href="/customer/new">
+					<button class="btn btn-create-account" type="submit">Créer un Compte</button>
+				</a>
 			</div>
-		</div>
-		<div class="col-sm-3 mx-auto text-center footer-article">
-			<h2 class="footer-title">208, boulevard de la Savoie, 73000 Chambéry</h2>
-		</div>
-	</div>
-</footer>
-{% endblock %}
-</body>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
-<script src='js/app.js'></script>
-{% block javascripts %}
-{% endblock %}
+			<!--Footer Section-->
+
+			<footer class="container-fluid footer" {% if is_granted('ROLE_ADMIN') %} style="height: 82rem;" {% endif %}>
+				<div class="row">
+					<div class="col-sm-3 mx-auto text-center footer-main-article">
+						<h2 class="footer-main-title">Chef Arnaud Michant</h2>
+					</div>
+					<div class="col-sm-3 mx-auto text-center footer-main-article">
+						<h2 class="footer-main-title">Le Quai Antique</h2>
+					</div>
+					<div class="col-sm-3 mx-auto text-center footer-hours">
+						<h2 class="footer-title-hours mb-5">Nos Horaires d'ouverture</h2>
+						<div class="row">
+							{% for schedule in schedules %}
+								<div class="col-6">
+									<p>{{ schedule.date }}</p>
+								</div>
+								<div class="col-6">
+									{% if schedule.openingHoursDay %}
+										<p>{{ schedule.openingHoursDay }}</p>
+									{% endif %}
+									{% if schedule.openingHoursNight %}
+										<p class="mt-0">{{ schedule.openingHoursNight }}</p>
+									{% endif %}
+									{% if is_granted('ROLE_ADMIN') %}
+										<a href="{{ path('delete-schedule', {'id': schedule.id}) }}" class="btn btn-danger">Supprimer</a>
+										<a href="{{ path('edit-schedule', {'id': schedule.id}) }}" class="btn btn-warning">Modifier</a>
+									{% endif %}
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="col-sm-3 mx-auto text-center footer-article">
+						<h2 class="footer-title">208, boulevard de la Savoie, 73000 Chambéry</h2>
+					</div>
+				</div>
+			</footer>
+		{% endblock %}
+	</body>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+	<script src='js/app.js'></script>
+	{% block javascripts %}{% endblock %}
 
 
 </html>
