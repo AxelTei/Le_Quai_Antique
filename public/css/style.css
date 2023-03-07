@@ -32,12 +32,14 @@ body {
     color: white;
     width: 260px;
     font-size: large;
+    box-shadow: 2px 2px 6px #000;
 }
 
 .btn-Disconnect {
     background-color: #B21F1F;
     color: white;
     font-size: large;
+    box-shadow: 2px 2px 6px #000;
 }
 
 .btn-Connect:hover {
@@ -73,18 +75,20 @@ body {
     text-align: center;
     font-size: 46px;
     color: #9C9797;
+    width: 300px;
 }
 
 .card-img-top {
     width: 317px;
     height: 279px;
-    border: solid 6px #9C9797;
+    border: solid 8px #9C9797;
 }
 
 .card-text {
     color: #9C9797;
     font-size: 24px;
     text-align: center;
+    width: 300px;
 }
 
 /* Footer Section */
@@ -158,6 +162,7 @@ body {
     border-radius: 10px;
     font-size: 18px;
     width: 200px;
+    box-shadow: 2px 3px 6px #000;
 }
 
 #myBtn:hover {
@@ -167,6 +172,12 @@ body {
 #bookingBtn {
     background-color: #B21F1F;
     color: white;
+    width: 300px;
+    height: 60px;
+    font-size: x-large;
+    text-transform: uppercase;
+    border-radius: 20px;
+    box-shadow: 2px 3px 6px #000;
 }
 
 #bookingBtn:hover {

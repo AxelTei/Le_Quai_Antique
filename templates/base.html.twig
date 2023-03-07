@@ -36,7 +36,7 @@
 								<a class="nav-link" href="/carte">Carte</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link"{% if is_granted('ROLE_ADMIN') %}style="text-align: center;"{% elseif is_granted('ROLE_USER') %}style="text-align: center;"{% endif %}>Contact</a>
+								<a class="nav-link"{% if is_granted('ROLE_ADMIN') %}style="text-align: center;"{% endif %}>Contact</a>
 							</li>
 							{% if is_granted('ROLE_ADMIN') %}
 								<li class="nav-item dropdown">
@@ -60,10 +60,6 @@
 											<a class="dropdown-item" href="/booking">Gestion des Réservations</a>
 										</li>
 									</ul>
-								</li>
-							{% elseif is_granted('ROLE_USER') %}
-								<li class="nav-item">
-									<a class="nav-link" href="#">Gestion de compte</a>
 								</li>
 							{% endif %}
 						</ul>
@@ -94,7 +90,7 @@
 					<div class="card mt-3" style="width: 18rem;">
 						{% if post.title %}
 							{# Mettre le titre en apparence avec passage de la souris sur une photo #}
-							<h5 class="card-title">{{ post.title }}</h5>
+							<h2 class="card-title">{{ post.title }}</h2>
 						{% endif %}
 						{% if post.image %}
 							<img src={{ asset("uploads/#{post.image}") }} class="card-img-top" alt={{ post.title }}>
@@ -115,8 +111,6 @@
 			<div class="d-flex justify-content-center flex-wrap mt-5">
 				<button id="bookingBtn" class="btn">Réservation</button>
 			</div>
-
-			<div style="height: 800px;"></div>
 
 			<!--Modal Section-->
 
@@ -146,18 +140,35 @@
 				</div>
 			</div>
 
+			<!--Restaurant Presentation Section-->
+
+			<div class="container-fluid mt-5">
+				<div class="row">
+					<div class="col-sm-12">
+						<h1>Coté Cuisine</h1>
+					</div>
+					<div class="col-sm-6">
+						<img src="" alt="Le Chef Michant">
+					</div>
+					<div class="col-sm-6">
+						<h2>Petit Post</h2>
+						<p>Super texte !</p>
+					</div>
+				</div>
+			</div>
+
 <!--Footer Section-->
 
 <footer class="container-fluid footer mt-5" {% if is_granted('ROLE_ADMIN') %} style="height: 82rem;" {% endif %}>
 	<div class="row">
 		<div class="col-sm-3 mx-auto text-center footer-main-article">
-			<h5 class="footer-main-title">Chef Arnaud Michant</h5>
+			<h2 class="footer-main-title">Chef Arnaud Michant</h2>
 		</div>
 		<div class="col-sm-3 mx-auto text-center footer-main-article">
-			<h5 class="footer-main-title">Le Quai Antique</h5>
+			<h2 class="footer-main-title">Le Quai Antique</h2>
 		</div>
 		<div class="col-sm-3 mx-auto text-center footer-hours">
-			<h5 class="footer-title-hours mb-5">Nos Horaires d'ouverture</h5>
+			<h2 class="footer-title-hours mb-5">Nos Horaires d'ouverture</h2>
 			<div class="row">
 				{% for schedule in schedules %}
 					<div class="col-6">
@@ -179,7 +190,7 @@
 			</div>
 		</div>
 		<div class="col-sm-3 mx-auto text-center footer-article">
-			<h5 class="footer-title">208, boulevard de la Savoie, 73000 Chambéry</h5>
+			<h2 class="footer-title">208, boulevard de la Savoie, 73000 Chambéry</h2>
 		</div>
 	</div>
 </footer>
