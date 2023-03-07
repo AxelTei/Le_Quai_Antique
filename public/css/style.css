@@ -218,6 +218,10 @@ body {
     /* Could be more or less, depending on screen size */
 }
 
+.btn-customer-book {
+    text-align: center;
+}
+
 /* The Close Button */
 .close {
     color: #aaa;

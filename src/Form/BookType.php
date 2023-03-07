@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class BookType extends AbstractType
 {
@@ -24,6 +25,9 @@ class BookType extends AbstractType
                 "html5" => false,
                 "attr" => [
                     "class" => "js-datepicker"
+                ],
+                "constraints" => [
+                    new NotBlank(["message" => "Vous devez indiquer une date pour la résservation !"])
                 ]
             ])
             ->add("hourSelectedDay", ChoiceType::class, [
@@ -73,6 +77,7 @@ class BookType extends AbstractType
                 "required" => true,
                 "constraints" => [
                     new Length(["min" => 0, "max" => 180, "minMessage" => "Veuillez inscrire un nom valide", "maxMessage" => "Votre nom ou surnom ne doit pas dépasser 180 caractères !"]),
+                    new NotBlank(["message" => "Vous devez indiquer un nom pour la résservation !"])
                 ]
             ])
             ->add("phoneNumber", TextType::class, [

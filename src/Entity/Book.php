@@ -19,7 +19,7 @@ class Book
     #[ORM\Column(nullable: true)]
     private ?string $allergies;
 
-    #[ORM\Column(type: "string", nullable: true)]
+    #[ORM\Column(type: "string", nullable: false)]
     private ?string $date;
 
     #[ORM\Column(nullable: true)]
@@ -31,7 +31,7 @@ class Book
     #[ORM\Column(length: 30, nullable: true)]
     private ?string $phoneNumber;
 
-    #[ORM\Column(length: 180, nullable: true)]
+    #[ORM\Column(length: 180, nullable: false)]
     private ?string $alias;
 
     public function getId(): int
