@@ -9,7 +9,7 @@ body {
 
 .navbar-brand {
     font-family: "dulcinea", sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     font-style: normal;
     width: 260px;
     height: 60px;
@@ -108,7 +108,19 @@ body {
     }
 
     .footer {
-        height: 52rem;
+        height: 38rem;
+    }
+
+    .footer-main-title {
+        padding-top: 10rem;
+    }
+
+    .footer-hours {
+        padding-top: 1rem;
+    }
+
+    .footer-title {
+        padding-top: 8.5rem;
     }
 }
 
@@ -122,27 +134,41 @@ body {
     }
 
     .footer {
-        height: 67rem;
+        height: 62rem;
+    }
+
+    .footer-main-title {
+        padding-top: 2rem;
+    }
+
+    .footer-hours {
+        padding-top: 3rem;
+    }
+
+    .footer-title {
+        padding-top: 2rem;
     }
 }
 
 .footer-main-title {
+    font-family: "dulcinea", sans-serif;
     font-weight: 600;
-    text-decoration: underline;
-    padding-top: 2rem;
+    font-style: normal;
+    font-size: xx-large;
 }
 
 .footer-title {
+    font-family: "dulcinea", sans-serif;
     font-weight: 600;
-    font-family: "Lobster", Arial, Helvetica, sans-serif;
-}
-
-.footer-hours {
-    padding-top: 1rem;
+    font-style: normal;
+    font-size: xx-large;
 }
 
 .footer-title-hours {
-    font-weight: 600;
+    font-family: "dulcinea", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: xx-large;
 }
 
 /* Button Section */

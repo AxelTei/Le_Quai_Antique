@@ -178,7 +178,7 @@
 
 			<!--Footer Section-->
 
-			<footer class="container-fluid footer" {% if is_granted('ROLE_ADMIN') %} style="height: 82rem;" {% endif %}>
+			<footer class="container-fluid footer" {% if is_granted('ROLE_ADMIN') %} style="height: auto;" {% endif %}>
 				<div class="row">
 					<div class="col-sm-3 mx-auto text-center footer-main-article">
 						<h2 class="footer-main-title">Chef Arnaud Michant</h2>
@@ -187,7 +187,7 @@
 						<h2 class="footer-main-title">Le Quai Antique</h2>
 					</div>
 					<div class="col-sm-3 mx-auto text-center footer-hours">
-						<h2 class="footer-title-hours mb-5">Nos Horaires d'ouverture</h2>
+						<h2 class="footer-title-hours mb-3">Nos Horaires d'ouverture</h2>
 						<div class="row">
 							{% for schedule in schedules %}
 								<div class="col-6">
