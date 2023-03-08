@@ -17,39 +17,41 @@
 		<h1></h1>
 	</div>
 
-	<div>
+	<div class="container-fluid mt-5">
 		{% for formula in formulas %}
-			<div>
-				<h2>{{ formula.menuTitle }}</h2>
-				{% if formula.formulaDayTitle %}
-					<p>{{ formula.formulaDayTitle }}</p>
-				{% endif %}
-				{% if formula.formulaDayDescription %}
-					<p>{{ formula.formulaDayDescription }}</p>
-				{% endif %}
-				{% if formula.formulaDayPrice %}
-					<p>{{ formula.formulaDayPrice }}</p>
-				{% endif %}
+			<div class="row">
+				<div class="col-sm-12 text-center">
+					<h2 class="formula-menu-title">{{ formula.menuTitle }}</h2>
+					{% if formula.formulaDayTitle %}
+						<p class="formula-day-menu-title">{{ formula.formulaDayTitle }}</p>
+					{% endif %}
+					{% if formula.formulaDayDescription %}
+						<p>{{ formula.formulaDayDescription }}</p>
+					{% endif %}
+					{% if formula.formulaDayPrice %}
+						<p>{{ formula.formulaDayPrice }}</p>
+					{% endif %}
 
-				{% if formula.formulaNightTitle %}
-					<p>{{ formula.formulaNightTitle}}</p>
-				{% endif %}
-				{% if formula.formulaNightDescription %}
-					<p>{{ formula.formulaNightDescription}}</p>
-				{% endif %}
-				{% if formula.formulaNightPrice %}
-					<p>{{ formula.formulaNightPrice}}</p>
-				{% endif %}
-				{% if is_granted('ROLE_ADMIN') %}
-					<a href="{{ path('delete-menu', {'id': formula.id}) }}" class="btn btn-danger">Supprimer</a>
-					<a href="{{ path('edit-menu', {'id': formula.id}) }}" class="btn btn-warning">Modifier</a>
-				{% endif %}
+					{% if formula.formulaNightTitle %}
+						<p>{{ formula.formulaNightTitle}}</p>
+					{% endif %}
+					{% if formula.formulaNightDescription %}
+						<p>{{ formula.formulaNightDescription}}</p>
+					{% endif %}
+					{% if formula.formulaNightPrice %}
+						<p>{{ formula.formulaNightPrice}}</p>
+					{% endif %}
+					{% if is_granted('ROLE_ADMIN') %}
+						<a href="{{ path('delete-menu', {'id': formula.id}) }}" class="btn btn-danger">Supprimer</a>
+						<a href="{{ path('edit-menu', {'id': formula.id}) }}" class="btn btn-warning">Modifier</a>
+					{% endif %}
+				</div>
 			</div>
 		{% endfor %}
 	</div>
 
 
-	<div>
+	<div class="container-fluid">
 		<h2>Nos Entrées</h2>
 		{% for menu in menus %}
 			{% if menu.dishCategory == 'entrée' %}
@@ -113,16 +115,16 @@
 
 	<!--Footer Section-->
 
-	<footer class="container-fluid footer mt-5" {% if is_granted('ROLE_ADMIN') %} style="height: 60rem;" {% endif %}>
+	<footer class="container-fluid footer" {% if is_granted('ROLE_ADMIN') %} style="height: auto;" {% endif %}>
 		<div class="row">
 			<div class="col-sm-3 mx-auto text-center footer-main-article">
-				<h5 class="footer-main-title">Chef Arnaud Michant</h5>
+				<h2 class="footer-main-title">Chef Arnaud Michant</h2>
 			</div>
 			<div class="col-sm-3 mx-auto text-center footer-main-article">
-				<h5 class="footer-main-title">Le Quai Antique</h5>
+				<h2 class="footer-main-title">Le Quai Antique</h2>
 			</div>
 			<div class="col-sm-3 mx-auto text-center footer-hours">
-				<h5 class="footer-title-hours">Nos Horaires d'ouverture</h5>
+				<h2 class="footer-title-hours mb-3">Nos Horaires d'ouverture</h2>
 				<div class="row">
 					{% for schedule in schedules %}
 						<div class="col-6">
@@ -130,7 +132,7 @@
 						</div>
 						<div class="col-6">
 							{% if schedule.openingHoursDay %}
-								<p>{{ schedule.openingHoursDay }}</p><br>
+								<p>{{ schedule.openingHoursDay }}</p>
 							{% endif %}
 							{% if schedule.openingHoursNight %}
 								<p class="mt-0">{{ schedule.openingHoursNight }}</p>
@@ -144,7 +146,7 @@
 				</div>
 			</div>
 			<div class="col-sm-3 mx-auto text-center footer-article">
-				<h5 class="footer-title">208, boulevard de la Savoie, 73000 Chambéry</h5>
+				<h2 class="footer-title">208, boulevard de la Savoie, 73000 Chambéry</h2>
 			</div>
 		</div>
 	</footer>
