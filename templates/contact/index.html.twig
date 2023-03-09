@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact | Le Quai Antique
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid" style="height:800px;">
+		yo
+	</div>
+
+	<!--Footer Section-->
+
+	<footer class="container-fluid footer" {% if is_granted('ROLE_ADMIN') %} style="height: auto;" {% endif %}>
+		<div class="row">
+			<div class="col-sm-3 mx-auto text-center footer-main-article">
+				<h2 class="footer-main-title">Chef Arnaud Michant</h2>
+			</div>
+			<div class="col-sm-3 mx-auto text-center footer-main-article">
+				<h2 class="footer-main-title">Le Quai Antique</h2>
+			</div>
+			<div class="col-sm-3 mx-auto text-center footer-hours">
+				<h2 class="footer-title-hours mb-3">Nos Horaires d'ouverture</h2>
+				<div class="row">
+					{% for schedule in schedules %}
+						<div class="col-6">
+							<p>{{ schedule.date }}</p>
+						</div>
+						<div class="col-6">
+							{% if schedule.openingHoursDay %}
+								<p>{{ schedule.openingHoursDay }}</p>
+							{% endif %}
+							{% if schedule.openingHoursNight %}
+								<p class="mt-0">{{ schedule.openingHoursNight }}</p>
+							{% endif %}
+							{% if is_granted('ROLE_ADMIN') %}
+								<a href="{{ path('delete-schedule', {'id': schedule.id}) }}" class="btn btn-danger">Supprimer</a>
+								<a href="{{ path('edit-schedule', {'id': schedule.id}) }}" class="btn btn-warning">Modifier</a>
+							{% endif %}
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="col-sm-3 mx-auto text-center footer-article">
+				<h2 class="footer-title">208, boulevard de la Savoie, 73000 Chambéry</h2>
+			</div>
+		</div>
+	</footer>
+{% endblock %}

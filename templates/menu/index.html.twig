@@ -13,17 +13,17 @@
 {% endblock %}
 
 {% block body %}
-	<div>
-		<h1></h1>
+	<div class="d-flex justify-content-center flex-wrap title-formula-page mt-5">
+		<h1 style="font-size:60px;">La Carte</h1>
 	</div>
 
 	<div class="container-fluid mt-5">
-		{% for formula in formulas %}
-			<div class="row">
-				<div class="col-sm-12 text-center">
+		<div class="row">
+			{% for formula in formulas %}
+				<div class="col-sm-6 text-center formula-menu">
 					<h2 class="formula-menu-title">{{ formula.menuTitle }}</h2>
 					{% if formula.formulaDayTitle %}
-						<p class="formula-day-menu-title">{{ formula.formulaDayTitle }}</p>
+						<p class="formula-title">{{ formula.formulaDayTitle }}</p>
 					{% endif %}
 					{% if formula.formulaDayDescription %}
 						<p>{{ formula.formulaDayDescription }}</p>
@@ -33,7 +33,7 @@
 					{% endif %}
 
 					{% if formula.formulaNightTitle %}
-						<p>{{ formula.formulaNightTitle}}</p>
+						<p class="formula-title">{{ formula.formulaNightTitle}}</p>
 					{% endif %}
 					{% if formula.formulaNightDescription %}
 						<p>{{ formula.formulaNightDescription}}</p>
@@ -46,76 +46,99 @@
 						<a href="{{ path('edit-menu', {'id': formula.id}) }}" class="btn btn-warning">Modifier</a>
 					{% endif %}
 				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+	<div class="d-flex flex-wrap justify-content-center mt-5">
+		<h2 class="dish-main-title">Nos Entrées</h2>
+	</div>
+	{% for menu in menus %}
+		{% if menu.dishCategory == 'entrée' %}
+			<div class="row text-center">
+				<h3 class="dish-title mt-5">{{ menu.dishTitle }}</h3>
+				<p class="dish-description mt-3">{{ menu.dishDescription }}</p>
+				<p class="dish-price">{{ menu.dishPrice }}</p>
+				{% if is_granted('ROLE_ADMIN') %}
+					<div class="d-flex flex-wrap justify-content-center mt-5">
+						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger" style="width:200px;">Supprimer</a>
+					</div>
+					<div class="d-flex flex-wrap justify-content-center mt-3">
+						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning mt-3" style="width:200px;">Modifier</a>
+					</div>
+				{% endif %}
 			</div>
-		{% endfor %}
+		{% endif %}
+	{% endfor %}
+	<div class="d-flex flex-wrap justify-content-center">
+		<h2 class="dish-main-title mt-5">Nos Plats</h2>
 	</div>
+	{% for menu in menus %}
+		{% if menu.dishCategory == 'plat' %}
+			<div class="row text-center">
+				<h3 class="dish-title mt-5">{{ menu.dishTitle }}</h3>
+				<p class="dish-description mt-3">{{ menu.dishDescription }}</p>
+				<p>{{ menu.dishPrice }}</p>
+				{% if is_granted('ROLE_ADMIN') %}
+					<div class="d-flex flex-wrap justify-content-center mt-5">
+						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger" style="width:200px;">Supprimer</a>
+					</div>
+					<div class="d-flex flex-wrap justify-content-center mt-3">
+						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning mt-3" style="width:200px;">Modifier</a>
+					</div>
+				{% endif %}
+			</div>
+		{% endif %}
+	{% endfor %}
 
-
-	<div class="container-fluid">
-		<h2>Nos Entrées</h2>
-		{% for menu in menus %}
-			{% if menu.dishCategory == 'entrée' %}
-				<div>
-					<h3>{{ menu.dishTitle }}</h3>
-					<p>{{ menu.dishDescription }}</p>
-					<p>{{ menu.dishPrice }}</p>
-					{% if is_granted('ROLE_ADMIN') %}
-						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
-						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning">Modifier</a>
-					{% endif %}
-				</div>
-			{% endif %}
-		{% endfor %}
-
-		<h2 class="mt-5">Nos Plats</h2>
-		{% for menu in menus %}
-			{% if menu.dishCategory == 'plat' %}
-				<div>
-					<h3>{{ menu.dishTitle }}</h3>
-					<p>{{ menu.dishDescription }}</p>
-					<p>{{ menu.dishPrice }}</p>
-					{% if is_granted('ROLE_ADMIN') %}
-						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
-						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning">Modifier</a>
-					{% endif %}
-				</div>
-			{% endif %}
-		{% endfor %}
-
-		<h2 class="mt-5">Menu Enfant</h2>
-		{% for menu in menus %}
-			{% if menu.dishCategory == 'menu enfant' %}
-				<div>
-					<h3>{{ menu.dishTitle }}</h3>
-					<p>{{ menu.dishDescription }}</p>
-					<p>{{ menu.dishPrice }}</p>
-					{% if is_granted('ROLE_ADMIN') %}
-						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
-						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning">Modifier</a>
-					{% endif %}
-				</div>
-			{% endif %}
-		{% endfor %}
-
-		<h2 class="mt-5">Nos Desserts</h2>
-		{% for menu in menus %}
-			{% if menu.dishCategory == 'dessert' %}
-				<div>
-					<h3>{{ menu.dishTitle }}</h3>
-					<p>{{ menu.dishDescription }}</p>
-					<p>{{ menu.dishPrice }}</p>
-					{% if is_granted('ROLE_ADMIN') %}
-						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger">Supprimer</a>
-						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning">Modifier</a>
-					{% endif %}
-				</div>
-			{% endif %}
-		{% endfor %}
+	<div class="d-flex flex-wrap justify-content-center">
+		<h2 class="dish-main-title mt-5">Menu Enfant</h2>
 	</div>
+	{% for menu in menus %}
+		{% if menu.dishCategory == 'menu enfant' %}
+			<div class="row text-center">
+				<h3 class="dish-title mt-5">{{ menu.dishTitle }}</h3>
+				<p class="dish-description mt-3">{{ menu.dishDescription }}</p>
+				<p>{{ menu.dishPrice }}</p>
+				{% if is_granted('ROLE_ADMIN') %}
+					<div class="d-flex flex-wrap justify-content-center mt-5">
+						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger" style="width:200px;">Supprimer</a>
+					</div>
+					<div class="d-flex flex-wrap justify-content-center mt-3">
+						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning mt-3" style="width:200px;">Modifier</a>
+					</div>
+				{% endif %}
+			</div>
+		{% endif %}
+	{% endfor %}
 
+	<div class="d-flex flex-wrap justify-content-center">
+		<h2 class="dish-main-title mt-5">Nos Desserts</h2>
+	</div>
+	{% for menu in menus %}
+		{% if menu.dishCategory == 'dessert' %}
+			<div class="row text-center">
+				<h3 class="dish-title mt-5">{{ menu.dishTitle }}</h3>
+				<p class="dish-description mt-3">{{ menu.dishDescription }}</p>
+				<p>{{ menu.dishPrice }}</p>
+				{% if is_granted('ROLE_ADMIN') %}
+					<div class="d-flex flex-wrap justify-content-center mt-5">
+						<a href="{{ path('delete-carte', {'id': menu.id}) }}" class="btn btn-danger" style="width:200px;">Supprimer</a>
+					</div>
+					<div class="d-flex flex-wrap justify-content-center mt-3">
+						<a href="{{ path('edit-carte', {'id': menu.id}) }}" class="btn btn-warning mt-3" style="width:200px;">Modifier</a>
+					</div>
+				{% endif %}
+			</div>
+		{% endif %}
+	{% endfor %}
+
+	<a class="d-flex justify-content-center flex-wrap mt-5" style="text-decoration: none;" href="/#bookinBtn">
+		<button class="btn bookin-formula-page-btn" type="submit">Réservation</button>
+	</a>
 	<!--Footer Section-->
 
-	<footer class="container-fluid footer" {% if is_granted('ROLE_ADMIN') %} style="height: auto;" {% endif %}>
+	<footer class="container-fluid footer mt-5" {% if is_granted('ROLE_ADMIN') %} style="height: auto;" {% endif %}>
 		<div class="row">
 			<div class="col-sm-3 mx-auto text-center footer-main-article">
 				<h2 class="footer-main-title">Chef Arnaud Michant</h2>

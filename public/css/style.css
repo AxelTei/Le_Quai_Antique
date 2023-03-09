@@ -3,6 +3,8 @@ body {
     font-family: "montserrat", sans-serif;
     font-weight: 400;
     font-style: normal;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 /* Navbar Section */
@@ -492,4 +494,70 @@ body {
         font-size: 18px;
         padding-top: 32px;
     }
+}
+
+/* Formula and Dishes Section */
+
+.title-formula-page {
+    font-family: "wreath", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #9C9797;
+}
+
+.formula-menu-title {
+    background-color: #B21F1F;
+    color: white;
+    font-family: "wreath", serif;
+    font-weight: 400;
+    font-size: 40px;
+    border-radius: 10px;
+}
+
+.formula-title {
+    font-family: "wreath", serif;
+    font-weight: 400;
+    font-size: 34px;
+}
+
+.dish-main-title {
+    background-color: #B21F1F;
+    color: white;
+    font-family: "wreath", serif;
+    font-weight: 400;
+    font-size: 40px;
+    font-style: normal;
+    text-align: center;
+    width: 600px;
+    border-radius: 10px;
+}
+
+.dish-title {
+    font-family: "wreath", serif;
+    font-weight: 400;
+    font-size: 34px;
+}
+
+.dish-description {
+    font-size: 18px;
+}
+
+.dish-price {
+    font-size: 18px;
+}
+
+.bookin-formula-page-btn {
+    background-color: #B21F1F;
+    color: white;
+    width: 300px;
+    height: 60px;
+    font-size: x-large;
+    text-transform: uppercase;
+    border-radius: 20px;
+    box-shadow: 2px 3px 6px #000;
+}
+
+.bookin-formula-page-btn:hover {
+    background-color: #9C9797;
+    color: white;
 }
