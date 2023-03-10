@@ -68,6 +68,36 @@ radio2.addEventListener("click", function()
   }
 })
 
+// Image Show Text and Title
+
+let hoverImages = document.getElementsByClassName("card-img-top");
+let hoverTitles = document.getElementsByClassName("card-title");
+let hoverTexts = document.getElementsByClassName("card-text");
+console.log(hoverImages);
+console.log(hoverTitles);
+console.log(hoverTexts);
+
+for(var i = 0; i < hoverImages.length; i++) {
+  hoverImages[i].addEventListener("mouseover", showTitle(i));
+  hoverImages[i].addEventListener("mouseout", disableTitle(i));
+}
+
+function showTitle(i)
+{
+  return function() {
+    hoverTitles[i].style.display = "block";
+    hoverTexts[i].style.display = "block";
+  }
+}
+
+function disableTitle(i)
+{
+  return function() {
+    hoverTitles[i].style.display = "none";
+    hoverTexts[i].style.display = "none";
+  }
+}
+
 // Calendar Booking
 
 $(function($)

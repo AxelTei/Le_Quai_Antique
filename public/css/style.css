@@ -78,6 +78,7 @@ body {
     font-size: 46px;
     color: #9C9797;
     width: 300px;
+    display: none;
 }
 
 .card-img-top {
@@ -91,6 +92,7 @@ body {
     font-size: 24px;
     text-align: center;
     width: 300px;
+    display: none;
 }
 
 /* Footer Section */
