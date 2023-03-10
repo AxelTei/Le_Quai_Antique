@@ -85,16 +85,17 @@ for(var i = 0; i < hoverImages.length; i++) {
 function showTitle(i)
 {
   return function() {
-    hoverTitles[i].style.display = "block";
-    hoverTexts[i].style.display = "block";
+    hoverTitles[i].classList.add('hoverTitleAndText');
+    hoverTexts[i].classList.add('hoverTitleAndText');
+
   }
 }
 
 function disableTitle(i)
 {
   return function() {
-    hoverTitles[i].style.display = "none";
-    hoverTexts[i].style.display = "none";
+    hoverTitles[i].classList.remove('hoverTitleAndText');
+    hoverTexts[i].classList.remove('hoverTitleAndText');
   }
 }
 
