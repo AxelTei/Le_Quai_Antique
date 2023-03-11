@@ -10,14 +10,20 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
+    <div class="container-fluid mt-3 mb-5">
         <h1 class="main-title-admin-page">Gestion Administrative</h1>
-        <h2>Les Horaires</h2>
+        <h2 class="title-admin-page">Les Horaires</h2>
 		{{ form_start(schedules_form, {"attr": {"novalidate": "novalidate"}}) }}
 		{{ form_row(schedules_form.date)}}
         {{ form_row(schedules_form.openingHoursDay)}}
+		<p>Le format acceptable des horaires, exemple : 19:00</p>
+		<p class="mb-5">Si vous indiquez un jour fermé, écrivez "fermé" sur les Horaires Déjeuner et ne remplissez pas les Horaires Diner.</p>
 		{{ form_row(schedules_form.openingHoursNight)}}
-		<button type="submit">Créer</button>
+		<button type="submit" class="btn btn-primary mt-3">Créer</button>
 		{{ form_end(schedules_form)}}
+		<p class="mt-3">Conseils : Préférez modifier que supprimer les horaires déjà existantes.</p>
+		<p>Soit vous supprimez la totalité des horaires pour recommencer à zéro. Soit vous modifiez.</p>
+		<p>Nous vous déconseillons fortement de supprimer les horaires au compte goutte. Vous risquez de vous y perdre.</p>
+		<p>Vous pouvez directement modifier sur toute les pages coté client.</p>
 	</div>
 {% endblock %}

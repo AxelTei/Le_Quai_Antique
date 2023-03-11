@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container-fluid">
+	<div class="container-fluid mt-3">
         <h1 class="main-title-admin-page">Gestion Administrative</h1>
-        <h2>La Carte</h2>
+        <h2 class="title-admin-page">La Carte</h2>
 		{{ form_start(menu_form, {"attr": {"novalidate": "novalidate"}}) }}
 		{{ form_row(menu_form.dishTitle)}}
         {{ form_row(menu_form.dishCategory)}}
@@ -16,7 +16,11 @@
         <p>L'inscription de la catégorie est rigoureuse et se fait à l'accent prêt, veuillez verifier que la catégorie inscrite est identique à l'un des choix proposés ci-dessus !</p>
 		{{ form_row(menu_form.dishDescription)}}
 		{{ form_row(menu_form.dishPrice)}}
-		<button type="submit">Créer</button>
+		<button type="submit" class="btn btn-primary mt-3">Créer</button>
 		{{ form_end(menu_form)}}
+		<p class="mt-3">Conseils : Préférez modifier que supprimer les plats déjà existants.</p>
+		<p>Soit vous supprimez la totalité des plats pour recommencer à zéro. Soit vous modifiez.</p>
+		<p>Nous vous déconseillons fortement de supprimer les plats au compte goutte. Vous risquez de vous y perdre.</p>
+		<p>Vous pouvez directement modifier sur la page de la carte.</p>
 	</div>
 {% endblock %}

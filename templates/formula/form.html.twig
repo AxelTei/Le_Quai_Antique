@@ -10,9 +10,9 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
+    <div class="container-fluid mt-3 mb-5">
         <h1 class="main-title-admin-page">Gestion Administrative</h1>
-        <h2>Les Menus</h2>
+        <h2 class="title-admin-page">Les Menus</h2>
 		{{ form_start(formula_form, {"attr": {"novalidate": "novalidate"}}) }}
 		{{ form_row(formula_form.menuTitle)}}
         {{ form_row(formula_form.formulaDayTitle)}}
@@ -21,7 +21,11 @@
         {{ form_row(formula_form.formulaNightTitle)}}
         {{ form_row(formula_form.formulaNightDescription)}}
         {{ form_row(formula_form.formulaNightPrice)}}
-		<button type="submit">Créer</button>
+		<button type="submit" class="btn btn-primary mt-3">Créer</button>
 		{{ form_end(formula_form)}}
+        <p class="mt-3">Conseils : Préférez modifier que supprimer les menus déjà existants.</p>
+		<p>Soit vous supprimez la totalité des menus pour recommencer à zéro. Soit vous modifiez.</p>
+		<p>Nous vous déconseillons fortement de supprimer les menus au compte goutte. Vous risquez de vous y perdre.</p>
+        <p>Vous pouvez directement modifier sur la page de la carte.</p>
 	</div>
 {% endblock %}

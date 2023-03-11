@@ -4,10 +4,12 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container-fluid">
+	<div class="container-fluid mt-3">
 		{{ form_start(form) }}
 		{{ form_rest(form) }}
 		<input type="submit" value="Créer votre compte" class="btn btn-success mt-3"><br>
-        <a href="/login">Se connecter</a>
+		<div class="link-create-count mt-3">
+			<a href="/login">Se connecter</a>
+		</div>
 	</div>
 {% endblock %}

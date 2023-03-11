@@ -628,3 +628,25 @@ body {
 .text-page-title {
     font-size: 20px;
 }
+
+/* Login Section */
+
+.link-create-count {
+    margin-left: 18px;
+}
+
+/* Admin Section */
+
+.main-title-admin-page {
+    color: #927F42;
+    font-size: 55px;
+    font-family: "dulcinea", sans-serif;
+    font-weight: 400;
+    text-align: center;
+}
+
+.title-admin-page {
+    font-family: "wreath", serif;
+    font-weight: 400;
+    font-size: 42px;
+}
