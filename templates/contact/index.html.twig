@@ -7,42 +7,22 @@
 	<main class="container-fluid">
 		<div class="row">
 
-			<div class="col-sm-6 mx-auto">
+			<div class="col-sm-12 mx-auto text-center">
 
-				<h3 class="form-title mt-5">Une privatisation du Restaurant ?</h3>
-				<h3 class="form-title">Une réservation spéciale, un Anniversaire, un Mariage, etc... ?</h3>
-				<p class="form-sentence mt-3">Conseils, préparations, nous nous adaptons à vos besoins.</p>
-
-				<form class="mt-3 mx-auto" action="mailto:c.maxime@mpcagency06.com?subject=Retour-Client-MPC-agency" name="envoi" method="POST" enctype="text/plain">
-
-					<div class="form-floating mb-3">
-						<input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
-						<label for="floatingInput" class="form-label">Email</label>
-					</div>
-
-					<div id="error" class="mb-3" style="color: red;"></div>
-
-					<div class="form-floating mb-3">
-						<textarea class="form-control" name="message" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px" required></textarea>
-						<label for="floatingTextarea2">Message</label>
-					</div>
-
-					<div class="col-12 text-center mt-5 mb-5">
-						<button type="submit" class="btn" style="background-color: rgb(32, 152, 221); color: white;" id="submit">Envoyer</button>
-					</div>
-
-				</form>
+				<h1 class="contact-page-title mt-5">Une privatisation du Restaurant ?</h1>
+				<h1 class="contact-page-title">Une réservation spéciale pour : un Anniversaire, un Mariage ?</h1>
+				<p class="text-page-title mt-3">Conseils, préparations, nous nous adaptons à vos besoins.</p>
 
 			</div>
 
-			<div class="col-sm-6 mx-auto mb-5 text-center">
-				<h3 class="contact-title mt-5">MPC Agency</h3>
-				<p class="contact-link mt-5" style="color: rgb(118, 114, 114);">Adresse Mail</p>
-				<a class="contact-link2" href="mailto:c.maxime@mpcagency06.com">c.maxime@mpcagency06.com</a>
-				<p class="contact-link mt-5" style="color: rgb(118, 114, 114);">Secteur Nice/Villeneuve-Loubet</p>
-				<a class="contact-link" href="tel:+33749991449">07.49.99.14.49</a>
-				<p class="contact-link mt-3" style="color: rgb(118, 114, 114);">Secteur Antibes/Mandelieu</p>
-				<a class="contact-link" href="tel:+33698062012">06.98.06.20.12</a>
+			<div class="col-sm-12 mx-auto mb-5 text-center">
+				<h3 class="contact-title mt-5">Le Quai Antique</h3>
+				<p class="contact-subtitle contact-link mt-5" style="color: rgb(118, 114, 114);">Adresse Mail</p>
+				<a class="contact-link2" href="#">c.maxime@mpcagency06.com</a>
+				<p class="contact-subtitle contact-link mt-5" style="color: rgb(118, 114, 114);">Réservation Restaurant</p>
+				<a class="contact-link" href="#">07.**.**.**.**</a>
+				<p class="contact-subtitle contact-link mt-3" style="color: rgb(118, 114, 114);">Réservation Spéciale</p>
+				<a class="contact-link" href="#">06.**.**.**.**</a>
 			</div>
 
 		</div>
@@ -57,7 +37,7 @@
 
 	<!--Footer Section-->
 
-	<footer class="container-fluid footer" {% if is_granted('ROLE_ADMIN') %} style="height: auto;" {% endif %}>
+	<footer class="container-fluid footer mt-5" {% if is_granted('ROLE_ADMIN') %} style="height: auto;" {% endif %}>
 		<div class="row">
 			<div class="col-sm-3 mx-auto text-center footer-main-article">
 				<h2 class="footer-main-title">Chef Arnaud Michant</h2>

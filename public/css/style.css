@@ -593,30 +593,38 @@ body {
 
 /* Contact Section */
 
-.form-title {
-    font-weight: 600;
-}
-
-.form-sentence {
-    color: rgb(118, 114, 114);
+.contact-page-title {
+    font-size: 30px;
 }
 
 .contact-title {
     position: grid;
-    color: rgb(32, 152, 221);
-    font-size: 45px;
-
+    color: #927F42;
+    font-size: 55px;
+    font-family: "dulcinea", sans-serif;
+    font-weight: 400;
 }
 
 .contact-link {
-    color: rgb(199, 173, 100);
+    color: #927F42;
     display: block;
-    font-size: 25px;
+    text-decoration: none;
+    font-size: 28px;
 }
 
 .contact-link2 {
     text-decoration: none;
-    color: rgb(199, 173, 100);
+    color: #927F42;
     display: block;
-    font-size: 25px;
+    font-size: 28px;
+}
+
+.contact-subtitle {
+    font-family: "wreath", serif;
+    font-weight: 400;
+    font-size: 35px;
+}
+
+.text-page-title {
+    font-size: 20px;
 }
