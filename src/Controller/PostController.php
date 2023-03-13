@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Book;
 use App\Entity\Post;
+use App\Entity\RestaurantPlaces;
 use App\Entity\RestaurantRule;
 use App\Entity\Schedules;
 use App\Form\BookType;
@@ -43,8 +44,30 @@ class PostController extends AbstractController
         $repositoryRule = $doctrine->getRepository(RestaurantRule::class);
         $rules = $repositoryRule->findAll(); // SELECT * FROM `restaurant_rule`;
 
+        $repositoryPlaces = $doctrine->getRepository(RestaurantPlaces::class);
+        $restaurantPlaces = $repositoryPlaces->findAll();
+        $restaurantLastPlace = $repositoryPlaces->findLastDateSubmit();
+        // dump($restaurantLastPlace->getActiveDate());
+
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
+
+        $places = new RestaurantPlaces();
+
+        $count = 0;
+
+        foreach ($restaurantPlaces as $key => $value)
+        {
+            if ($value->getActiveDate() === $restaurantLastPlace->getActiveDate())
+            {
+                $count++;
+                dump($count);
+                if ($count === $restaurantLastPlace->getNumberOfPlacesMax())
+                {
+                    dump("cool"); // Limit reservation SET !!!! ENFIN
+                }
+            }
+        }
 
         $user =$this->getUser();
 
@@ -61,9 +84,27 @@ class PostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            if ($form["hourSelectedDay"]->getData() === null)
+            {
+                $places->setActiveDate($form["date"]->getData());
+                $places->setActiveHour("Night");
+                $places->setNumberOfSubmit(1);
+            }
+            if ($form["hourSelectedNight"]->getData() === null)
+            {
+                $places->setActiveDate($form["date"]->getData());
+                $places->setActiveHour("Day");
+                $places->setNumberOfSubmit(1);
+            }
+
             $em = $doctrine->getManager();
             $em->persist($book);
+            if ($places->getActiveDate() !== null)
+            {
+                $em->persist($places);
+            }
             $em->flush();
+            dump($form["date"]->getData());
             return $this->redirectToRoute('home');
         }
 

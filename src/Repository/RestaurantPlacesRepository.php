@@ -42,25 +42,24 @@ class RestaurantPlacesRepository extends ServiceEntityRepository
 //    /**
 //     * @return RestaurantPlaces[] Returns an array of RestaurantPlaces objects
 //     */
-//    public function findByExampleField($value): array
+//    public function findLastPlace(): array
 //    {
 //        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
+//             ->select('r.activeDate')
+//            ->orderBy('r.id', 'DESC')
+//            ->setMaxResults(1)
 //            ->getQuery()
 //            ->getResult()
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?RestaurantPlaces
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+   public function findLastDateSubmit(): ?RestaurantPlaces
+   {
+       return $this->createQueryBuilder('r')
+           ->orderBy('r.id', 'DESC')
+           ->setMaxResults(1)
+           ->getQuery()
+           ->getOneOrNullResult()
+       ;
+   }
 }
