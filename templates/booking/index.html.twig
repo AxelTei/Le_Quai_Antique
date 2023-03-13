@@ -41,29 +41,29 @@
 		<p class="mt-3">Conseil : Supprimer les réservations obsolètes pour éviter une surcharge d'informations inutiles.</p>
 		<div class="row text-center">
 			<div class="col-sm-6 ">
-				<p class="mt-5">Réservation du MIDI</p>
+				<p class="subtitle-admin-page mt-5">Réservation du MIDI</p>
 				{% for book in books %}
 					{% if book.hourSelectedDay %}
-						<p>{{ book.alias }}</p>
-						<p>{{ book.phoneNumber }}</p>
-						<p>{{ book.preferedGroupNumber}}</p>
-						<p>{{ book.date | date("d/m/Y") }}</p>
-						<p>{{ book.hourSelectedDay }}</p>
-						<p>{{ book.allergies }}</p>
+						<p>Réservation de : {{ book.alias }}</p>
+						<p>Numéro : {{ book.phoneNumber }}</p>
+						<p>Nombre de couverts : {{ book.preferedGroupNumber}}</p>
+						<p>Date : {{ book.date | date("d/m/Y") }}</p>
+						<p>Réservation pour : {{ book.hourSelectedDay }}</p>
+						<p>Allergies : {{ book.allergies }}</p>
 						<a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
 					{% endif %}
 				{% endfor %}
 			</div>
 			<div class="col-sm-6 ">
-				<p class="mt-5">Réservation du SOIR</p>
+				<p class="subtitle-admin-page mt-5">Réservation du SOIR</p>
 				{% for book in books %}
 					{% if book.hourSelectedNight %}
-						<p>{{ book.alias }}</p>
-						<p>{{ book.phoneNumber }}</p>
-						<p>{{ book.preferedGroupNumber}}</p>
-						<p>{{ book.date | date("d/m/Y") }}</p>
-						<p>{{ book.hourSelectedNight }}</p>
-						<p>{{ book.allergies }}</p>
+						<p>Réservation de : {{ book.alias }}</p>
+						<p>Numéro : {{ book.phoneNumber }}</p>
+						<p>Nombre de couverts : {{ book.preferedGroupNumber}}</p>
+						<p>Date : {{ book.date | date("d/m/Y") }}</p>
+						<p>Réservation pour : {{ book.hourSelectedNight }}</p>
+						<p>Allergies : {{ book.allergies }}</p>
 						<a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a>
 					{% endif %}
 				{% endfor %}
