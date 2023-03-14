@@ -65,8 +65,15 @@ class PostController extends AbstractController
                 if ($count === $restaurantLastPlace->getNumberOfPlacesMax())
                 {
                     dump("cool"); // Limit reservation SET !!!! ENFIN
+                    $count = 0;
+                    dump($count);
                 }
             }
+        }
+
+        if ($count !== $restaurantLastPlace->getNumberOfPlacesMax()) {
+            $count = 0;
+            dump($count);
         }
 
         $user =$this->getUser();
