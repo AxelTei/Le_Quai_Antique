@@ -56,24 +56,26 @@ class PostController extends AbstractController
 
         $count = 0;
 
+        $endBooking = null;
+
+        // Set Limit of Booking per Day
         foreach ($restaurantPlaces as $key => $value)
         {
             if ($value->getActiveDate() === $restaurantLastPlace->getActiveDate())
             {
                 $count++;
-                dump($count);
                 if ($count === $restaurantLastPlace->getNumberOfPlacesMax())
                 {
                     dump("cool"); // Limit reservation SET !!!! ENFIN
+                    $endBooking = $restaurantLastPlace->getActiveDate(); // A mettre dans une classe
                     $count = 0;
-                    dump($count);
                 }
             }
         }
 
+        // Reset counter if limit is not reach
         if ($count !== $restaurantLastPlace->getNumberOfPlacesMax()) {
             $count = 0;
-            dump($count);
         }
 
         $user =$this->getUser();
@@ -120,6 +122,7 @@ class PostController extends AbstractController
             "schedules" => $schedules,
             "books" => $books,
             "rules" => $rules,
+            "end_booking" => $endBooking,
             'book_form' => $form->createView()
         ]);
     }

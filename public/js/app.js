@@ -73,9 +73,6 @@ radio2.addEventListener("click", function()
 let hoverImages = document.getElementsByClassName("card-img-top");
 let hoverTitles = document.getElementsByClassName("card-title");
 let hoverTexts = document.getElementsByClassName("card-text");
-console.log(hoverImages);
-console.log(hoverTitles);
-console.log(hoverTexts);
 
 for(var i = 0; i < hoverImages.length; i++) {
   hoverImages[i].addEventListener("mouseover", showTitle(i));
@@ -113,6 +110,25 @@ $(function($)
     dateFormat: "yy-mm-dd",
     beforeShowDay: noWednesday,
   });
+
+  //Limit Booking
+  console.log($('.end-booking').attr("name"));
+  if ($('.end-booking').attr("name") !== null)
+  {
+    console.log('ok') // créer une fonction qui annule le jour de la semaine imprimer dans le calendrier. Trouver la façon de mettre plusieurs au datepicker ou une grande fonction.
+    function limitBooking(date)
+    {
+      console.log("dans la function") // a été dans la fonction mais pas dans le if
+      if (date === $('.end-booking').attr("name"))
+      {
+        console.log("dans le if")
+        return [false, "fermé", "Plus de réservations disponibles"]
+      }
+      {
+        return [true, "", ""]
+      }
+    }
+  }
 
   function noWednesday(date)
   {

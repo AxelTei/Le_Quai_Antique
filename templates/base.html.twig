@@ -121,7 +121,7 @@
 					<span class="close">&times;</span>
 					{{ form_start(book_form, {"attr": {"novalidate": "novalidate"}}) }}
 					<div class="container-fluid">
-						<div class="row">
+						<div class="row end-booking" name={{end_booking}}>
 							{{ form_row(book_form.date) }}
 							<div class="col-sm-6 mt-3">
 								{{ form_row(book_form.hourSelectedDay) }}
