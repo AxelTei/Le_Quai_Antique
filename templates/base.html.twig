@@ -91,7 +91,6 @@
 				{% for post in posts %}
 					<div class="card mt-3" style="width: 18rem;">
 						{% if post.title %}
-							{# Mettre le titre en apparence avec passage de la souris sur une photo #}
 							<h2 class="card-title">{{ post.title }}</h2>
 						{% endif %}
 						{% if post.image %}
@@ -141,8 +140,6 @@
 					{{ form_end(book_form)}}
 				</div>
 			</div>
-
-			{# <option {% if choice is selectedchoice(value) %}selected="selected"{% endif %}> Pour limiter plus tard#}
 
 			<!--Restaurant Presentation Section-->
 

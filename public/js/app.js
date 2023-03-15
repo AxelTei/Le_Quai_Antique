@@ -104,28 +104,29 @@ $(function ($) {
 
   //Limit Booking
 
+  var datesForbiddens = [localStorage.getItem("booking-finish")]; // find a way to concatenate 
+
+  console.log(datesForbiddens);
   console.log($('.end-booking').attr("name"));
 
-  var datesForbiddens = [];
+  //add element in front app to avoid data in client side "which is different with each clients"
 
-  if ($('.end-booking').attr("name") !== null) {
+  if ($('.end-booking').attr("name") !== "") {
+    //Store Data in API side client, to get persistent data for booking calendar
     if (datesForbiddens.includes($('.end-booking').attr("name")) === false) {
-      datesForbiddens.push($('.end-booking').attr("name"));
+      datesForbiddens.push($('.end-booking').attr("name")); // without resetting array peut etre localStorage
+      localStorage.setItem("booking-finish", datesForbiddens);
     }
   }
 
-  console.log(datesForbiddens)
+  $closureDate = 3; // Set closure Day by Admin
 
   function unavailable(date){
-    if (date.getDay() === 3) /* Wednesday */ {
+    if (date.getDay() === $closureDate) /* Wednesday */ 
+    {
       return [false, "fermé", "Fermé le Mercredi"]
     }
     var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
     return [ datesForbiddens.indexOf(string) == -1 ]
   }
-
-  //GETTER
-  // var dayNames = $('.js-datepicker').datepicker('option', "dayNames");
-  //SETTER
-  // $('.js-datepicker').datepicker("option", "dayNames", ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"])
 })
