@@ -1,21 +1,19 @@
 // Buttons Go-to-the-Top Functions
 let myButton = document.getElementById("myBtn");
 
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () { scrollFunction() };
 
-function scrollFunction()
-{
-    if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        myButton.style.display = "block";
-    } else {
-        myButton.style.display = "none";
-    }
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    myButton.style.display = "block";
+  } else {
+    myButton.style.display = "none";
+  }
 }
 
-function topFunction() 
-{
-    document.body.scrollTop = 0; // For Safari
-    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
 myButton.addEventListener("click", topFunction);
@@ -30,17 +28,17 @@ var btn = document.getElementById("bookingBtn");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
-btn.onclick = function() {
+btn.onclick = function () {
   modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+span.onclick = function () {
   modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
@@ -50,20 +48,16 @@ window.onclick = function(event) {
 
 let radio = document.getElementById("book_hourSelectedDay_7");
 
-radio.addEventListener("click", function()
-{
-  if (radio.checked == true)
-  {
+radio.addEventListener("click", function () {
+  if (radio.checked == true) {
     radio.checked = false;
   }
 })
 
 let radio2 = document.getElementById("book_hourSelectedNight_7");
 
-radio2.addEventListener("click", function()
-{
-  if (radio2.checked == true)
-  {
+radio2.addEventListener("click", function () {
+  if (radio2.checked == true) {
     radio2.checked = false;
   }
 })
@@ -74,23 +68,21 @@ let hoverImages = document.getElementsByClassName("card-img-top");
 let hoverTitles = document.getElementsByClassName("card-title");
 let hoverTexts = document.getElementsByClassName("card-text");
 
-for(var i = 0; i < hoverImages.length; i++) {
+for (var i = 0; i < hoverImages.length; i++) {
   hoverImages[i].addEventListener("mouseover", showTitle(i));
   hoverImages[i].addEventListener("mouseout", disableTitle(i));
 }
 
-function showTitle(i)
-{
-  return function() {
+function showTitle(i) {
+  return function () {
     hoverTitles[i].classList.add('hoverTitleAndText');
     hoverTexts[i].classList.add('hoverTitleAndText');
 
   }
 }
 
-function disableTitle(i)
-{
-  return function() {
+function disableTitle(i) {
+  return function () {
     hoverTitles[i].classList.remove('hoverTitleAndText');
     hoverTexts[i].classList.remove('hoverTitleAndText');
   }
@@ -98,8 +90,7 @@ function disableTitle(i)
 
 // Calendar Booking
 
-$(function($)
-{
+$(function ($) {
   $('.js-datepicker').datepicker({
     dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
     dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
@@ -108,37 +99,29 @@ $(function($)
     prevText: "Précédant",
     minDate: 0,
     dateFormat: "yy-mm-dd",
-    beforeShowDay: noWednesday,
+    beforeShowDay: unavailable,
   });
 
   //Limit Booking
+
   console.log($('.end-booking').attr("name"));
-  if ($('.end-booking').attr("name") !== null)
-  {
-    console.log('ok') // créer une fonction qui annule le jour de la semaine imprimer dans le calendrier. Trouver la façon de mettre plusieurs au datepicker ou une grande fonction.
-    function limitBooking(date)
-    {
-      console.log("dans la function") // a été dans la fonction mais pas dans le if
-      if (date === $('.end-booking').attr("name"))
-      {
-        console.log("dans le if")
-        return [false, "fermé", "Plus de réservations disponibles"]
-      }
-      {
-        return [true, "", ""]
-      }
+
+  var datesForbiddens = [];
+
+  if ($('.end-booking').attr("name") !== null) {
+    if (datesForbiddens.includes($('.end-booking').attr("name")) === false) {
+      datesForbiddens.push($('.end-booking').attr("name"));
     }
   }
 
-  function noWednesday(date)
-  {
-    if (date.getDay() === 3) /* Wednesday */
-    {
+  console.log(datesForbiddens)
+
+  function unavailable(date){
+    if (date.getDay() === 3) /* Wednesday */ {
       return [false, "fermé", "Fermé le Mercredi"]
-    } else 
-    {
-      return [true, "", ""]
     }
+    var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+    return [ datesForbiddens.indexOf(string) == -1 ]
   }
 
   //GETTER
