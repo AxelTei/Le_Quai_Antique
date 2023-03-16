@@ -21,7 +21,7 @@ class RestaurantPlaces
     private ?string $activeHour = null;
 
     #[ORM\Column]
-    private ?int $numberOfSubmit = null;
+    private ?int $numberOfSubmit;
 
     #[ORM\Column]
     private ?int $numberOfPlacesMax = 10;

@@ -104,20 +104,8 @@ $(function ($) {
 
   //Limit Booking
 
-  var datesForbiddens = [localStorage.getItem("booking-finish")]; // find a way to concatenate 
-
-  console.log(datesForbiddens);
-  console.log($('.end-booking').attr("name"));
-
-  //add element in front app to avoid data in client side "which is different with each clients"
-
-  if ($('.end-booking').attr("name") !== "") {
-    //Store Data in API side client, to get persistent data for booking calendar
-    if (datesForbiddens.includes($('.end-booking').attr("name")) === false) {
-      datesForbiddens.push($('.end-booking').attr("name")); // without resetting array peut etre localStorage
-      localStorage.setItem("booking-finish", datesForbiddens);
-    }
-  }
+  var datesForbiddensFromController = $('.end-booking').attr("name"); // data from Controller
+  var datesForbiddens = datesForbiddensFromController.split(","); // find a way to concatenate php entry string in a array
 
   $closureDate = 3; // Set closure Day by Admin
 

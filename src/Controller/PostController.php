@@ -47,36 +47,21 @@ class PostController extends AbstractController
         $repositoryPlaces = $doctrine->getRepository(RestaurantPlaces::class);
         $restaurantPlaces = $repositoryPlaces->findAll();
         $restaurantLastPlace = $repositoryPlaces->findLastDateSubmit();
-        // dump($restaurantLastPlace->getActiveDate());
 
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
 
-        $places = new RestaurantPlaces();
+        $countSubmit = 1;
 
-        $count = 0;
-
-        $endBooking = null;
+        $endBookings[] = null;
 
         // Set Limit of Booking per Day
         foreach ($restaurantPlaces as $key => $value)
         {
-            if ($value->getActiveDate() === $restaurantLastPlace->getActiveDate())
+            if ($value->getNumberOfSubmit() === $value->getNumberOfPlacesMax())
             {
-                $count++;
-                dump($count);
-                if ($count === $restaurantLastPlace->getNumberOfPlacesMax())
-                {
-                    dump("cool"); // Limit reservation SET !!!! ENFIN
-                    $endBooking = $restaurantLastPlace->getActiveDate(); // A mettre dans une classe
-                    $count = 0;
-                }
+                $endBookings[] = $value->getActiveDate();
             }
-        }
-
-        // Reset counter if limit is not reach
-        if ($count !== $restaurantLastPlace->getNumberOfPlacesMax()) {
-            $count = 0;
         }
 
         $user =$this->getUser();
@@ -94,17 +79,34 @@ class PostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $places = new RestaurantPlaces();
             if ($form["hourSelectedDay"]->getData() === null)
             {
                 $places->setActiveDate($form["date"]->getData());
                 $places->setActiveHour("Night");
-                $places->setNumberOfSubmit(1);
+                $places->setNumberOfSubmit($countSubmit);
+                // Count the number of submit and set it to the new object
+                foreach ($restaurantPlaces as $key => $value)
+                {
+                    if ($value->getActiveDate() === $places->getActiveDate())
+                    {
+                        $countSubmit++;
+                    }
+                }
+                $places->setNumberOfSubmit($countSubmit);
             }
             if ($form["hourSelectedNight"]->getData() === null)
             {
                 $places->setActiveDate($form["date"]->getData());
                 $places->setActiveHour("Day");
-                $places->setNumberOfSubmit(1);
+                foreach ($restaurantPlaces as $key => $value)
+                {
+                    if ($value->getActiveDate() === $places->getActiveDate())
+                    {
+                        $countSubmit++;
+                    }
+                }
+                $places->setNumberOfSubmit($countSubmit);
             }
 
             $em = $doctrine->getManager();
@@ -123,7 +125,7 @@ class PostController extends AbstractController
             "schedules" => $schedules,
             "books" => $books,
             "rules" => $rules,
-            "end_booking" => $endBooking,
+            "end_bookings" => $endBookings,
             'book_form' => $form->createView()
         ]);
     }
