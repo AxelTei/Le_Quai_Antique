@@ -100,6 +100,7 @@ $(function ($) {
     minDate: 0,
     dateFormat: "yy-mm-dd",
     beforeShowDay: unavailable,
+    onSelect: disabledDayOrNight,
   });
 
   // if select day du .datepicker egale une des date dans l'array Day or Night display gris button et display a sentence
@@ -110,19 +111,36 @@ $(function ($) {
   var datesForbiddens = datesForbiddensFromController.split(","); // find a way to concatenate php entry string in a array
 
   var runDaysForbiddensFromController = $('.end-booking-day').attr("name");
+  var runDaysForbiddens = runDaysForbiddensFromController.split(",");
   var runNightsForbiddensFromController = $('.end-booking-night').attr("name");
+  var runNightsForbiddens = runNightsForbiddensFromController.split(",");
 
-  console.log(runDaysForbiddensFromController);
-  console.log(runNightsForbiddensFromController);
+  console.log(runDaysForbiddens);
+  console.log(runNightsForbiddens);
 
   $closureDate = 3; // Set closure Day by Admin
 
-  function unavailable(date){
+  function unavailable(date)
+  {
     if (date.getDay() === $closureDate) /* Wednesday */ 
     {
       return [false, "fermé", "Fermé le Mercredi"]
     }
     var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
     return [ datesForbiddens.indexOf(string) == -1 ]
+  }
+
+  function disabledDayOrNight(date)
+  {
+    if (jQuery.inArray(date, runDaysForbiddens) > -1)
+    {
+      console.log("vilain bouttonD")
+      console.log(date)
+    } else if (jQuery.inArray(date, runNightsForbiddens) > -1)
+    {
+      console.log("vilain bouttonN")
+    } else {
+      console.log("not in array")
+    }
   }
 })

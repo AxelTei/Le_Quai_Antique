@@ -55,13 +55,13 @@ class PostController extends AbstractController
 
         $countSubmit = 1;
 
-        $countD = 0;
-
-        $countN = 0;
-
         // ARRAY to load DATA in Front side
 
         $endBookings[] = null;
+
+        $arrayDays[] = 0;
+
+        $arrayNights[] = 0;
 
         $endBookingsDay[] = null;
 
@@ -81,26 +81,37 @@ class PostController extends AbstractController
         {
             if ($value->getActiveHour() === "Day")
             {
-                $countD++;
-
-                if ($countD === $value->getNumberOfPlacesMax()/2)
-                {
-                    $endBookingsDay[] = $value->getActiveDate();
-                }
+                $datesDays = $value->getActiveDate();
+                array_push($arrayDays, $datesDays);
             }
             if ($value->getActiveHour() === "Night")
             {
-                $countN++;
-
-                if ($countN === $value->getNumberOfPlacesMax()/2)
-                {
-                    $endBookingsNight[] = $value->getActiveDate();
-                }
+                $datesNights = $value->getActiveDate();
+                array_push($arrayNights, $datesNights);
             }
         }
 
-        dump($endBookingsDay);
-        dump($endBookingsNight);
+        // Count EachTime a value Day or Night has been created per days
+        $arrayDaysCounted = array_count_values($arrayDays);
+        $arrayNightsCounted = array_count_values($arrayNights);
+
+        // Set the limit in Front side
+        foreach ($arrayDaysCounted as $key => $value)
+        {
+            if ($value === $restaurantLastPlace->getNumberOfPlacesMax()/2)
+            {
+                $endBookingsDay[] = $key;
+            }
+        }
+
+        // Set the limit in Front side
+        foreach ($arrayNightsCounted as $key => $value)
+        {
+            if ($value === $restaurantLastPlace->getNumberOfPlacesMax()/2)
+            {
+                $endBookingsNight[] = $key;
+            }
+        }
 
         $user =$this->getUser();
 
