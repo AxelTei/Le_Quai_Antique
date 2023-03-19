@@ -134,13 +134,56 @@ $(function ($) {
   {
     if (jQuery.inArray(date, runDaysForbiddens) > -1)
     {
-      console.log("vilain bouttonD")
-      console.log(date)
+      $('#book_hourSelectedDay_0').attr("disabled", true)
+      $('#book_hourSelectedDay_1').attr("disabled", true)
+      $('#book_hourSelectedDay_2').attr("disabled", true)
+      $('#book_hourSelectedDay_3').attr("disabled", true)
+      $('#book_hourSelectedDay_4').attr("disabled", true)
+      $('#book_hourSelectedDay_5').attr("disabled", true)
+      $('#book_hourSelectedDay_6').attr("disabled", true)
+
+      $('#book_hourSelectedNight_0').attr("disabled", false)
+      $('#book_hourSelectedNight_1').attr("disabled", false)
+      $('#book_hourSelectedNight_2').attr("disabled", false)
+      $('#book_hourSelectedNight_3').attr("disabled", false)
+      $('#book_hourSelectedNight_4').attr("disabled", false)
+      $('#book_hourSelectedNight_5').attr("disabled", false)
+      $('#book_hourSelectedNight_6').attr("disabled", false)
     } else if (jQuery.inArray(date, runNightsForbiddens) > -1)
     {
-      console.log("vilain bouttonN")
+
+      $('#book_hourSelectedNight_0').attr("disabled", true)
+      $('#book_hourSelectedNight_1').attr("disabled", true)
+      $('#book_hourSelectedNight_2').attr("disabled", true)
+      $('#book_hourSelectedNight_3').attr("disabled", true)
+      $('#book_hourSelectedNight_4').attr("disabled", true)
+      $('#book_hourSelectedNight_5').attr("disabled", true)
+      $('#book_hourSelectedNight_6').attr("disabled", true)
+
+      $('#book_hourSelectedDay_0').attr("disabled", false)
+      $('#book_hourSelectedDay_1').attr("disabled", false)
+      $('#book_hourSelectedDay_2').attr("disabled", false)
+      $('#book_hourSelectedDay_3').attr("disabled", false)
+      $('#book_hourSelectedDay_4').attr("disabled", false)
+      $('#book_hourSelectedDay_5').attr("disabled", false)
+      $('#book_hourSelectedDay_6').attr("disabled", false)
+
     } else {
-      console.log("not in array")
+
+      $('#book_hourSelectedDay_0').attr("disabled", false)
+      $('#book_hourSelectedDay_1').attr("disabled", false)
+      $('#book_hourSelectedDay_2').attr("disabled", false)
+      $('#book_hourSelectedDay_3').attr("disabled", false)
+      $('#book_hourSelectedDay_4').attr("disabled", false)
+      $('#book_hourSelectedDay_5').attr("disabled", false)
+      $('#book_hourSelectedDay_6').attr("disabled", false)
+      $('#book_hourSelectedNight_0').attr("disabled", false)
+      $('#book_hourSelectedNight_1').attr("disabled", false)
+      $('#book_hourSelectedNight_2').attr("disabled", false)
+      $('#book_hourSelectedNight_3').attr("disabled", false)
+      $('#book_hourSelectedNight_4').attr("disabled", false)
+      $('#book_hourSelectedNight_5').attr("disabled", false)
+      $('#book_hourSelectedNight_6').attr("disabled", false)
     }
   }
 })
