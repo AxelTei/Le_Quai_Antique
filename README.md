@@ -20,8 +20,9 @@ For app in local (go to repository link in the word evaluation copy)
 2. Clone the forked repository
 3. Change .env DATABASE_URL to match with your own DataBase.
 4. Migrate migrations files
-5. Create or add fixtures from Google Drive folder to get your Admin count.
-6. Launch The App.
+5. Create the a folder in /src and add fixtures from Google Drive folder to get your Admin count.
+6. Load the fixture.
+7. Launch The App.
 
 ### Note: Don't forget to read advisers when you see it before doing anything in admin side. It will help you!
 
