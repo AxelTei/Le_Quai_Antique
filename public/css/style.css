@@ -331,6 +331,14 @@ body {
     color: black;
 }
 
+.alert-end-booking-Day {
+    display: none;
+}
+
+.alert-end-booking-Night {
+    display: none;
+}
+
 /* Calendar */
 
 .ui-datepicker {

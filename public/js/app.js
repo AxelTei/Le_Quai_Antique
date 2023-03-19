@@ -149,6 +149,9 @@ $(function ($) {
       $('#book_hourSelectedNight_4').attr("disabled", false)
       $('#book_hourSelectedNight_5').attr("disabled", false)
       $('#book_hourSelectedNight_6').attr("disabled", false)
+
+      $('.alert-end-booking-Day').css("display", "grid")
+      $('.alert-end-booking-Night').css("display", "none")
     } else if (jQuery.inArray(date, runNightsForbiddens) > -1)
     {
 
@@ -168,6 +171,8 @@ $(function ($) {
       $('#book_hourSelectedDay_5').attr("disabled", false)
       $('#book_hourSelectedDay_6').attr("disabled", false)
 
+      $('.alert-end-booking-Night').css("display", "grid")
+      $('.alert-end-booking-Day').css("display", "none")
     } else {
 
       $('#book_hourSelectedDay_0').attr("disabled", false)
@@ -184,6 +189,9 @@ $(function ($) {
       $('#book_hourSelectedNight_4').attr("disabled", false)
       $('#book_hourSelectedNight_5').attr("disabled", false)
       $('#book_hourSelectedNight_6').attr("disabled", false)
+
+      $('.alert-end-booking-Day').css("display", "none")
+      $('.alert-end-booking-Night').css("display", "none")
     }
   }
 })
