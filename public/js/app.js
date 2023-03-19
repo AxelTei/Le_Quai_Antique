@@ -102,10 +102,18 @@ $(function ($) {
     beforeShowDay: unavailable,
   });
 
+  // if select day du .datepicker egale une des date dans l'array Day or Night display gris button et display a sentence
+
   //Limit Booking
 
   var datesForbiddensFromController = $('.end-booking').attr("name"); // data from Controller
   var datesForbiddens = datesForbiddensFromController.split(","); // find a way to concatenate php entry string in a array
+
+  var runDaysForbiddensFromController = $('.end-booking-day').attr("name");
+  var runNightsForbiddensFromController = $('.end-booking-night').attr("name");
+
+  console.log(runDaysForbiddensFromController);
+  console.log(runNightsForbiddensFromController);
 
   $closureDate = 3; // Set closure Day by Admin
 

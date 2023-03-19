@@ -122,10 +122,10 @@
 					<div class="container-fluid">
 						<div class="row end-booking" name={% for end_booking in end_bookings %}{{end_booking}},{% endfor %}>
 							{{ form_row(book_form.date) }}
-							<div class="col-sm-6 mt-3">
+							<div class="col-sm-6 mt-3 end-booking-day" name={% for end_booking_day in end_bookings_day %}{{end_booking_day}},{% endfor %}>
 								{{ form_row(book_form.hourSelectedDay) }}
 							</div>
-							<div class="col-sm-6 mt-3">
+							<div class="col-sm-6 mt-3 end-booking-night" name={% for end_booking_night in end_bookings_night %}{{end_booking_night}},{% endfor %}>
 								{{ form_row(book_form.hourSelectedNight) }}
 							</div>
 						</div>

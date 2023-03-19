@@ -51,9 +51,21 @@ class PostController extends AbstractController
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
 
+        // Counters for limit Booking
+
         $countSubmit = 1;
 
+        $countD = 0;
+
+        $countN = 0;
+
+        // ARRAY to load DATA in Front side
+
         $endBookings[] = null;
+
+        $endBookingsDay[] = null;
+
+        $endBookingsNight[] = null;
 
         // Set Limit of Booking per Day
         foreach ($restaurantPlaces as $key => $value)
@@ -63,6 +75,32 @@ class PostController extends AbstractController
                 $endBookings[] = $value->getActiveDate();
             }
         }
+
+        // Set Limit of Booking per Run (Run Day, Run Night)
+        foreach ($restaurantPlaces as $key => $value)
+        {
+            if ($value->getActiveHour() === "Day")
+            {
+                $countD++;
+
+                if ($countD === $value->getNumberOfPlacesMax()/2)
+                {
+                    $endBookingsDay[] = $value->getActiveDate();
+                }
+            }
+            if ($value->getActiveHour() === "Night")
+            {
+                $countN++;
+
+                if ($countN === $value->getNumberOfPlacesMax()/2)
+                {
+                    $endBookingsNight[] = $value->getActiveDate();
+                }
+            }
+        }
+
+        dump($endBookingsDay);
+        dump($endBookingsNight);
 
         $user =$this->getUser();
 
@@ -126,6 +164,8 @@ class PostController extends AbstractController
             "books" => $books,
             "rules" => $rules,
             "end_bookings" => $endBookings,
+            "end_bookings_day" => $endBookingsDay,
+            "end_bookings_night" => $endBookingsNight,
             'book_form' => $form->createView()
         ]);
     }
