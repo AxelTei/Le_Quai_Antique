@@ -24,7 +24,7 @@ class RestaurantPlaces
     private ?int $numberOfSubmit;
 
     #[ORM\Column]
-    private ?int $numberOfPlacesMax = 10;
+    private ?int $numberOfPlacesMax = 0;
 
     public function getId(): ?int
     {

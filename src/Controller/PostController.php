@@ -357,4 +357,41 @@ class PostController extends AbstractController
 
         return $this->redirectToRoute('booking');
     }
+
+    #[Route('/booking/editRule/{id}', name: "edit-rule", requirements: ["id" => "\d+"])]
+    public function updateRule(RestaurantRule $restaurantRule, ManagerRegistry $doctrine, Request $request): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $repositoryRule = $doctrine->getRepository(RestaurantRule::class);
+        $rules = $repositoryRule->findAll(); // SELECT * FROM `restaurant_rule`;
+
+        $repository = $doctrine->getRepository(Book::class);
+        $books = $repository->findAll(); // SELECT * FROM `restaurant_bookings`;
+
+        $form = $this->createForm(RestaurantRuleType::class, $restaurantRule);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('booking/index.html.twig', [
+            'rules' => $rules,
+            'books' => $books,
+            'restaurantRule_form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/booking/deleteRule/{id}', name: "delete-rule", requirements: ["id" => "\d+"])]
+    public function deleteRule(RestaurantRule $rule, ManagerRegistry $doctrine): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $em = $doctrine->getManager();
+        $em->remove($rule);
+        $em->flush();
+
+        return $this->redirectToRoute('booking');
+    }
 }

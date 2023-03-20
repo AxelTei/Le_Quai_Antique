@@ -20,7 +20,8 @@
 			{{ form_row(restaurantRule_form.runSoir) }}
 			{{ form_row(restaurantRule_form.bookingLimit) }}
 			<button type="submit" class="btn btn-primary">Confirmer ?</button>
-			<p class="mt-3">Attention ! Il ne peut y avoir plus d'une règle dans le restaurant. Si vous voulez en ajouter une, n'oubliez pas de supprimer l'ancienne règle ! Vous pouvez aussi modifier la règle actuelle.</p>
+			<p class="mt-5">Attention ! Il ne peut y avoir plus d'une règle dans le restaurant. Si vous voulez en ajouter une, n'oubliez pas de supprimer l'ancienne règle ! Vous pouvez aussi modifier la règle actuelle.</p>
+			<p>C'est à travers la règle de limite de réservations, que vous donnerez le nombre de places maximum du restaurant à votre application.</p>
 			{{ form_end(restaurantRule_form)}}
 		</div>
 		<h2 class="title-admin-page mt-5">Règle du Restaurant</h2>
@@ -35,6 +36,9 @@
 				<p>Nous n'accueillerons pas plus de
 					{{ rule.bookingLimit }}
 					réservations par jour.</p>
+				<p>Sachant ceci, les runs du midi ou du soir selon la logique métier, ne peuvent accueillir plus de {{ rule.bookingLimit /2 }} réservations par jour </p>
+				<a href="{{ path('edit-rule', {'id': rule.id}) }}" class="btn btn-warning">Modifier</a>
+				<a href="{{ path('delete-rule', {'id': rule.id}) }}" class="btn btn-danger">Supprimer</a>
 			{% endfor %}
 		</div>
 		<h2 class="title-admin-page mt-5">Les Réservations</h2>
