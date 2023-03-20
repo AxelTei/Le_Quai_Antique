@@ -181,7 +181,6 @@ class PostController extends AbstractController
                 $em->persist($places);
             }
             $em->flush();
-            dump($form["date"]->getData());
             return $this->redirectToRoute('home');
         }
 
