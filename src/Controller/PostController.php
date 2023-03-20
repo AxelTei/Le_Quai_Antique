@@ -97,20 +97,26 @@ class PostController extends AbstractController
         $arrayNightsCounted = array_count_values($arrayNights);
 
         // Set the limit in Front side
-        foreach ($arrayDaysCounted as $key => $value)
+        if ($restaurantLastPlace !== null)
         {
-            if ($value === $restaurantLastPlace->getNumberOfPlacesMax()/2)
+            foreach ($arrayDaysCounted as $key => $value)
             {
-                $endBookingsDay[] = $key;
+                if ($value === $restaurantLastPlace->getNumberOfPlacesMax()/2)
+                {
+                    $endBookingsDay[] = $key;
+                }
             }
         }
 
         // Set the limit in Front side
-        foreach ($arrayNightsCounted as $key => $value)
+        if ($restaurantLastPlace !== null)
         {
-            if ($value === $restaurantLastPlace->getNumberOfPlacesMax()/2)
+            foreach ($arrayNightsCounted as $key => $value)
             {
-                $endBookingsNight[] = $key;
+                if ($value === $restaurantLastPlace->getNumberOfPlacesMax()/2)
+                {
+                    $endBookingsNight[] = $key;
+                }
             }
         }
 
