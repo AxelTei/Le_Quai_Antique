@@ -115,9 +115,6 @@ $(function ($) {
   var runNightsForbiddensFromController = $('.end-booking-night').attr("name");
   var runNightsForbiddens = runNightsForbiddensFromController.split(",");
 
-  console.log(runDaysForbiddens);
-  console.log(runNightsForbiddens);
-
   $closureDate = 3; // Set closure Day by Admin
 
   function unavailable(date)
