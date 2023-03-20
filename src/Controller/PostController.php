@@ -43,6 +43,7 @@ class PostController extends AbstractController
 
         $repositoryRule = $doctrine->getRepository(RestaurantRule::class);
         $rules = $repositoryRule->findAll(); // SELECT * FROM `restaurant_rule`;
+        $restaurantLastRule = $repositoryRule->findLastRuleSubmitted();
 
         $repositoryPlaces = $doctrine->getRepository(RestaurantPlaces::class);
         $restaurantPlaces = $repositoryPlaces->findAll();
@@ -129,6 +130,14 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid())
         {
             $places = new RestaurantPlaces();
+
+            // Set Max by Admin Rule
+
+            if ($restaurantLastRule->getBookingLimit() !== null)
+            {
+                $places->setNumberOfPlacesMax($restaurantLastRule->getBookingLimit());
+            }
+
             if ($form["hourSelectedDay"]->getData() === null)
             {
                 $places->setActiveDate($form["date"]->getData());
@@ -144,6 +153,7 @@ class PostController extends AbstractController
                 }
                 $places->setNumberOfSubmit($countSubmit);
             }
+
             if ($form["hourSelectedNight"]->getData() === null)
             {
                 $places->setActiveDate($form["date"]->getData());
