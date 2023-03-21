@@ -115,11 +115,40 @@ $(function ($) {
   var runNightsForbiddensFromController = $('.end-booking-night').attr("name");
   var runNightsForbiddens = runNightsForbiddensFromController.split(",");
 
-  $closureDate = 3; // Set closure Day by Admin
+  var closureDate = 3; // Set closure Day by Admin
+
+  if ($(".rule-booking-day").attr("name") === "lundi")
+  {
+    closureDate = 1;
+  }
+  if ($(".rule-booking-day").attr("name") === "mardi")
+  {
+    closureDate = 2;
+  }
+  if ($(".rule-booking-day").attr("name") === "mercredi")
+  {
+    closureDate = 3;
+  }
+  if ($(".rule-booking-day").attr("name") === "jeudi")
+  {
+    closureDate = 4;
+  }
+  if ($(".rule-booking-day").attr("name") === "vendredi")
+  {
+    closureDate = 5;
+  }
+  if ($(".rule-booking-day").attr("name") === "samedi")
+  {
+    closureDate = 6;
+  }
+  if ($(".rule-booking-day").attr("name") === "dimanche")
+  {
+    closureDate = 7;
+  }
 
   function unavailable(date)
   {
-    if (date.getDay() === $closureDate) /* Wednesday */ 
+    if (date.getDay() === closureDate) /* Wednesday */ 
     {
       return [false, "fermé", "Fermé le Mercredi"]
     }

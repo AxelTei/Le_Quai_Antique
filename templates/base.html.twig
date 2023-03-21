@@ -132,7 +132,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="mt-3">
+					<div class="mt-3 rule-booking-day" name={% for rule in rules %}{{rule.closureDay}}{% endfor %}>
 						{{ form_row(book_form.preferedGroupNumber)}}
 					</div>
 					{{ form_row(book_form.alias)}}
