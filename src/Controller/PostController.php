@@ -238,13 +238,33 @@ class PostController extends AbstractController
     }
 
     #[Route('/post/edit/{id}', name: "edit-post", requirements: ["id" => "\d+"])]
-    public function update(Post $post, ManagerRegistry $doctrine, Request $request): Response
+    public function update(Post $post, ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
+            $imageFile = $form->get("image")->getData();
+
+            if ($imageFile)
+            {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+
+                try {
+                    $imageFile->move(
+                        $this->getParameter("uploads"),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    //
+                }
+
+                $post->setImage($newFilename);
+            }
+
             $em = $doctrine->getManager();
             $em->flush();
             return $this->redirectToRoute('home');
