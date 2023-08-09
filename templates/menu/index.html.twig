@@ -17,7 +17,7 @@
 		<h1 style="font-size:60px;">La Carte</h1>
 	</div>
 
-	<div class="container-fluid mt-5">
+	<div class="container-fluid mt-5" id="formula">
 		<div class="row">
 			{% for formula in formulas %}
 				<div class="col-sm-6 text-center formula-menu">
@@ -51,7 +51,7 @@
 	</div>
 
 	<div class="d-flex flex-wrap justify-content-center mt-5">
-		<h2 class="dish-main-title">Nos Entrées</h2>
+		<h2 class="dish-main-title" id="ourEntries">Nos Entrées</h2>
 	</div>
 	{% for menu in menus %}
 		{% if menu.dishCategory == 'entrée' %}
@@ -71,7 +71,7 @@
 		{% endif %}
 	{% endfor %}
 	<div class="d-flex flex-wrap justify-content-center">
-		<h2 class="dish-main-title mt-5">Nos Plats</h2>
+		<h2 class="dish-main-title mt-5" id="ourDishes">Nos Plats</h2>
 	</div>
 	{% for menu in menus %}
 		{% if menu.dishCategory == 'plat' %}
@@ -92,7 +92,7 @@
 	{% endfor %}
 
 	<div class="d-flex flex-wrap justify-content-center">
-		<h2 class="dish-main-title mt-5">Menu Enfant</h2>
+		<h2 class="dish-main-title mt-5" id="childFormula">Menu Enfant</h2>
 	</div>
 	{% for menu in menus %}
 		{% if menu.dishCategory == 'menu enfant' %}
@@ -113,7 +113,7 @@
 	{% endfor %}
 
 	<div class="d-flex flex-wrap justify-content-center">
-		<h2 class="dish-main-title mt-5">Nos Desserts</h2>
+		<h2 class="dish-main-title mt-5" id="ourDesserts">Nos Desserts</h2>
 	</div>
 	{% for menu in menus %}
 		{% if menu.dishCategory == 'dessert' %}
@@ -133,9 +133,22 @@
 		{% endif %}
 	{% endfor %}
 
+	<!-- Button Section -->
+
 	<a class="d-flex justify-content-center flex-wrap mt-5" style="text-decoration: none;" href="/#bookinBtn">
 		<button class="btn bookin-formula-page-btn" type="submit">Réservation</button>
 	</a>
+
+	<!-- Sidebar Menu Section -->
+
+	<div class="sidenav-menu">
+		<a href="#formula">Menus</a>
+		<a href="#ourEntries">Nos Entrées</a>
+		<a href="#ourDishes">Nos Plats</a>
+		<a href="#childFormula">Menu Enfant</a>
+		<a href="#ourDesserts">Nos Desserts</a>
+	</div>
+
 	<!--Footer Section-->
 
 	<footer class="container-fluid footer mt-5" {% if is_granted('ROLE_ADMIN') %} style="height: auto;" {% endif %}>
