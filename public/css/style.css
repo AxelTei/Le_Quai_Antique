@@ -696,7 +696,8 @@ body {
 
   @media screen and (max-width: 992px) {
     .sidenav-menu {
-        width: 70px;
+        width: 85px;
+        margin-top: 200px;
     }
     .sidenav-menu a {
         font-size: 20px;
