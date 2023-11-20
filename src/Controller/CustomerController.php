@@ -21,7 +21,6 @@ class CustomerController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
-            $customer->setRoles(['ROLE_ADMIN']);
             $em = $doctrine->getManager();
             $em->persist($customer);
             $em->flush();
