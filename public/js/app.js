@@ -103,8 +103,6 @@ $(function ($) {
     onSelect: disabledDayOrNight,
   });
 
-  // if select day du .datepicker egale une des date dans l'array Day or Night display gris button et display a sentence
-
   //Limit Booking
 
   var datesForbiddensFromController = $('.end-booking').attr("name"); // data from Controller
