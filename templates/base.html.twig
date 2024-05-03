@@ -36,7 +36,7 @@
 								<a class="nav-link" href="/carte">Carte</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="/contact" {% if is_granted('ROLE_ADMIN') %} style="text-align: center;" {% endif %}>Contact</a>
+								<a class="nav-link" href="/contact" {% if app.user %} style="text-align: center;" {% endif %}>Contact</a>
 							</li>
 							{% if is_granted('ROLE_ADMIN') %}
 								<li class="nav-item dropdown">
@@ -61,6 +61,19 @@
 										</li>
 									</ul>
 								</li>
+							{% else %}
+								{% if app.user %}
+								<li class="nav-item dropdown" style="margin-left:40px;">
+									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Gestion Réservations
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a class="dropdown-item" href="/post/new">ok let's go!</a>
+										</li>
+									</ul>
+								</li>
+								{% endif %}
 							{% endif %}
 						</ul>
 						{% if app.user %}
