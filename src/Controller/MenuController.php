@@ -81,7 +81,6 @@ class MenuController extends AbstractController
         return $this->redirectToRoute('carte');
     }
 
-    // URL a sécurisé
     #[Route('/menu/new')]
     public function createMenu(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -101,7 +100,6 @@ class MenuController extends AbstractController
         ]);
     }
 
-    // URL a sécurisé
     #[Route('/menu/edit/{id}', name: "edit-menu", requirements: ["id" => "\d+"])]
     public function updateMenu(Formula $formula, ManagerRegistry $doctrine, Request $request): Response
     {
