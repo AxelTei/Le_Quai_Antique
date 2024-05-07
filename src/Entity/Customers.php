@@ -49,7 +49,7 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
 
     private $passwordHasher;
 
-    #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Book::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Book::class)]
     private Collection $books;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
