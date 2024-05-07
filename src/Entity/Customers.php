@@ -49,9 +49,13 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
 
     private $passwordHasher;
 
+    #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Book::class, orphanRemoval: true)]
+    private Collection $books;
+
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
         $this->passwordHasher = $passwordHasher;
+        $this->books = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -181,6 +185,36 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhoneNumber($phoneNumber)
     {
         $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Book>
+     */
+    public function getBooks(): Collection
+    {
+        return $this->books;
+    }
+
+    public function addBook(Book $book): static
+    {
+        if (!$this->books->contains($book)) {
+            $this->books->add($book);
+            $book->setCustomer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBook(Book $book): static
+    {
+        if ($this->books->removeElement($book)) {
+            // set the owning side to null (unless already changed)
+            if ($book->getCustomer() === $this) {
+                $book->setCustomer(null);
+            }
+        }
 
         return $this;
     }

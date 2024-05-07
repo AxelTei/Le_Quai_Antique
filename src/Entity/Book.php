@@ -34,6 +34,10 @@ class Book
     #[ORM\Column(length: 180, nullable: false)]
     private ?string $alias;
 
+    #[ORM\ManyToOne(inversedBy: 'books', targetEntity: Customers::class)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
+    private ?Customers $customer = null;
+
     public function getId(): int
     {
         return $this->id;
@@ -126,6 +130,18 @@ class Book
     public function setAlias($alias)
     {
         $this->alias = $alias;
+
+        return $this;
+    }
+
+    public function getCustomer(): ?Customers
+    {
+        return $this->customer;
+    }
+
+    public function setCustomer(?Customers $customer): static
+    {
+        $this->customer = $customer;
 
         return $this;
     }

@@ -121,7 +121,7 @@ class PostController extends AbstractController
         }
 
         $user =$this->getUser();
-
+        $book->setCustomer($user);
         if ($this->isGranted('ROLE_USER'))
         {
             // Set preferences for Customer connected
