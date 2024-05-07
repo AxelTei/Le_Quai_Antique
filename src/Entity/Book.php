@@ -35,7 +35,7 @@ class Book
     private ?string $alias;
 
     #[ORM\ManyToOne(inversedBy: 'books', targetEntity: Customers::class)]
-    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
+    #[ORM\JoinColumn(nullable: true, onDelete: "CASCADE")]
     private ?Customers $customer = null;
 
     public function getId(): int
