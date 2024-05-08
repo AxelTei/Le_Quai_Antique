@@ -31,15 +31,4 @@ class CustomerController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-    #[Route('/customer/bookingPage', name: 'booking_page')]
-    public function bookingPage(ManagerRegistry $doctrine): Response
-    {
-        $repository = $doctrine->getRepository(Book::class);
-        $books = $repository->findAll(); // SELECT * FROM `restaurant_bookings`;
-
-        return $this->render('customer/bookingPage.html.twig', [
-            'books' => $books
-        ]);
-    }
 }

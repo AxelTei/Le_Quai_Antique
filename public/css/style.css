@@ -24,7 +24,7 @@ body {
     font-style: normal;
     color: white;
     font-size: xx-large;
-    width: 250px;
+    width: 310px;
     text-align: end;
 }
 
@@ -57,7 +57,7 @@ body {
     margin-left: 80px;
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1600px) {
     .nav-link {
         width: 150px;
     }
