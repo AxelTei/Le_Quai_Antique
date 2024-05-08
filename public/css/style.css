@@ -53,6 +53,21 @@ body {
     color: white;
 }
 
+@media screen and (max-width: 1400px) {
+    .nav-link {
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .nav-link {
+        width: 250px;
+    }
+    .btn-Connect {
+        margin-left: 80px;
+    }
+}
+
 /* HomePage Title Section */
 
 .title-main-page {
