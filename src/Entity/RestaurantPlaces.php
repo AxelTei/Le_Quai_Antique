@@ -26,6 +26,10 @@ class RestaurantPlaces
     #[ORM\Column]
     private ?int $numberOfPlacesMax = 0;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Book $book = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -82,6 +86,18 @@ class RestaurantPlaces
     public function setActiveHour($activeHour)
     {
         $this->activeHour = $activeHour;
+
+        return $this;
+    }
+
+    public function getBook(): ?Book
+    {
+        return $this->book;
+    }
+
+    public function setBook(Book $book): static
+    {
+        $this->book = $book;
 
         return $this;
     }

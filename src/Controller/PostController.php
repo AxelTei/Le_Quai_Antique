@@ -178,6 +178,7 @@ class PostController extends AbstractController
             $em->persist($book);
             if ($places->getActiveDate() !== null)
             {
+                $places->setBook($book);
                 $em->persist($places);
             }
             $em->flush();
@@ -376,8 +377,11 @@ class PostController extends AbstractController
     public function deleteBook(Book $book, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $repository = $doctrine->getRepository(RestaurantPlaces::class);
+        $place = $repository->findOneBy(array('book' => $book->getId())); // SELECT the data with the value id in table `restaurant_places`;
         $em = $doctrine->getManager();
         $em->remove($book);
+        $em->remove($place);
         $em->flush();
 
         return $this->redirectToRoute('booking');
