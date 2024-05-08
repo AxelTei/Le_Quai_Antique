@@ -36,10 +36,10 @@
 								<a class="nav-link" href="/carte">Carte</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="/contact" {% if app.user %} style="text-align: center;" {% endif %}>Contact</a>
+								<a class="nav-link" href="/contact">Contact</a>
 							</li>
 							{% if is_granted('ROLE_ADMIN') %}
-								<li class="nav-item dropdown">
+								<li class="nav-item dropdown new-nav">
 									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 										Gestion Administrative
 									</a>
@@ -63,7 +63,7 @@
 								</li>
 							{% else %}
 								{% if app.user %}
-								<li class="nav-item dropdown" style="margin-left:40px;">
+								<li class="nav-item dropdown new-nav">
 									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 										Gestion Réservations
 									</a>

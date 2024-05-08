@@ -24,7 +24,7 @@ body {
     font-style: normal;
     color: white;
     font-size: xx-large;
-    width: 290px;
+    width: 250px;
     text-align: end;
 }
 
@@ -53,9 +53,17 @@ body {
     color: white;
 }
 
+.new-nav {
+    margin-left: 80px;
+}
+
 @media screen and (max-width: 1400px) {
     .nav-link {
-        width: 200px;
+        width: 150px;
+    }
+    .new-nav {
+        margin-left: 10px;
+        width: 290px;
     }
 }
 
@@ -64,6 +72,12 @@ body {
         width: 250px;
     }
     .btn-Connect {
+        margin-left: 80px;
+    }
+    .btn-Disconnect {
+        margin-left: 80px;
+    }
+    .new-nav {
         margin-left: 80px;
     }
 }
