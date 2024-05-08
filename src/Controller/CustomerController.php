@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Book;
 use App\Entity\Customers;
 use App\Form\CustomerType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -28,6 +29,17 @@ class CustomerController extends AbstractController
         }
         return $this->render('customer/form.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/customer/bookingPage', name: 'booking_page')]
+    public function bookingPage(ManagerRegistry $doctrine): Response
+    {
+        $repository = $doctrine->getRepository(Book::class);
+        $books = $repository->findAll(); // SELECT * FROM `restaurant_bookings`;
+
+        return $this->render('customer/bookingPage.html.twig', [
+            'books' => $books
         ]);
     }
 }
