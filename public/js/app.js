@@ -44,23 +44,23 @@ window.onclick = function (event) {
   }
 }
 
-// Uncheck a radio button
+// // Uncheck a radio button
 
-let radio = document.getElementById("book_hourSelectedDay_7");
+// // let radio = document.getElementById("book_hourSelectedDay_7");
 
-radio.addEventListener("click", function () {
-  if (radio.checked == true) {
-    radio.checked = false;
-  }
-})
+// // radio.addEventListener("click", function () {
+// //   if (radio.checked == true) {
+// //     radio.checked = false;
+// //   }
+// // })
 
-let radio2 = document.getElementById("book_hourSelectedNight_7");
+// // let radio2 = document.getElementById("book_hourSelectedNight_7");
 
-radio2.addEventListener("click", function () {
-  if (radio2.checked == true) {
-    radio2.checked = false;
-  }
-})
+// // radio2.addEventListener("click", function () {
+// //   if (radio2.checked == true) {
+// //     radio2.checked = false;
+// //   }
+// // })
 
 // Image Show Text and Title
 
@@ -88,134 +88,187 @@ function disableTitle(i) {
   }
 }
 
-// Calendar Booking
+// // Calendar Booking
 
-$(function ($) {
-  $('.js-datepicker').datepicker({
-    dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-    dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
-    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-    nextText: "Suivant",
-    prevText: "Précédant",
-    minDate: 0,
-    dateFormat: "yy-mm-dd",
-    beforeShowDay: unavailable,
-    onSelect: disabledDayOrNight,
+// $(function ($) {
+//   $('.js-datepicker').datepicker({
+//     dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+//     dayNamesMin: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+//     monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+//     nextText: "Suivant",
+//     prevText: "Précédant",
+//     minDate: 0,
+//     dateFormat: "yy-mm-dd",
+//     beforeShowDay: unavailable,
+//     onSelect: disabledDayOrNight,
+//   });
+
+//   //Limit Booking
+
+//   var datesForbiddensFromController = $('.end-booking').attr("name"); // data from Controller
+//   var datesForbiddens = datesForbiddensFromController.split(","); // find a way to concatenate php entry string in a array
+
+//   var runDaysForbiddensFromController = $('.end-booking-day').attr("name");
+//   var runDaysForbiddens = runDaysForbiddensFromController.split(",");
+//   var runNightsForbiddensFromController = $('.end-booking-night').attr("name");
+//   var runNightsForbiddens = runNightsForbiddensFromController.split(",");
+
+//   var closureDate = 3; // Set closure Day by Admin
+
+//   if ($(".rule-booking-day").attr("name") === "lundi")
+//   {
+//     closureDate = 1;
+//   }
+//   if ($(".rule-booking-day").attr("name") === "mardi")
+//   {
+//     closureDate = 2;
+//   }
+//   if ($(".rule-booking-day").attr("name") === "mercredi")
+//   {
+//     closureDate = 3;
+//   }
+//   if ($(".rule-booking-day").attr("name") === "jeudi")
+//   {
+//     closureDate = 4;
+//   }
+//   if ($(".rule-booking-day").attr("name") === "vendredi")
+//   {
+//     closureDate = 5;
+//   }
+//   if ($(".rule-booking-day").attr("name") === "samedi")
+//   {
+//     closureDate = 6;
+//   }
+//   if ($(".rule-booking-day").attr("name") === "dimanche")
+//   {
+//     closureDate = 7;
+//   }
+
+//   function unavailable(date)
+//   {
+//     if (date.getDay() === closureDate) /* Wednesday */ 
+//     {
+//       return [false, "fermé", "Fermé le Mercredi"]
+//     }
+//     var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+//     return [ datesForbiddens.indexOf(string) == -1 ]
+//   }
+
+//   function disabledDayOrNight(date)
+//   {
+//     if (jQuery.inArray(date, runDaysForbiddens) > -1)
+//     {
+//       $('#book_hourSelectedDay_0').attr("disabled", true)
+//       $('#book_hourSelectedDay_1').attr("disabled", true)
+//       $('#book_hourSelectedDay_2').attr("disabled", true)
+//       $('#book_hourSelectedDay_3').attr("disabled", true)
+//       $('#book_hourSelectedDay_4').attr("disabled", true)
+//       $('#book_hourSelectedDay_5').attr("disabled", true)
+//       $('#book_hourSelectedDay_6').attr("disabled", true)
+
+//       $('#book_hourSelectedNight_0').attr("disabled", false)
+//       $('#book_hourSelectedNight_1').attr("disabled", false)
+//       $('#book_hourSelectedNight_2').attr("disabled", false)
+//       $('#book_hourSelectedNight_3').attr("disabled", false)
+//       $('#book_hourSelectedNight_4').attr("disabled", false)
+//       $('#book_hourSelectedNight_5').attr("disabled", false)
+//       $('#book_hourSelectedNight_6').attr("disabled", false)
+
+//       $('.alert-end-booking-Day').css("display", "grid")
+//       $('.alert-end-booking-Night').css("display", "none")
+//     } else if (jQuery.inArray(date, runNightsForbiddens) > -1)
+//     {
+
+//       $('#book_hourSelectedNight_0').attr("disabled", true)
+//       $('#book_hourSelectedNight_1').attr("disabled", true)
+//       $('#book_hourSelectedNight_2').attr("disabled", true)
+//       $('#book_hourSelectedNight_3').attr("disabled", true)
+//       $('#book_hourSelectedNight_4').attr("disabled", true)
+//       $('#book_hourSelectedNight_5').attr("disabled", true)
+//       $('#book_hourSelectedNight_6').attr("disabled", true)
+
+//       $('#book_hourSelectedDay_0').attr("disabled", false)
+//       $('#book_hourSelectedDay_1').attr("disabled", false)
+//       $('#book_hourSelectedDay_2').attr("disabled", false)
+//       $('#book_hourSelectedDay_3').attr("disabled", false)
+//       $('#book_hourSelectedDay_4').attr("disabled", false)
+//       $('#book_hourSelectedDay_5').attr("disabled", false)
+//       $('#book_hourSelectedDay_6').attr("disabled", false)
+
+//       $('.alert-end-booking-Night').css("display", "grid")
+//       $('.alert-end-booking-Day').css("display", "none")
+//     } else {
+
+//       $('#book_hourSelectedDay_0').attr("disabled", false)
+//       $('#book_hourSelectedDay_1').attr("disabled", false)
+//       $('#book_hourSelectedDay_2').attr("disabled", false)
+//       $('#book_hourSelectedDay_3').attr("disabled", false)
+//       $('#book_hourSelectedDay_4').attr("disabled", false)
+//       $('#book_hourSelectedDay_5').attr("disabled", false)
+//       $('#book_hourSelectedDay_6').attr("disabled", false)
+//       $('#book_hourSelectedNight_0').attr("disabled", false)
+//       $('#book_hourSelectedNight_1').attr("disabled", false)
+//       $('#book_hourSelectedNight_2').attr("disabled", false)
+//       $('#book_hourSelectedNight_3').attr("disabled", false)
+//       $('#book_hourSelectedNight_4').attr("disabled", false)
+//       $('#book_hourSelectedNight_5').attr("disabled", false)
+//       $('#book_hourSelectedNight_6').attr("disabled", false)
+
+//       $('.alert-end-booking-Day').css("display", "none")
+//       $('.alert-end-booking-Night').css("display", "none")
+//     }
+//   }
+// })
+
+// Nouvelles fonctionnalités de RESERVATION
+
+const formBooking = document.getElementById("formBooking");
+const btnBooking = document.getElementById("btnBooking");
+
+btnBooking.addEventListener("click", book);
+
+function book()
+{
+  let dataForm = new FormData(formBooking);
+
+  let date = dataForm.get("date");
+  let serviceM = dataForm.get("serviceMidi");
+  let serviceS = dataForm.get("serviceSoir");
+  let name = dataForm.get("alias");
+  let phone = dataForm.get("phoneNumber");
+  let preferedGroupNumber = dataForm.get("preferedGroupNumber");
+  let allergies = dataForm.get("allergies");
+
+  let myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  let raw = JSON.stringify({
+    "alias": name,
+    "date": date,
+    "hourSelectedDay": serviceM,
+    "hourSelectedNight": serviceS,
+    "phoneNumber": phone,
+    "preferedGroupNumber": parseInt(preferedGroupNumber),
+    "allergies": allergies
   });
 
-  //Limit Booking
+  let requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
 
-  var datesForbiddensFromController = $('.end-booking').attr("name"); // data from Controller
-  var datesForbiddens = datesForbiddensFromController.split(","); // find a way to concatenate php entry string in a array
-
-  var runDaysForbiddensFromController = $('.end-booking-day').attr("name");
-  var runDaysForbiddens = runDaysForbiddensFromController.split(",");
-  var runNightsForbiddensFromController = $('.end-booking-night').attr("name");
-  var runNightsForbiddens = runNightsForbiddensFromController.split(",");
-
-  var closureDate = 3; // Set closure Day by Admin
-
-  if ($(".rule-booking-day").attr("name") === "lundi")
-  {
-    closureDate = 1;
-  }
-  if ($(".rule-booking-day").attr("name") === "mardi")
-  {
-    closureDate = 2;
-  }
-  if ($(".rule-booking-day").attr("name") === "mercredi")
-  {
-    closureDate = 3;
-  }
-  if ($(".rule-booking-day").attr("name") === "jeudi")
-  {
-    closureDate = 4;
-  }
-  if ($(".rule-booking-day").attr("name") === "vendredi")
-  {
-    closureDate = 5;
-  }
-  if ($(".rule-booking-day").attr("name") === "samedi")
-  {
-    closureDate = 6;
-  }
-  if ($(".rule-booking-day").attr("name") === "dimanche")
-  {
-    closureDate = 7;
-  }
-
-  function unavailable(date)
-  {
-    if (date.getDay() === closureDate) /* Wednesday */ 
-    {
-      return [false, "fermé", "Fermé le Mercredi"]
-    }
-    var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-    return [ datesForbiddens.indexOf(string) == -1 ]
-  }
-
-  function disabledDayOrNight(date)
-  {
-    if (jQuery.inArray(date, runDaysForbiddens) > -1)
-    {
-      $('#book_hourSelectedDay_0').attr("disabled", true)
-      $('#book_hourSelectedDay_1').attr("disabled", true)
-      $('#book_hourSelectedDay_2').attr("disabled", true)
-      $('#book_hourSelectedDay_3').attr("disabled", true)
-      $('#book_hourSelectedDay_4').attr("disabled", true)
-      $('#book_hourSelectedDay_5').attr("disabled", true)
-      $('#book_hourSelectedDay_6').attr("disabled", true)
-
-      $('#book_hourSelectedNight_0').attr("disabled", false)
-      $('#book_hourSelectedNight_1').attr("disabled", false)
-      $('#book_hourSelectedNight_2').attr("disabled", false)
-      $('#book_hourSelectedNight_3').attr("disabled", false)
-      $('#book_hourSelectedNight_4').attr("disabled", false)
-      $('#book_hourSelectedNight_5').attr("disabled", false)
-      $('#book_hourSelectedNight_6').attr("disabled", false)
-
-      $('.alert-end-booking-Day').css("display", "grid")
-      $('.alert-end-booking-Night').css("display", "none")
-    } else if (jQuery.inArray(date, runNightsForbiddens) > -1)
-    {
-
-      $('#book_hourSelectedNight_0').attr("disabled", true)
-      $('#book_hourSelectedNight_1').attr("disabled", true)
-      $('#book_hourSelectedNight_2').attr("disabled", true)
-      $('#book_hourSelectedNight_3').attr("disabled", true)
-      $('#book_hourSelectedNight_4').attr("disabled", true)
-      $('#book_hourSelectedNight_5').attr("disabled", true)
-      $('#book_hourSelectedNight_6').attr("disabled", true)
-
-      $('#book_hourSelectedDay_0').attr("disabled", false)
-      $('#book_hourSelectedDay_1').attr("disabled", false)
-      $('#book_hourSelectedDay_2').attr("disabled", false)
-      $('#book_hourSelectedDay_3').attr("disabled", false)
-      $('#book_hourSelectedDay_4').attr("disabled", false)
-      $('#book_hourSelectedDay_5').attr("disabled", false)
-      $('#book_hourSelectedDay_6').attr("disabled", false)
-
-      $('.alert-end-booking-Night').css("display", "grid")
-      $('.alert-end-booking-Day').css("display", "none")
-    } else {
-
-      $('#book_hourSelectedDay_0').attr("disabled", false)
-      $('#book_hourSelectedDay_1').attr("disabled", false)
-      $('#book_hourSelectedDay_2').attr("disabled", false)
-      $('#book_hourSelectedDay_3').attr("disabled", false)
-      $('#book_hourSelectedDay_4').attr("disabled", false)
-      $('#book_hourSelectedDay_5').attr("disabled", false)
-      $('#book_hourSelectedDay_6').attr("disabled", false)
-      $('#book_hourSelectedNight_0').attr("disabled", false)
-      $('#book_hourSelectedNight_1').attr("disabled", false)
-      $('#book_hourSelectedNight_2').attr("disabled", false)
-      $('#book_hourSelectedNight_3').attr("disabled", false)
-      $('#book_hourSelectedNight_4').attr("disabled", false)
-      $('#book_hourSelectedNight_5').attr("disabled", false)
-      $('#book_hourSelectedNight_6').attr("disabled", false)
-
-      $('.alert-end-booking-Day').css("display", "none")
-      $('.alert-end-booking-Night').css("display", "none")
-    }
-  }
-})
+  fetch("http://127.0.0.1:8000/bookJS", requestOptions)
+  .then(response => {
+    if(response.ok)
+      {
+        alert("Votre réservation a bien été enregistré !")
+      } else {
+        alert("Erreur lors de votre réservation.")
+      }
+  })
+  .then(result => {
+    document.location.href="/";
+  })
+}

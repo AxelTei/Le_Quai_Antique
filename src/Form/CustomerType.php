@@ -51,14 +51,14 @@ class CustomerType extends AbstractType
             ])
             ->add("alias", TextType::class, [
                 "label" => "Votre nom ou un surnom par lequel vous aimeriez être appelé(e) ?",
-                "required" => false,
+                "required" => true,
                 "constraints" => [
                     new Length(["min" => 0, "max" => 180, "minMessage" => "Veuillez inscrire un nom valide", "maxMessage" => "Votre nom ou surnom ne doit pas dépasser 180 caractères !"]),
                 ]
             ])
             ->add("phoneNumber", TextType::class, [
                 "label" => "Votre numéro de téléphone :",
-                "required" => false,
+                "required" => true,
                 "constraints" => [
                     new Length(["min" => 2, "max" => 30, "minMessage" => "Veuillez inscrire un numéro valide", "maxMessage" => "Votre numéro ne doit pas dépasser 30 caractères !"]),
                 ]

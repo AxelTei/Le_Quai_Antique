@@ -118,7 +118,7 @@
 			<div id="myModal" class="modal">
 				<div class="modal-content">
 					<span class="close">&times;</span>
-					{{ form_start(book_form, {"attr": {"novalidate": "novalidate"}}) }}
+					{# {{ form_start(book_form, {"attr": {"novalidate": "novalidate"}}) }}
 					<div class="container-fluid">
 						<div class="row end-booking" name={% for end_booking in end_bookings %}{{end_booking}},{% endfor %}>
 							{{ form_row(book_form.date) }}
@@ -139,7 +139,66 @@
 					{{ form_row(book_form.phoneNumber)}}
 					{{ form_row(book_form.allergies)}}
 					<button type="submit" class="btn btn-success btn-customer-book mt-3">Confirmer la réservation</button>
-					{{ form_end(book_form)}}
+					{{ form_end(book_form)}} #}
+					<div class="container">
+						<form id="formBooking">
+							<div class="mb-3">
+								<label for="DateForm" class="form-label">Choisissez une date disponible :</label>
+								<input type="date" id="DateForm" class="form-control" name="date" required />
+							</div>
+							<div class="mb-3">
+								<div>
+									<label for="hourSelectedDay" class="form-check-label">Vous réservez pour ce midi ?</label>
+									<select  class="form-select" id="hourSelectedDay" name="serviceMidi">
+										<option value="Non">Non</option>
+										<option value="12:00">12:00</option>
+										<option value="12:15">12:15</option>
+										<option value="12:30">12:30</option>
+										<option value="12:45">12:45</option>
+										<option value="13:00">13:00</option>
+										<option value="13:15">13:15</option>
+										<option value="13:30">13:30</option>
+									</select>
+								</div>
+								<div>
+									<label for="hourSelectedNight" class="form-check-label">Vous réservez pour ce soir ?</label>
+									<select class="form-select" id="hourSelectedNight" name="serviceSoir">
+										<option value="Non">Non</option>
+										<option value="19:00">19:00</option>
+										<option value="19:15">19:15</option>
+										<option value="19:30">19:30</option>
+										<option value="19:45">19:45</option>
+										<option value="20:00">20:00</option>
+										<option value="20:15">20:15</option>
+										<option value="20:30">20:30</option>
+									</select>
+								</div>
+							</div>
+							<div class="mb-3">
+								<label for="alias" class="form-label">Nom :</label>
+								<input {% if app.user %}value="{{ alias }}"{% endif %}type="text" class="form-control" id="alias" name="alias" placeholder="Votre nom." required />
+							</div>
+							<div class="mb-3">
+								<label for="phoneNumber">Numéro de téléphone :</label>
+								<input {% if app.user %}value="{{ phone }}"{% endif %}type="tel" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Votre numéro." required />
+							</div>
+							<div class="mb-3">
+								<label for="preferedGroupNumber" class="form-label">Choisissez le nombre de convives pour cette réservation :</label>
+								<input {% if app.user %}value="{{ preferedGroupNumber }}"{% endif %}type="number" id="preferedGroupNumber" name="preferedGroupNumber" min="0" max="20" class="form-control" placeholder="Indiquer le nombre de participants." required />
+							</div>
+							<div class="mb-3">
+								<label for="allergies" class="form-label">Avez-vous des allergies à nous indiquer ?</label>
+								<input {% if app.user %}value="{{ allergies }}"{% endif %}type="text" class="form-control" id="allergies" name="allergies" placeholder="Inscrivez vos allergies.">
+							</div>
+							<div class="mb-3 text-center">
+								<p>Attention ! Vous ne pouvez réserver que pour le soir ou le midi. Une erreur sera affichée si vous essayer de réserver pour les deux services.</p>
+								<p>Veuillez communiquer directement sur notre page contact si vous voulez faire une réservation pour une journée entière.</p>
+							</div>
+							<div class="text-center">
+								<button id="btnBooking" type="button" class="btn btn-success btn-customer-book">Réserver</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 

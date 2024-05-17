@@ -15,9 +15,12 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class PostController extends AbstractController
@@ -122,6 +125,11 @@ class PostController extends AbstractController
 
         $user =$this->getUser();
         $book->setCustomer($user);
+
+        $alias = null;
+        $phone = null;
+        $allergies = null;
+        $preferedGroupNumber = null;
         if ($this->isGranted('ROLE_USER'))
         {
             // Set preferences for Customer connected
@@ -129,6 +137,11 @@ class PostController extends AbstractController
             $form["phoneNumber"]->setData($user->getPhoneNumber());
             $form["allergies"]->setData($user->getAllergies());
             $form["preferedGroupNumber"]->setData($user->getPreferedGroupNumber());
+            // set preferences with new form
+            $alias = $user->getAlias();
+            $phone = $user->getPhoneNumber();
+            $allergies = $user->getAllergies();
+            $preferedGroupNumber = $user->getPreferedGroupNumber();
         }
 
         $form->handleRequest($request);
@@ -193,7 +206,11 @@ class PostController extends AbstractController
             "end_bookings" => $endBookings,
             "end_bookings_day" => $endBookingsDay,
             "end_bookings_night" => $endBookingsNight,
-            'book_form' => $form->createView()
+            'book_form' => $form->createView(),
+            "alias" => $alias,
+            "phone" => $phone,
+            "allergies" => $allergies,
+            "preferedGroupNumber" => $preferedGroupNumber
         ]);
     }
 
@@ -422,5 +439,87 @@ class PostController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('booking');
+    }
+
+    #[Route('/bookJS', name: 'book-js', methods: 'POST')]
+    public function bookFromJS(ManagerRegistry $doctrine, Request $request, SerializerInterface $serializer, UrlGeneratorInterface $urlGenerator): JsonResponse
+    {
+        $repositoryRule = $doctrine->getRepository(RestaurantRule::class);
+        $restaurantLastRule = $repositoryRule->findLastRuleSubmitted();
+
+        $repositoryPlaces = $doctrine->getRepository(RestaurantPlaces::class);
+        $restaurantPlaces = $repositoryPlaces->findAll();
+
+        $countSubmit = 1;
+
+        $places = new RestaurantPlaces();
+
+        // Set Max by Admin Rule
+
+        if ($restaurantLastRule->getBookingLimit() !== null)
+        {
+            $places->setNumberOfPlacesMax($restaurantLastRule->getBookingLimit());
+        }
+
+        $book = $serializer->deserialize($request->getContent(), Book::class, 'json');
+
+        if ($book->getHourSelectedDay() === 'Non')
+        {
+            $places->setActiveDate($book->getDate());
+            $places->setActiveHour("Night");
+            // Count the number of submit and set it to the new object
+            foreach ($restaurantPlaces as $key => $value)
+            {
+                if ($value->getActiveDate() === $places->getActiveDate() &&  $value->getActiveHour() === "Night" )
+                {
+                        $countSubmit++;
+                }
+            }
+            $places->setNumberOfSubmit($countSubmit);
+        }
+
+        if ($book->getHourSelectedNight() === 'Non')
+        {
+            $places->setActiveDate($book->getDate());
+            $places->setActiveHour("Day");
+            foreach ($restaurantPlaces as $key => $value)
+            {
+                if ($value->getActiveDate() === $places->getActiveDate() &&  $value->getActiveHour() === "Day")
+                {
+                    $countSubmit++;
+                }
+            }
+            $places->setNumberOfSubmit($countSubmit);
+        }
+
+        if ($book->getHourSelectedNight() !== 'Non' && $book->getHourSelectedDay() !== 'Non')
+        {
+            // make an error to not allow customer or visitor to take a reservation for both Night and Day run
+            return $this->render('home');
+        }
+
+        $user =$this->getUser();
+
+        $book->setCustomer($user);
+
+        $em = $doctrine->getManager();
+        $em->persist($book);
+
+        if ($places->getActiveDate() !== null)
+        {
+            $places->setBook($book);
+            $em->persist($places);
+        }
+        
+        $em->flush();
+
+        $responseData = $serializer->serialize($book, 'json');
+        $location = $urlGenerator->generate(
+            'home',
+            [],
+            UrlGeneratorInterface::ABSOLUTE_URL,
+        );
+
+        return new JsonResponse($responseData, Response::HTTP_CREATED, ["Location" => $location], true);
     }
 }
