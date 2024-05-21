@@ -25,6 +25,7 @@ class CustomerController extends AbstractController
             $em = $doctrine->getManager();
             $em->persist($customer);
             $em->flush();
+            $this->addFlash('success',"Merci pour votre inscription ! Vous pouvez désormais vous connecter à votre compte.");
             return $this->redirectToRoute("home");
         }
         return $this->render('customer/form.html.twig', [

@@ -84,6 +84,7 @@
 		{% endblock %}
 
 		{% block body %}
+		{% include '_partials/_flash.html.twig' %}
 			<div class="d-flex justify-content-center flex-wrap title-main-page mt-3">
 				<h1>Un Voyage de Saveur Savoyarde</h1>
 			</div>
@@ -118,6 +119,9 @@
 			<div id="myModal" class="modal">
 				<div class="modal-content">
 					<span class="close">&times;</span>
+
+					<!-- Ancien Formulaire Php -->
+
 					{# {{ form_start(book_form, {"attr": {"novalidate": "novalidate"}}) }}
 					<div class="container-fluid">
 						<div class="row end-booking" name={% for end_booking in end_bookings %}{{end_booking}},{% endfor %}>
@@ -140,41 +144,46 @@
 					{{ form_row(book_form.allergies)}}
 					<button type="submit" class="btn btn-success btn-customer-book mt-3">Confirmer la réservation</button>
 					{{ form_end(book_form)}} #}
+
+					<!-- Nouveau Formulaire HTML handle by JS - Correction -->
+
 					<div class="container">
 						<form id="formBooking">
-							<div class="mb-3">
-								<label for="DateForm" class="form-label">Choisissez une date disponible :</label>
-								<input type="date" id="DateForm" class="form-control" name="date" required />
+							<div class="mb-3 end-booking" name={% for end_booking in end_bookings %}{{end_booking}},{% endfor %}>
+								<label for="DateForm" class="">Choisissez une date disponible :</label>
+								<input type="text" id="DateForm" class="js-datepicker" name="date" required />
 							</div>
 							<div class="mb-3">
-								<div>
+								<div class="end-booking-day" name={% for end_booking_day in end_bookings_day %}{{end_booking_day}},{% endfor %}>
 									<label for="hourSelectedDay" class="form-check-label">Vous réservez pour ce midi ?</label>
 									<select  class="form-select" id="hourSelectedDay" name="serviceMidi">
 										<option value="Non">Non</option>
-										<option value="12:00">12:00</option>
-										<option value="12:15">12:15</option>
-										<option value="12:30">12:30</option>
-										<option value="12:45">12:45</option>
-										<option value="13:00">13:00</option>
-										<option value="13:15">13:15</option>
-										<option value="13:30">13:30</option>
+										<option value="12:00" id="hourSelectedDay0">12:00</option>
+										<option value="12:15" id="hourSelectedDay1">12:15</option>
+										<option value="12:30" id="hourSelectedDay2">12:30</option>
+										<option value="12:45" id="hourSelectedDay3">12:45</option>
+										<option value="13:00" id="hourSelectedDay4">13:00</option>
+										<option value="13:15" id="hourSelectedDay5">13:15</option>
+										<option value="13:30" id="hourSelectedDay6">13:30</option>
 									</select>
 								</div>
-								<div>
+								<p class="alert-end-booking-Day mt-3">Les réservations de la journée sont indisponibles à la date que vous venez de sélectionner.</p>
+								<div class="end-booking-night" name={% for end_booking_night in end_bookings_night %}{{end_booking_night}},{% endfor %}>
 									<label for="hourSelectedNight" class="form-check-label">Vous réservez pour ce soir ?</label>
 									<select class="form-select" id="hourSelectedNight" name="serviceSoir">
 										<option value="Non">Non</option>
-										<option value="19:00">19:00</option>
-										<option value="19:15">19:15</option>
-										<option value="19:30">19:30</option>
-										<option value="19:45">19:45</option>
-										<option value="20:00">20:00</option>
-										<option value="20:15">20:15</option>
-										<option value="20:30">20:30</option>
+										<option value="19:00" id="hourSelectedNight0">19:00</option>
+										<option value="19:15" id="hourSelectedNight1">19:15</option>
+										<option value="19:30" id="hourSelectedNight2">19:30</option>
+										<option value="19:45" id="hourSelectedNight3">19:45</option>
+										<option value="20:00" id="hourSelectedNight4">20:00</option>
+										<option value="20:15" id="hourSelectedNight5">20:15</option>
+										<option value="20:30" id="hourSelectedNight6">20:30</option>
 									</select>
 								</div>
+								<p class="alert-end-booking-Night mt-3">Les réservations du soir sont indisponibles à la date que vous venez de sélectionner.</p>
 							</div>
-							<div class="mb-3">
+							<div class="mb-3 rule-booking-day" name={% for rule in rules %}{{rule.closureDay}}{% endfor %}>
 								<label for="alias" class="form-label">Nom :</label>
 								<input {% if app.user %}value="{{ alias }}"{% endif %}type="text" class="form-control" id="alias" name="alias" placeholder="Votre nom." required />
 							</div>

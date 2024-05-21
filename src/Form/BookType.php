@@ -27,7 +27,7 @@ class BookType extends AbstractType
                     "class" => "js-datepicker"
                 ],
                 "constraints" => [
-                    new NotBlank(["message" => "Vous devez indiquer une date pour la résservation !"])
+                    new NotBlank(["message" => "Vous devez indiquer une date pour la réservation !"])
                 ]
             ])
             ->add("hourSelectedDay", ChoiceType::class, [

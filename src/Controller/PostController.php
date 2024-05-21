@@ -20,6 +20,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
@@ -74,9 +78,15 @@ class PostController extends AbstractController
         // Set Limit of Booking per Day
         foreach ($restaurantPlaces as $key => $value)
         {
-            if ($value->getNumberOfSubmit() === $value->getNumberOfPlacesMax())
+            if ($value->getNumberOfSubmit() === $value->getNumberOfPlacesMax()/2 && $value->getActiveHour() === "Day")
             {
-                $endBookings[] = $value->getActiveDate();
+                foreach ($restaurantPlaces as $key => $value)
+                {
+                    if ($value->getNumberOfSubmit() === $value->getNumberOfPlacesMax()/2 && $value->getActiveHour() === "Night")
+                    {
+                        $endBookings[] = $value->getActiveDate();
+                    }
+                }
             }
         }
 
@@ -498,6 +508,12 @@ class PostController extends AbstractController
             return $this->render('home');
         }
 
+        if ($book->getHourSelectedNight() === 'Non' && $book->getHourSelectedDay() === 'Non')
+        {
+            // make an error to not allow customer or visitor to take a reservation for nothing
+            return $this->render('home');
+        }
+
         $user =$this->getUser();
 
         $book->setCustomer($user);
@@ -512,6 +528,18 @@ class PostController extends AbstractController
         }
         
         $em->flush();
+
+        $encoder = new JsonEncoder();
+        $defaultContext = [
+            AbstractNormalizer::CIRCULAR_REFERENCE_HANDLER => function (object $object, string $format, array $context): string {
+                return $object->getAlias();
+            },
+        ];
+        $normalizer = new ObjectNormalizer(null, null, null, null, null, null, $defaultContext);
+
+        $serializer = new Serializer([$normalizer], [$encoder]);
+        // var_dump($serializer->serialize($org, 'json'));
+        // {"name":"Les-Tilleuls.coop","members":[{"name":"K\u00e9vin", organization: "Les-Tilleuls.coop"}]}
 
         $responseData = $serializer->serialize($book, 'json');
         $location = $urlGenerator->generate(
