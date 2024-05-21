@@ -19,13 +19,13 @@ function topFunction() {
 myButton.addEventListener("click", topFunction);
 
 // Get the modal
-var modal = document.getElementById("myModal");
+let modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementById("bookingBtn");
+let btn = document.getElementById("bookingBtn");
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+let span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function () {
@@ -68,7 +68,7 @@ let hoverImages = document.getElementsByClassName("card-img-top");
 let hoverTitles = document.getElementsByClassName("card-title");
 let hoverTexts = document.getElementsByClassName("card-text");
 
-for (var i = 0; i < hoverImages.length; i++) {
+for (let i = 0; i < hoverImages.length; i++) {
   hoverImages[i].addEventListener("mouseover", showTitle(i));
   hoverImages[i].addEventListener("mouseout", disableTitle(i));
 }
@@ -105,15 +105,15 @@ $(function ($) {
 
   //Limit Booking
 
-  var datesForbiddensFromController = $('.end-booking').attr("name"); // data from Controller
-  var datesForbiddens = datesForbiddensFromController.split(","); // find a way to concatenate php entry string in a array
+  let datesForbiddensFromController = $('.end-booking').attr("name"); // data from Controller
+  let datesForbiddens = datesForbiddensFromController.split(","); // find a way to concatenate php entry string in a array
 
-  var runDaysForbiddensFromController = $('.end-booking-day').attr("name");
-  var runDaysForbiddens = runDaysForbiddensFromController.split(",");
-  var runNightsForbiddensFromController = $('.end-booking-night').attr("name");
-  var runNightsForbiddens = runNightsForbiddensFromController.split(",");
+  let runDaysForbiddensFromController = $('.end-booking-day').attr("name");
+  let runDaysForbiddens = runDaysForbiddensFromController.split(",");
+  let runNightsForbiddensFromController = $('.end-booking-night').attr("name");
+  let runNightsForbiddens = runNightsForbiddensFromController.split(",");
 
-  var closureDate = 3; // Set closure Day by Admin
+  let closureDate = 3; // Set closure Day by Admin
 
   if ($(".rule-booking-day").attr("name") === "lundi")
   {
@@ -150,7 +150,7 @@ $(function ($) {
     {
       return [false, "fermé", "Fermé le Mercredi"]
     }
-    var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+    let string = jQuery.datepicker.formatDate('yy-mm-dd', date);
     return [ datesForbiddens.indexOf(string) == -1 ]
   }
 

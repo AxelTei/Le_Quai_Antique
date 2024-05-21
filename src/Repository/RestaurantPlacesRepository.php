@@ -39,20 +39,6 @@ class RestaurantPlacesRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return RestaurantPlaces[] Returns an array of RestaurantPlaces objects
-//     */
-//    public function findLastPlace(): array
-//    {
-//        return $this->createQueryBuilder('r')
-//             ->select('r.activeDate')
-//            ->orderBy('r.id', 'DESC')
-//            ->setMaxResults(1)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
    public function findLastDateSubmit(): ?RestaurantPlaces
    {
        return $this->createQueryBuilder('r')

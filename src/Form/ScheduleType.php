@@ -15,7 +15,7 @@ class ScheduleType extends AbstractType
     {
         $builder
             ->add("date", TextType::class, [
-                "label" => "La date", 
+                "label" => "La date",
                 "required" => true,
                 "constraints" => [ new Length(['min' => 0, 'max' => 150, 'minMessage' => "Veuillez indiquer un jour de la semaine correspondant à vos nouvelles horaires.", 'maxMessage' => "Le jour indiqué ne doit pas faire plus de 150 caractères !"])]
                 ])
@@ -24,7 +24,7 @@ class ScheduleType extends AbstractType
                 "required" => false,
             ])
             ->add("openingHoursNight", TextType::class, [
-                "label" => "Horaires Diner", 
+                "label" => "Horaires Diner",
                 "required" => false,
                 ]);
     }

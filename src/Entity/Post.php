@@ -15,7 +15,7 @@ class Post
     private int $id;
     
     #[ORM\Column(type: "string", nullable: true, length: 150)]
-    private ?string $title = NULL;
+    private ?string $title = null;
 
     #[ORM\Column(type: "text", length: 320)]
     private string $content;

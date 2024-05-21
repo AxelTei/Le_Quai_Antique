@@ -22,14 +22,14 @@ class LoginType extends AbstractType
                 "attr" => array('name' => '_username'),
                 "constraints" => [
                     new Length(['min' => 5, 'max' => 180, 'minMessage' => "Veuillez saisir votre Email.", 'maxMessage' => "Votre Email ne doit pas faire plus de 180 caractères !"]),
-                    new NotBlank(["message" => "Veuillez saisir votre Email."])    
+                    new NotBlank(["message" => "Veuillez saisir votre Email."])
                 ]
             ])
             ->add("password", PasswordType::class, [
                 "label" => "Mot de passe",
                 "required" => true,
                 "constraints" => [
-                    new NotBlank(["message" => "Veuillez saisir votre Mot de passe."])    
+                    new NotBlank(["message" => "Veuillez saisir votre Mot de passe."])
                 ]
             ]);
     }

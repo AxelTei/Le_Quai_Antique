@@ -19,12 +19,12 @@ class PostType extends AbstractType
     {
         $builder
             ->add("title", TextType::class, [
-                "label" => "Titre", 
+                "label" => "Titre",
                 "required" => false,
                 "constraints" => [ new Length(['min' => 0, 'max' => 150, 'minMessage' => "Le titre ne doit être vide !", 'maxMessage' => "Le titre ne doit pas faire plus de 150 caractères !"])]
             ])
             ->add("content", TextareaType::class, [
-                "label" => "Contenu", 
+                "label" => "Contenu",
                 "required" => true,
                 "constraints" => [
                     new Length(['min' => 5, 'max' => 320, 'minMessage' => "Le message ne doit pas faire moins de 5 caractères !", 'maxMessage' => "Le message ne doit pas faire plus de 320 caractères !"]),

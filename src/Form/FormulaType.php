@@ -16,9 +16,9 @@ class FormulaType extends AbstractType
     {
         $builder
             ->add("menuTitle", TextType::class, [
-                "label" => "Titre du Menu", 
+                "label" => "Titre du Menu",
                 "required" => true,
-                "constraints" => [ new Length(['min' => 0, 'max' => 150, 'minMessage' => "Le titre ne doit pas être vide !", 'maxMessage' => "Le titre ne doit pas faire plus de 150 caractères !"])]
+                "constraints" => [ new Length(['min' => 0, 'max' => 150, 'minMessage' => "Veuillez indiquer un titre !", 'maxMessage' => "Ce titre ne doit pas faire plus de 150 caractères !"])]
                 ])
             ->add("formulaDayTitle", TextType::class, [
                 "label" => "Titre pour la Formule Déjeuner",
@@ -26,12 +26,12 @@ class FormulaType extends AbstractType
                 "constraints" => [ new Length(['min' => 0, 'max' => 150, 'minMessage' => "Le titre ne doit pas être vide !", 'maxMessage' => "Le titre ne doit pas faire plus de 150 caractères !"])]
             ])
             ->add("formulaDayDescription", TextareaType::class, [
-                "label" => "Description de la Formule Déjeuner", 
+                "label" => "Description de la Formule Déjeuner",
                 "required" => false,
                 "constraints" => [ new Length(['min' => 5, 'max' => 320, 'minMessage' => "La description ne doit pas faire moins de 5 caractères !", 'maxMessage' => "La description ne doit pas faire plus de 320 caractères !"])]
                 ])
             ->add("formulaDayPrice", TextType::class, [
-                "label" => "Prix de la Formule Déjeuner", 
+                "label" => "Prix de la Formule Déjeuner",
                 "required" => false,
             ])
             ->add("formulaNightTitle", TextType::class, [
@@ -40,12 +40,12 @@ class FormulaType extends AbstractType
                 "constraints" => [ new Length(['min' => 0, 'max' => 150, 'minMessage' => "Le titre ne doit pas être vide !", 'maxMessage' => "Le titre ne doit pas faire plus de 150 caractères !"])]
             ])
             ->add("formulaNightDescription", TextareaType::class, [
-                "label" => "Description de la Formule Diner", 
+                "label" => "Description de la Formule Diner",
                 "required" => false,
                 "constraints" => [ new Length(['min' => 5, 'max' => 320, 'minMessage' => "La description ne doit pas faire moins de 5 caractères !", 'maxMessage' => "La description ne doit pas faire plus de 320 caractères !"])]
                 ])
             ->add("formulaNightPrice", TextType::class, [
-                "label" => "Prix de la Formule Diner", 
+                "label" => "Prix de la Formule Diner",
                 "required" => false,
             ]);
     }

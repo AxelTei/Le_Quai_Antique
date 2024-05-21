@@ -17,7 +17,7 @@ class MenuType extends AbstractType
     {
         $builder
             ->add("dishTitle", TextType::class, [
-                "label" => "Titre", 
+                "label" => "Titre",
                 "required" => true,
                 "constraints" => [ new Length(['min' => 0, 'max' => 150, 'minMessage' => "Le titre ne doit pas être vide !", 'maxMessage' => "Le titre ne doit pas faire plus de 150 caractères !"])]
                 ])
@@ -27,7 +27,7 @@ class MenuType extends AbstractType
                 "constraints" => [ new NotBlank(['message' => 'La catégorie du plat doit être inscrite !'])]
             ])
             ->add("dishDescription", TextareaType::class, [
-                "label" => "Description", 
+                "label" => "Description",
                 "required" => true,
                 "constraints" => [
                     new Length(['min' => 5, 'max' => 320, 'minMessage' => "La description ne doit pas faire moins de 5 caractères !", 'maxMessage' => "La description ne doit pas faire plus de 320 caractères !"]),
@@ -35,7 +35,7 @@ class MenuType extends AbstractType
                 ]
                 ])
             ->add("dishPrice", TextType::class, [
-                "label" => "Prix du plat", 
+                "label" => "Prix du plat",
                 "required" => true,
                 "constraints" => [new NotBlank(['message' => 'Le prix doit être indiqué !'])]
             ]);
