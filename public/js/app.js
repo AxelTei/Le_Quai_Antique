@@ -322,3 +322,11 @@ function book()
     document.location.href="/";
   })
 }
+
+// Function pour échapper le retour client en JS, transforme le HTML en Texte
+function sanitizeHtml(text)
+{
+  const tempHtml = document.createElement('div');
+  tempHtml.textContent = text;
+  return tempHtml.innerHTML;
+}
