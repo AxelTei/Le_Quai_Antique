@@ -18,6 +18,7 @@ class MenuController extends AbstractController
     #[Route('/carte', name: 'carte')]
     public function index(ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $repository = $doctrine->getRepository(Menu::class);
         $menus = $repository->findAll(); // SELECT * FROM `restaurant_dishes`;
 
@@ -38,6 +39,7 @@ class MenuController extends AbstractController
     #[Route('/carte/new')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $menu = new Menu();
         $form = $this->createForm(MenuType::class, $menu);
         $form->handleRequest($request);
@@ -57,6 +59,7 @@ class MenuController extends AbstractController
     #[Route('/carte/edit/{id}', name: "edit-carte", requirements: ["id" => "\d+"])]
     public function update(Menu $menu, ManagerRegistry $doctrine, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(MenuType::class, $menu);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
@@ -74,6 +77,7 @@ class MenuController extends AbstractController
     #[Route('/carte/delete/{id}', name: "delete-carte", requirements: ["id" => "\d+"])]
     public function delete(Menu $menu, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $em = $doctrine->getManager();
         $em->remove($menu);
         $em->flush();
