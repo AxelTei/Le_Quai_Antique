@@ -44,6 +44,8 @@ window.onclick = function (event) {
   }
 }
 
+// Utilisé par notre ancien Formulaire
+
 // // Uncheck a radio button
 
 // // let radio = document.getElementById("book_hourSelectedDay_7");
@@ -158,6 +160,8 @@ $(function ($) {
   {
     if (jQuery.inArray(date, runDaysForbiddens) > -1)
     {
+      // Utilisé par notre ancien Formulaire
+
       // $('#book_hourSelectedDay_0').attr("disabled", true)
       // $('#book_hourSelectedDay_1').attr("disabled", true)
       // $('#book_hourSelectedDay_2').attr("disabled", true)
@@ -193,6 +197,8 @@ $(function ($) {
     } else if (jQuery.inArray(date, runNightsForbiddens) > -1)
     {
 
+      // Utilisé par notre ancien Formulaire
+
       // $('#book_hourSelectedNight_0').attr("disabled", true)
       // $('#book_hourSelectedNight_1').attr("disabled", true)
       // $('#book_hourSelectedNight_2').attr("disabled", true)
@@ -227,6 +233,8 @@ $(function ($) {
       $('.alert-end-booking-Day').css("display", "none")
     } else {
 
+      // Utilisé par notre ancien Formulaire
+      
       // $('#book_hourSelectedDay_0').attr("disabled", false)
       // $('#book_hourSelectedDay_1').attr("disabled", false)
       // $('#book_hourSelectedDay_2').attr("disabled", false)
