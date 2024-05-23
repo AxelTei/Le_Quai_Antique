@@ -15,13 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class CustomerController extends AbstractController
 {
     #[Route('/customer/new', name: 'app_user')]
-    public function index(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine): Response
+    public function index(Request $request, UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine): Response
     {
-        $customer = new Customers($userPasswordHasher);
+        $customer = new Customers();
         $form = $this->createForm(CustomerType::class, $customer);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
+            // HASH PASSWORD
+            $plaintextPassword = $form['password']->getData();
+            $hashedPassword = $passwordHasher->hashPassword($customer, $plaintextPassword);
+            $customer->setPassword($hashedPassword);
             $em = $doctrine->getManager();
             $em->persist($customer);
             $em->flush();

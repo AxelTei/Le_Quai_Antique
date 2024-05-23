@@ -52,9 +52,8 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'customer', targetEntity: Book::class)]
     private Collection $books;
 
-    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    public function __construct()
     {
-        $this->passwordHasher = $passwordHasher;
         $this->books = new ArrayCollection();
     }
 
@@ -114,7 +113,7 @@ class Customers implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setPassword(string $password): self
     {
-        $this->password = $this->passwordHasher->hashPassword($this, $password);
+        $this->password = $password;
 
         return $this;
     }
