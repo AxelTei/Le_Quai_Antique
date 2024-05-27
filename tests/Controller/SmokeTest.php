@@ -7,22 +7,29 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class SmokeTest extends WebTestCase
 {
-    // public function testVisitingWhileLoggedIn(): void
-    // {
-    //     $client = static::createClient();
-    //     $userRepository = static::getContainer()->get(CustomerRepository::class);
+    public function testVisitingWhileLoggedIn(): void
+    {
+        $client = static::createClient();
+        $userRepository = static::getContainer()->get(CustomerRepository::class);
 
-    //     // retrieve the test user
-    //     $testUser = $userRepository->findOneByEmail('test@test.com');
+        // retrieve the test user
+        $testUser = $userRepository->findOneByEmail('test@test.com');
 
-    //     // simulate $testUser being logged in
-    //     $client->loginUser($testUser);
+        // simulate $testUser being logged in
+        $client->loginUser($testUser);
 
-    //     // test e.g. the profile page
-    //     $client->request('GET', '/'); //à remplacer avec la page réservation
-    //     $this->assertResponseIsSuccessful();
-    //     // $this->assertSelectorTextContains('h1', 'Hello John!');
-    // }
+        // test e.g. the checkBook page
+        $client->request('GET', '/check_book');
+        $this->assertResponseIsSuccessful();
+    }
+
+    public function testRouteBookingIsSecure(): void
+    {
+        $client = self::createClient();
+        $client->request('GET', '/booking');
+
+        self::assertResponseStatusCodeSame(302); //redirect to Login page
+    }
 
     public function testIfBookingJsRouteIsSuccessfulWithTheRightData(): void
     {
