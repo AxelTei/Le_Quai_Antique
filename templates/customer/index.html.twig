@@ -1,0 +1,89 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Réservations | Le Quai Antique
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="produit.css">
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid mt-3 mb-5">
+		<h1 class="main-title-admin-page">Vos Réservations</h1>
+		<div class="row text-center mt-5">
+			<div class="col-sm-6 ">
+				<p class="subtitle-admin-page mt-5">Réservation du MIDI</p>
+				{% for book in books %}
+                    {% if book.customer == user %}
+					    {% if book.hourSelectedDay and book.hourSelectedNight == "Non" %}
+						    <p>Réservation de : {{ book.alias }}</p>
+						    <p>Numéro : {{ book.phoneNumber }}</p>
+						    <p>Nombre de couverts : {{ book.preferedGroupNumber}}</p>
+						    <p>Date : {{ book.date | date("d/m/Y") }}</p>
+						    <p>Réservation pour : {{ book.hourSelectedDay }}</p>
+						    <p>Allergies : {{ book.allergies }}</p>
+						    <a href="{{ path('delete-booking-customer', {'id': book.id}) }}" class="btn btn-danger mb-5">Supprimer</a>
+					    {% endif %}
+                    {% endif %}
+				{% endfor %}
+			</div>
+			<div class="col-sm-6 ">
+				<p class="subtitle-admin-page mt-5">Réservation du SOIR</p>
+				{% for book in books %}
+                    {% if book.customer == user %}
+					    {% if book.hourSelectedNight and book.hourSelectedDay == "Non" %}
+						    <p>Réservation de : {{ book.alias }}</p>
+						    <p>Numéro : {{ book.phoneNumber }}</p>
+						    <p>Nombre de couverts : {{ book.preferedGroupNumber}}</p>
+						    <p>Date : {{ book.date | date("d/m/Y") }}</p>
+						    <p>Réservation pour : {{ book.hourSelectedNight }}</p>
+						    <p>Allergies : {{ book.allergies }}</p>
+						    <a href="{{ path('delete-booking-customer', {'id': book.id}) }}" class="btn btn-danger mb-5">Supprimer</a>
+					    {% endif %}
+                    {% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+    <!--Footer Section-->
+
+	<footer class="container-fluid footer mt-5" {% if is_granted('ROLE_ADMIN') %} style="height: auto;" {% endif %}>
+		<div class="row">
+			<div class="col-sm-3 mx-auto text-center footer-main-article">
+				<h2 class="footer-main-title">Chef Arnaud Michant</h2>
+			</div>
+			<div class="col-sm-3 mx-auto text-center footer-main-article">
+				<h2 class="footer-main-title">Le Quai Antique</h2>
+			</div>
+			<div class="col-sm-3 mx-auto text-center footer-hours">
+				<h2 class="footer-title-hours mb-3">Nos Horaires d'ouverture</h2>
+				<div class="row">
+					{% for schedule in schedules %}
+						<div class="col-6">
+							<p>{{ schedule.date }}</p>
+						</div>
+						<div class="col-6">
+							{% if schedule.openingHoursDay %}
+								<p>{{ schedule.openingHoursDay }}</p>
+							{% endif %}
+							{% if schedule.openingHoursNight %}
+								<p class="mt-0">{{ schedule.openingHoursNight }}</p>
+							{% endif %}
+							{% if is_granted('ROLE_ADMIN') %}
+								<a href="{{ path('delete-schedule', {'id': schedule.id}) }}" class="btn btn-danger">Supprimer</a>
+								<a href="{{ path('edit-schedule', {'id': schedule.id}) }}" class="btn btn-warning">Modifier</a>
+							{% endif %}
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="col-sm-3 mx-auto text-center footer-article">
+				<h2 class="footer-title">208, boulevard de la Savoie, 73000 Chambéry</h2>
+			</div>
+		</div>
+	</footer>
+
+{% endblock %}
