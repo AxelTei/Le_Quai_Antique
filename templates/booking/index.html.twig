@@ -44,8 +44,9 @@
 		</div>
 		<h2 class="title-admin-page mt-5">Les Réservations</h2>
 		<p class="mt-3">Conseil : Supprimer les réservations obsolètes pour éviter une surcharge d'informations inutiles.</p>
-		<div class="row text-center">
-			<div class="col-sm-6 ">
+		<div class="row text-center catalogue-div-container-table-2">
+		{# Old Booking List #}
+			{# <div class="col-sm-6 ">
 				<p class="subtitle-admin-page mt-5">Réservation du MIDI</p>
 				{% for book in books %}
 					{% if book.hourSelectedDay and book.hourSelectedNight == "Non" %}
@@ -73,6 +74,68 @@
 					{% endif %}
 				{% endfor %}
 			</div>
-		</div>
+		</div> #}
+		<table class="div-container-table mt-5" style="margin-left:50px;">
+			<thead>
+				<tr>
+					<th class="subtitle-admin-page" colspan="7">Réservations du MIDI</th>
+				</tr>
+				<tr>
+					<th colspan="1">Client</th>
+					<th colspan="1">Date</th>
+					<th colspan="1">Heure de réservation</th>
+					<th colspan="1">Numéro de Tel</th>
+					<th colspan="1">Nombre de couverts</th>
+					<th colspan="1">Allergies</th>
+					<th colspan="1">Supprimer la réservation</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for book in books %}
+					{% if book.hourSelectedDay and book.hourSelectedNight == "Non" %}
+						<tr>
+							<td class="text-center">{{ book.alias }}</td>
+							<td class="text-center">{{ book.date | date("d/m/Y") }}</td>
+							<td class="text-center">{{ book.hourSelectedDay }}</td>
+							<td class="text-center">{{ book.phoneNumber }}</td>
+							<td class="text-center">{{ book.preferedGroupNumber}}</td>
+							<td class="text-center">{{ book.allergies }}</td>
+							<td class="text-center"><a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a></td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+		<table class="div-container-table mt-5" style="margin-left:50px;">
+			<thead>
+				<tr>
+					<th class="subtitle-admin-page" colspan="7">Réservations du SOIR</th>
+				</tr>
+				<tr>
+					<th colspan="1">Client</th>
+					<th colspan="1">Date</th>
+					<th colspan="1">Heure de réservation</th>
+					<th colspan="1">Numéro de Tel</th>
+					<th colspan="1">Nombre de couverts</th>
+					<th colspan="1">Allergies</th>
+					<th colspan="1">Supprimer la réservation</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for book in books %}
+					{% if book.hourSelectedNight and book.hourSelectedDay == "Non" %}
+						<tr>
+							<td class="text-center">{{ book.alias }}</td>
+							<td class="text-center">{{ book.date | date("d/m/Y") }}</td>
+							<td class="text-center">{{ book.hourSelectedNight }}</td>
+							<td class="text-center">{{ book.phoneNumber }}</td>
+							<td class="text-center">{{ book.preferedGroupNumber}}</td>
+							<td class="text-center">{{ book.allergies }}</td>
+							<td class="text-center"><a href="{{ path('delete-booking', {'id': book.id}) }}" class="btn btn-danger">Supprimer</a></td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
 	</div>
 {% endblock %}
