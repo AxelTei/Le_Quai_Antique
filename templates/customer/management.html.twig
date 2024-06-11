@@ -1,0 +1,84 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Gestion Clientèle | Le Quai Antique
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="produit.css">
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid mt-3 mb-5">
+	<h1 class="main-title-admin-page">Gestion Clientèle</h1>
+
+    <table class="div-container-table mt-5" style="margin-left:50px;">
+		<thead>
+			<tr>
+				<th class="subtitle-admin-page text-center" colspan="5">Clients</th>
+			</tr>
+			<tr>
+				<th colspan="1" class="text-center mb-3">Email</th>
+				<th colspan="1">Nom</th>
+				<th colspan="1">Télephone</th>
+				<th colspan="1">Allergies</th>
+				<th colspan="1" class="text-center">Supprimer le compte client</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for customer in customers %}
+				<tr>
+					<td class="text-center">{{ customer.email }}</td>
+					<td class="text-center">{{ customer.alias }}</td>
+					<td class="text-center">{{ customer.phoneNumber }}</td>
+					<td class="text-center">{{ customer.allergies }}</td>
+                    {% if "ROLE_ADMIN" in customer.roles %}
+					    <td class="text-center"><p class="mt-3 mb-3">Suppression Impossible</p></td>
+                    {% else %}
+                        <td class="text-center"><a href="{{ path('delete-customer', {'id': customer.id}) }}" class="btn btn-danger">Supprimer</a></td>
+                    {% endif %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+    <!--Footer Section-->
+
+	<footer class="container-fluid footer mt-5" {% if is_granted('ROLE_ADMIN') %} style="height: auto;" {% endif %}>
+		<div class="row">
+			<div class="col-sm-3 mx-auto text-center footer-main-article">
+				<h2 class="footer-main-title">Chef Arnaud Michant</h2>
+			</div>
+			<div class="col-sm-3 mx-auto text-center footer-main-article">
+				<h2 class="footer-main-title">Le Quai Antique</h2>
+			</div>
+			<div class="col-sm-3 mx-auto text-center footer-hours">
+				<h2 class="footer-title-hours mb-3">Nos Horaires d'ouverture</h2>
+				<div class="row">
+					{% for schedule in schedules %}
+						<div class="col-6">
+							<p>{{ schedule.date }}</p>
+						</div>
+						<div class="col-6">
+							{% if schedule.openingHoursDay %}
+								<p>{{ schedule.openingHoursDay }}</p>
+							{% endif %}
+							{% if schedule.openingHoursNight %}
+								<p class="mt-0">{{ schedule.openingHoursNight }}</p>
+							{% endif %}
+							{% if is_granted('ROLE_ADMIN') %}
+								<a href="{{ path('delete-schedule', {'id': schedule.id}) }}" class="btn btn-danger">Supprimer</a>
+								<a href="{{ path('edit-schedule', {'id': schedule.id}) }}" class="btn btn-warning">Modifier</a>
+							{% endif %}
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="col-sm-3 mx-auto text-center footer-article">
+				<h2 class="footer-title">208, boulevard de la Savoie, 73000 Chambéry</h2>
+			</div>
+		</div>
+	</footer>
+
+{% endblock %}
