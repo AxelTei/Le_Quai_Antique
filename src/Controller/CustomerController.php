@@ -26,7 +26,6 @@ class CustomerController extends AbstractController
             $plaintextPassword = $form['password']->getData();
             $hashedPassword = $passwordHasher->hashPassword($customer, $plaintextPassword);
             $customer->setPassword($hashedPassword);
-            $customer->setRoles(["ROLE_ADMIN"]);
             $em = $doctrine->getManager();
             $em->persist($customer);
             $em->flush();
