@@ -12,6 +12,7 @@ use App\Form\PostType;
 use App\Form\RestaurantRuleType;
 use App\Form\ScheduleType;
 use Doctrine\Persistence\ManagerRegistry;
+use League\Flysystem\Filesystem;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -225,7 +226,7 @@ class PostController extends AbstractController
     }
 
     #[Route('/post/new')]
-    public function create(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
+    public function create(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger, Filesystem $filesystem): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
@@ -244,10 +245,22 @@ class PostController extends AbstractController
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
 
                 try {
-                    $imageFile->move(
-                        $this->getParameter("uploads"),
-                        $newFilename
+                    // $imageFile->move(
+                    //     $this->getParameter("uploads"),
+                    //     $newFilename
+                    // ); //former way to stock images in folder uploads
+                    $stream = fopen($imageFile->getPathname(), 'r');
+                    $filesystem->writeStream(
+                        $newFilename,
+                        $stream,
+                        [
+                            'visibility' => "public"
+                        ]
                     );
+
+                    if (is_resource($stream)) {
+                        fclose($stream);
+                    }
                 } catch (FileException $e) {
                     //
                 }
@@ -266,7 +279,7 @@ class PostController extends AbstractController
     }
 
     #[Route('/post/edit/{id}', name: "edit-post", requirements: ["id" => "\d+"])]
-    public function update(Post $post, ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger): Response
+    public function update(Post $post, ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger, Filesystem $filesystem): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(PostType::class, $post);
@@ -282,9 +295,17 @@ class PostController extends AbstractController
                 $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
 
                 try {
-                    $imageFile->move(
-                        $this->getParameter("uploads"),
-                        $newFilename
+                    // $imageFile->move(
+                    //     $this->getParameter("uploads"),
+                    //     $newFilename
+                    // ); //former way to stock images in folder uploads
+                    $stream = fopen($imageFile->getPathname(), 'r');
+                    $filesystem->writeStream(
+                        $newFilename,
+                        $stream,
+                        [
+                            'visibility' => "public"
+                        ]
                     );
                 } catch (FileException $e) {
                     //
@@ -303,9 +324,12 @@ class PostController extends AbstractController
     }
 
     #[Route('/post/delete/{id}', name: "delete-post", requirements: ["id" => "\d+"])]
-    public function delete(Post $post, ManagerRegistry $doctrine): Response
+    public function delete(Post $post, ManagerRegistry $doctrine, Filesystem $filesystem): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $filesystem->delete($post->getImage());
+        
         $em = $doctrine->getManager();
         $em->remove($post);
         $em->flush();
