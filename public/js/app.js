@@ -309,7 +309,7 @@ function book()
     redirect: 'follow'
   };
 
-  fetch("http://127.0.0.1:8000/bookJS", requestOptions)
+  fetch("http://whispering-shore-76724-12dedaea775f.herokuapp.com/bookJS", requestOptions)
   .then(response => {
     if(response.ok)
       {
