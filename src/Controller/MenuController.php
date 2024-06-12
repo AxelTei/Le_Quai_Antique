@@ -18,7 +18,6 @@ class MenuController extends AbstractController
     #[Route('/carte', name: 'carte')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $repository = $doctrine->getRepository(Menu::class);
         $menus = $repository->findAll(); // SELECT * FROM `restaurant_dishes`;
 
