@@ -48,6 +48,7 @@ security:
             provider: app_user_provider
             login_throttling:
                 limiter: app.login_rate_limiter
+            custom_authenticator: App\Security\LoginFormAuthenticator
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 

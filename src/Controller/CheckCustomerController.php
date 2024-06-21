@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Book;
 use App\Entity\Customers;
+use App\Entity\RestaurantPlaces;
 use App\Entity\Schedules;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +31,16 @@ class CheckCustomerController extends AbstractController
     public function deleteCustomer(Customers $customer, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $repository = $doctrine->getRepository(Book::class);
+        $books = $repository->findBy(array('customer' => $customer->getId())); // SELECT the data with the value id in table `restaurant_places`;
         $em = $doctrine->getManager();
+        foreach ($books as $key => $book)
+        {
+            $repository = $doctrine->getRepository(RestaurantPlaces::class);
+            $place = $repository->findOneBy(array('book' => $book->getId())); // SELECT the data with the value id in table `restaurant_places`;
+            $em->remove($place);
+            $em->remove($book);
+        }
         $em->remove($customer);
         $em->flush();
 
